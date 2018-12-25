@@ -10,7 +10,7 @@ var fileinclude = require('gulp-file-include');
 
 gulp.task('default', ['sass', 'compressjs', 'imagemin', 'lint', 'compresspug', 'html', 'webserver'], function() {
   gulp.watch('src/SCSS/*.sass', ['sass']);
-  gulp.watch('src/views/*.pug', ['compresspug']);
+  gulp.watch('src/views/CourseList*.pug', ['compresspug']);
   gulp.watch('src/JS/*.js', ['compressjs']);
 });
 
