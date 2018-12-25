@@ -17,14 +17,14 @@ gulp.task('default', ['sass', 'compressjs', 'imagemin', 'lint', 'compresspug', '
 gulp.task('compresspug', function buildHTML() {
   return gulp.src('src/views/CourseList/*.pug')
     .pipe(pug({pretty: true}))
-    .pipe(gulp.dest('./src/views/CourseList'))
+    .pipe(gulp.dest('./dist/views'))
     .on("error", notify.onError(function (error) {
         return "Error: " + error.message;
     }));
 });
 
 gulp.task('html', function () {
-    return gulp.src('./src/views/*.html')
+    return gulp.src('./dist/views/index.html')
     .pipe(fileinclude())
     .pipe(gulp.dest('./'));
 });
