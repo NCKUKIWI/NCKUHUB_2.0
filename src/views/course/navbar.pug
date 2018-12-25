@@ -8,9 +8,9 @@ div.navbar-fixed
           label(for='search1') 找尋課程、老師
         ul.right.hide-on-med-and-down
           li
-            a(href="#") 找課程
+            a(href="#" @click="change_tab('course')") 找課程
           li
-            a(href="#")
+            a(href="#" @click="change_tab('table')")
               | 排課表
               span.new.badge.flex-container  
           li

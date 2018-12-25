@@ -20,6 +20,7 @@
     "jshint": "^2.9.5"
   },
   "dependencies": {
+    "gulp-clean-css": "^4.0.0",
     "gulp-file-include": "^2.0.1"
   }
 }

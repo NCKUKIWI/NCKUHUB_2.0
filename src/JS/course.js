@@ -16,7 +16,7 @@ function dropdownFunction() {
   document.getElementById("dropdown1").classList.toggle("show");
 }
 
-$(document).ready(function(){
+// $(document).ready(function(){
 
   var scrollbottom = $(document).height() - $(window).height() - $(window).scrollTop();
   console.log(scrollbottom);
@@ -185,4 +185,4 @@ $(document).ready(function(){
 
 
 
-});
+// });
