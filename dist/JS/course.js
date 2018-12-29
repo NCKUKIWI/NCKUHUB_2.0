@@ -16,8 +16,10 @@ function dropdownFunction() {
   document.getElementById("dropdown1").classList.toggle("show");
 }
 
+// $(document).ready(function(){
 
-$(document).ready(function(){
+  var scrollbottom = $(document).height() - $(window).height() - $(window).scrollTop();
+  console.log(scrollbottom);
 
   var vue_course_item = new Vue({
     el: '#course_item',
@@ -35,21 +37,21 @@ $(document).ready(function(){
       //   url: "https://nckuhub.com/course/allcourse",
       //   success: function(response) {
       //         vue_course_item.course_data = response.nowCourse;
-      //         vue_course_item.course_by_depart = response.courses_Department;
+      //         vue_course_item.course_by_depart= = response.courses_Department;
       //         console.log(response);
       //   }
       // });
     },
-    computed: {
-      filterComment: function() {
-        if(this.comment_only == false) {
-          return this.course_data;
-        } else {
-          return this.course_with_comment;
-
-        }
-      }
-    },
+    // computed: {
+    //   filterComment: function() {
+    //     if(this.comment_only == false) {
+    //       return this.course_data_db;
+    //     } else {
+    //       return this.course_with_comment;
+    //
+    //     }
+    //   }
+    // },
     methods: {
       courseLink: function(index) {
         vue_courseContent.isShow = true;
@@ -77,26 +79,30 @@ $(document).ready(function(){
     },
   });
 
-
   $.ajax({
     type: "GET",
-    url: "https://nckuhub.com/course/allcourse",
+    url: "https://nckuhub.com/test/course/",
     success: function(response) {
-          vue_course_item.course_data_db = response.nowCourse;
-          vue_course_item.course_data = response.nowCourse;
-          // vue_course_item.course_by_depart = response.courses_Department;
+          vue_course_item.course_data_db = response.courses;
+          // vue_course_item.course_data = response.courses;
+          for(var i=0;i<20;i++){
+            vue_course_item.course_data.push(vue_course_item.course_data_db[i]);
+          }
+
+
           // vue_course_item.course_data = vue_course_item.course_by_depart.A1;
-          for(i in vue_course_item.course_data) {
-            if(vue_course_item.course_data[i].comment_num > 0){
-              vue_course_item.course_with_comment.push(vue_course_item.course_data[i]);
-            }
-          }
-          for(i in vue_course_item.course_data) {
-            vue_course_item.course_data[i].dept = vue_course_item.course_data[i].系號;
-          }
-          console.log(vue_course_item.course_with_comment);
+          // for(var i in vue_course_item.course_data) {
+          //   if(vue_course_item.course_data[i].comment_num > 0){
+          //     vue_course_item.course_with_comment.push(vue_course_item.course_data[i]);
+          //   }
+          // }
+          // for(var i in vue_course_item.course_data_db) {
+          //   vue_course_item.course_data[i].dept = vue_course_item.course_data[i].系號;
+          // }
+          // console.log(vue_course_item.course_with_comment);
     }
   });
+
 
 
 
@@ -111,7 +117,7 @@ $(document).ready(function(){
         vue_courseContent.isShow = false;
       }
     }
-  })
+  });
 
 
   var vue_wishList = new Vue ({
@@ -119,7 +125,7 @@ $(document).ready(function(){
     data: {
       wishList: [],
     }
-  })
+  });
 
 
   var vue_courseComment = new Vue ({
@@ -129,14 +135,16 @@ $(document).ready(function(){
     },
     methods: {
       cfilter: function() {
+        console.log("test");
         var cCheck = document.getElementById("commentCheck");
         if(cCheck.checked == true) {
           vue_course_item.comment_only = true;
-          // vue_course_item.course_data = vue_course_item.course_with_comment;
+          vue_course_item.course_data = vue_course_item.course_with_comment;
         } else {
           vue_course_item.comment_only = false;
-          // vue_course_item.course_data = vue_course_item.course_data_db;
+          vue_course_item.course_data = vue_course_item.course_data;
         }
+        console.log("test2");
       },
       sortByDept: function() {
         // vue_course_item.course_data.sort(function(a,b) {
@@ -172,9 +180,9 @@ $(document).ready(function(){
 
       }
     },
-  })
+  });
 
 
 
 
-});
+// });

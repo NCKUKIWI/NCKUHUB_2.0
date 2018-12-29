@@ -1,0 +1,29 @@
+div.navbar-fixed
+    nav
+      div.nav-wrapper
+        a.brand-logo(href="#")
+          img(src="dist/images/logo.png")
+        form.input-field
+          input#search1(type='search')
+          label(for='search1') 找尋課程、老師
+        ul.right.hide-on-med-and-down
+          li
+            a(href="#" @click="change_tab('course')") 找課程
+          li
+            a(href="#" @click="change_tab('table')")
+              | 排課表
+              span.new.badge.flex-container  
+          li
+            a(href="#", onclick="dropdownFunction()")
+              div.photo
+            div#dropdown1.dropdownContent
+              div.photo
+              div.profile
+                p.profile__name 吳瑋倢
+                p(style="font-weight: 100;font-size: 9px") hugecatopmeow@gmail.com
+                p 工業與資訊管理學系
+                p 四年級
+                a(href="#") 前往個人頁面
+              div.activeWord
+                span ★已啟用小幫手
+              div.btn.logout 登出

@@ -3,7 +3,7 @@
   <div class="courseContentBody">
     <div class="courseContentBody__left"><span class="courseSerial">{{course_data.課程碼}}</span>
       <h2 style="margin-top:20px">{{course_data.課程名稱}}</h2>
-      <div class="icon-span" style="margin-top:30px" @click=""><i class="material-icons tiny">favorite</i><span>加入願望清單</span></div>
+      <div class="icon-span" style="margin-top:30px"><i class="material-icons tiny">favorite</i><span>加入願望清單</span></div>
       <div class="icon-span"><i class="material-icons tiny">content_paste</i><span>檢視課程大綱</span></div>
       <div class="courseUnit" style="margin-top:60px">
         <h6>開課單位</h6>
@@ -86,13 +86,13 @@
     </div>
   </div>
   <div class="courseList__sideList">
-    <div class="card courseList__sideList__itemBox">
+    <div class="card courseList__sideList__itemBox" id="courseList">
       <div id="course_item">
-        <div class="courseList__sideList__itemBox__item" @click.self="courseLink(index)" v-for="(course, index) in filterComment">
+        <div class="courseList__sideList__itemBox__item" @click.self="courseLink(index)" v-for="(course, index) in course_data">
           <div class="circle"> <span class="circle-content">{{course.系號}}</span></div>
           <div class="courseText" style="margin-left: 20px">
             <p>{{course.課程名稱}}</p>
-            <p style="font-size: 12px;color:#9e9e9e">{{course.課程碼}} - {{course.老師}}</p>
+            <p style="font-size: 12px;color:#9e9e9e;">{{course.課程碼}} - {{course.老師}}</p>
           </div>
           <div style="float:right;margin: auto 0">
             <div class="circle circle__heart" style="margin-right:10px" @click="addCourse(index)"></div>

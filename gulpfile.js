@@ -7,15 +7,18 @@ var imagemin = require('gulp-imagemin');
 var jshint = require('gulp-jshint');
 var notify = require('gulp-notify');
 var fileinclude = require('gulp-file-include');
+var cleanCSS = require('gulp-clean-css');
 
-gulp.task('default', ['sass', 'compressjs', 'imagemin', 'lint', 'compresspug', 'html', 'webserver'], function() {
+gulp.task('default', ['sass', 'minify-css', 'compressjs', 'imagemin', 'lint', 'compresspug', 'html', 'webserver'], function() {
   gulp.watch('src/SCSS/*.sass', ['sass']);
-  gulp.watch('src/views/*.pug', ['compresspug']);
+  gulp.watch('src/CSS/*.css', ['minify-css']);
+  gulp.watch('src/views/course/*.pug', ['compresspug']);
   gulp.watch('src/JS/*.js', ['compressjs']);
+  gulp.watch('dist/views/*.html', ['html']);
 });
 
 gulp.task('compresspug', function buildHTML() {
-  return gulp.src('src/views/CourseList/*.pug')
+  return gulp.src('src/views/course/*.pug')
     .pipe(pug({pretty: true}))
     .pipe(gulp.dest('./dist/views'))
     .on("error", notify.onError(function (error) {
@@ -54,6 +57,17 @@ gulp.task('sass', function () {
     .on("error", notify.onError(function (error) {
         return "Error: " + error.message;
     }));
+});
+
+// Task to minify css using package cleanCSs
+gulp.task('minify-css', () => {
+     // Folder with files to minify
+     return gulp.src('src/CSS/*.css')
+     //The method pipe() allow you to chain multiple tasks together 
+     //I execute the task to minify the files
+    .pipe(cleanCSS())
+    //I define the destination of the minified files with the method dest
+    .pipe(gulp.dest('dist/CSS'));
 });
 
 gulp.task('compressjs', function() {
