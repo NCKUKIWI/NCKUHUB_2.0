@@ -1,0 +1,1 @@
+!function(l){l(function(){l("select").formSelect(),l(".modal").modal({dismissible:!1,preventScrolling:!1}),l(".dropdown-trigger").dropdown({}),l("input.autocomplete").autocomplete({data:{"王維聰":null,"謝佩璇":null,"林清河":null}})})}(jQuery);

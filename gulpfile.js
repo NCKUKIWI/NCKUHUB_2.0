@@ -9,10 +9,10 @@ var notify = require('gulp-notify');
 var fileinclude = require('gulp-file-include');
 var cleanCSS = require('gulp-clean-css');
 
-gulp.task('default', ['sass', 'minify-css', 'compressjs', 'imagemin', 'lint', 'compresspug', 'html', 'webserver'], function() {
+gulp.task('default', ['compresspug', 'sass', 'minify-css', 'compressjs', 'imagemin', 'lint', 'combine_html', 'webserver'], function() {
   gulp.watch('src/SCSS/*.sass', ['sass']);
   gulp.watch('src/CSS/*.css', ['minify-css']);
-  gulp.watch('src/views/course/*.pug', ['compresspug']);
+  gulp.watch('src/views/course/*.pug', ['compresspug', 'html']);
   gulp.watch('src/JS/*.js', ['compressjs']);
   gulp.watch('dist/views/*.html', ['html']);
 });
@@ -20,20 +20,29 @@ gulp.task('default', ['sass', 'minify-css', 'compressjs', 'imagemin', 'lint', 'c
 gulp.task('compresspug', function buildHTML() {
   return gulp.src('src/views/course/*.pug')
     .pipe(pug({pretty: true}))
-    .pipe(gulp.dest('./dist/views'))
+    .pipe(gulp.dest('./src/views/course'))
     .on("error", notify.onError(function (error) {
         return "Error: " + error.message;
     }));
 });
 
-gulp.task('html', function () {
-    return gulp.src('./dist/views/index.html')
+// gulp.task('html', function () {
+//     return gulp.src(['./src/views/**/*.html'])
+//     .pipe(fileinclude())
+//     .pipe(gulp.dest('./dist/views'));
+// });
+
+gulp.task('combine_html', function () {
+    return gulp.src('./src/views/index.html')
     .pipe(fileinclude())
-    .pipe(gulp.dest('./'));
+    .pipe(gulp.dest('./'))
+    .on("error", notify.onError(function (error) {
+        return "Error: " + error.message;
+    }));
 });
 
 gulp.task('lint', function() {
-  return gulp.src('src/JS/*.js')
+  return gulp.src('src/JS/**/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .on("error", notify.onError(function (error) {
@@ -42,7 +51,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('imagemin', function () {
-  gulp.src('src/images/*')
+  gulp.src('src/images/**/*')
     .pipe(imagemin())
     .pipe(gulp.dest('dist/images'))
     .on("error", notify.onError(function (error) {
@@ -62,16 +71,19 @@ gulp.task('sass', function () {
 // Task to minify css using package cleanCSs
 gulp.task('minify-css', () => {
      // Folder with files to minify
-     return gulp.src('src/CSS/*.css')
+     return gulp.src(['src/CSS/**/*.css', 'src/CSS/*.css'])
      //The method pipe() allow you to chain multiple tasks together 
      //I execute the task to minify the files
     .pipe(cleanCSS())
     //I define the destination of the minified files with the method dest
-    .pipe(gulp.dest('dist/CSS'));
+    .pipe(gulp.dest('dist/CSS'))
+    .on("error", notify.onError(function (error) {
+        return "Error: " + error.message;
+    }));
 });
 
 gulp.task('compressjs', function() {
-  gulp.src('src/JS/*.js')
+  gulp.src(['src/JS/*.js', 'src/JS/**/*.js'])
     .pipe(minify({}))
     .pipe(gulp.dest('dist/JS'))
     .on("error", notify.onError(function (error) {
