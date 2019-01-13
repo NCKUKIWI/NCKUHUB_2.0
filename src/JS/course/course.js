@@ -11,6 +11,44 @@ $('.input-number-decrement').click(function() {
 });
 */
 
+//Get data from APIs-------
+
+$.ajax({
+  type: "GET",
+  url: "https://nckuhub.com/api/course/",
+  success: function(response) {
+        vue_course_item.course_data = response.courses;
+        // vue_course_item.course_data = response.courses;
+        // for(var i=0;i<20;i++){
+        //   vue_course_item.course_data.push(vue_course_item.course_data_db[i]);
+        // }
+
+        // vue_course_item.course_data = vue_course_item.course_by_depart.A1;
+        // for(var i in vue_course_item.course_data) {
+        //   if(vue_course_item.course_data[i].comment_num > 0){
+        //     vue_course_item.course_with_comment.push(vue_course_item.course_data[i]);
+        //   }
+        // }
+        // for(var i in vue_course_item.course_data_db) {
+        //   vue_course_item.course_data[i].dept = vue_course_item.course_data[i].系號;
+        // }
+        // console.log(vue_course_item.course_with_comment);
+  }
+});
+
+// $.ajax({
+//   type: "GET",
+//   url: "https://nckuhub.com/api/course/",
+//   success: function(response) {
+//         var test1 = response;
+//         console.log(test1);
+//
+//   }
+// });
+
+
+
+
 function dropdownFunction() {
   document.getElementById("dropdown1").classList.toggle("show");
 }
@@ -56,6 +94,17 @@ function dropdownFunction() {
         vue_courseContent.isShow = true;
         vue_courseContent.course_data = vue_course_item.course_data[index];
 
+        var course_id = vue_courseContent.course_data.id;
+        var course_url = "https://nckuhub.com/api/course/" + course_id;
+        $.ajax({
+          type: "GET",
+          url: course_url,
+          success: function(response) {
+                console.log(response);
+          }
+
+        });
+
       },
 
       addCourse: function(index){
@@ -78,29 +127,7 @@ function dropdownFunction() {
     },
   });
 
-  $.ajax({
-    type: "GET",
-    url: "https://nckuhub.com/api/course/",
-    success: function(response) {
-          vue_course_item.course_data_db = response.courses;
-          // vue_course_item.course_data = response.courses;
 
-          for(var i=0;i<20;i++){
-            vue_course_item.course_data.push(vue_course_item.course_data_db[i]);
-          }
-
-          // vue_course_item.course_data = vue_course_item.course_by_depart.A1;
-          // for(var i in vue_course_item.course_data) {
-          //   if(vue_course_item.course_data[i].comment_num > 0){
-          //     vue_course_item.course_with_comment.push(vue_course_item.course_data[i]);
-          //   }
-          // }
-          // for(var i in vue_course_item.course_data_db) {
-          //   vue_course_item.course_data[i].dept = vue_course_item.course_data[i].系號;
-          // }
-          // console.log(vue_course_item.course_with_comment);
-    }
-  });
 
 
 
