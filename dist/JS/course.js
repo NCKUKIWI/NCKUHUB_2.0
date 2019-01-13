@@ -11,14 +11,40 @@ $('.input-number-decrement').click(function() {
 });
 */
 
+
+
+//Get data from APIs-------
+
+$.ajax({
+  type: "GET",
+  url: "https://nckuhub.com/api/course/",
+  success: function(response) {
+        vue_course_item.course_data_db = response.courses;
+
+        for(var i=0;i<100;i++){
+          vue_course_item.course_data.push(vue_course_item.course_data_db[i]);
+        }
+  }
+});
+
+
+
 function dropdownFunction() {
   document.getElementById("dropdown1").classList.toggle("show");
 }
 
 // $(document).ready(function(){
 
-  var scrollbottom = $(document).height() - $(window).height() - $(window).scrollTop();
-  console.log(scrollbottom);
+// listen scroll
+
+  var scroll1 = $("#courseList").height();
+
+  var scroll3 = $("#course_item").scrollTop();
+
+  var courseList_height = $("#courseList").height();
+  var courseList_scrollTop = document.getElementById("course_item").scrollTop;
+
+
 
   var vue_course_item = new Vue({
     el: '#course_item',
@@ -29,6 +55,8 @@ function dropdownFunction() {
       course_by_depart: [],
       heartColor: false,
       comment_only: false,
+      count_height: 1,
+      count_index: 0,
     },
     created: function() {
       // $.ajax({
@@ -56,6 +84,26 @@ function dropdownFunction() {
         vue_courseContent.isShow = true;
         vue_courseContent.course_data = vue_course_item.course_data[index];
 
+        var course_id = vue_courseContent.course_data.id;
+        var course_url = "https://nckuhub.com/api/course/" + course_id;
+        $.ajax({
+          type: "GET",
+          url: course_url,
+          success: function(response) {
+            vue_courseContent.score_data = response;
+            vue_courseContent.comment_data = response.comment;
+            console.log("comment: " + vue_courseContent.comment_data.length);
+                console.log("recommend: "+response.recommand);
+                if(vue_courseContent.comment_data.length==0){
+                  $(".courseFeedback__msg--default").css("display","block");
+                } else {
+                  $(".courseFeedback__msg--default").css("display","none");
+                }
+          }
+
+        });
+
+
       },
 
       addCourse: function(index){
@@ -74,33 +122,40 @@ function dropdownFunction() {
         } else {
           this.comment_only = false;
         }
-      }
-    },
-  });
-
-  $.ajax({
-    type: "GET",
-    url: "https://nckuhub.com/api/course/",
-    success: function(response) {
-          vue_course_item.course_data_db = response.courses;
-          // vue_course_item.course_data = response.courses;
-
-          for(var i=0;i<20;i++){
+      },
+      handleScroll: function() {
+        var list_height = $("#course_item").height();
+        var scroll_height = $("#course_item").scrollTop();
+        if(scroll_height >= list_height * this.count_height){
+          for(var i = 100 + this.count_index*20; i< 100 + (this.count_index+1)*20;i++){
             vue_course_item.course_data.push(vue_course_item.course_data_db[i]);
           }
-
-          // vue_course_item.course_data = vue_course_item.course_by_depart.A1;
-          // for(var i in vue_course_item.course_data) {
-          //   if(vue_course_item.course_data[i].comment_num > 0){
-          //     vue_course_item.course_with_comment.push(vue_course_item.course_data[i]);
-          //   }
-          // }
-          // for(var i in vue_course_item.course_data_db) {
-          //   vue_course_item.course_data[i].dept = vue_course_item.course_data[i].系號;
-          // }
-          // console.log(vue_course_item.course_with_comment);
+          this.count_index++;
+          this.count_height++;
+          console.log(this.count_index);
+          console.log(this.count_height);
+        }
+      },
+    },
+    created: function() {
+      document.getElementById("courseList").addEventListner('scroll', this.handleScroll);
     }
   });
+
+  // var vue_courseList = new Vue ({
+  //   el: '#courseList',
+  //   data: [],
+  //   methods: {
+  //     handleScroll: function() {
+  //       console.log("HI!");
+  //     },
+  //   },
+  //   created: function() {
+  //     document.getElementById("courseList").addEventListner('scroll', this.handleScroll);
+  //   },
+  // });
+
+
 
 
 
@@ -110,6 +165,8 @@ function dropdownFunction() {
     data: {
       isShow: false,
       course_data: [],
+      score_data: [],
+      comment_data: [],
     },
     methods: {
       showContent: function() {

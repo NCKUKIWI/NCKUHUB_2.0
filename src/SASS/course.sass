@@ -237,7 +237,7 @@ section
       p
         text-align: left
       &__scroll
-        overflow-x: scroll
+        overflow-x: hidden
         height: 34%
   /* side list */
   &__sideList
@@ -368,10 +368,12 @@ section
 .material-icons
   margin: 0px 2px 0px 0px
 .courseUnit
-  margin-top: 60px
+  margin-top: 30px
+  h6
+    margin-bottom: 5px
 
-.course__score-btns
-  width: 30vw
+.score-btn--all
+  margin: 10px 0px
 .score-btn
   background-color: $colorgrey250
   color: $colorBlack66
@@ -391,6 +393,7 @@ section
   margin-bottom: 10px
   &__msg
     width: 90%
+
   &__func
     width: 10%
     p

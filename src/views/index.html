@@ -19,10 +19,10 @@
     @@include('public/navbar.html')
     <body>
     	<!-- <div class="change_tab" name="course"> -->
-    	<div class="change_tab" name="course" style="display: none;">
+    	<div class="change_tab" name="course">
     		@@include('course/course_content.html')
     	</div>
-    	<div class="change_tab" name="table">
+    	<div class="change_tab" name="table" style="display: none;">
         <!-- <div class="change_tab" name="table" style="display: none;"> -->
     		@@include('table/arrange_table.html')
     	</div>
@@ -33,7 +33,7 @@
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"> </script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="dist/JS/course/course.js"></script>
+<script src="dist/JS/course.js"></script>
 <script src="dist/JS/nav_bar.js"></script>
 <script src="dist/JS/public.js"></script>
 <script src="dist/JS/table.js"></script>
