@@ -11,21 +11,25 @@
     <link rel="stylesheet" href="dist/CSS/course/course.css">
     <link rel="stylesheet" href="dist/CSS/reset.css">
     <link rel="stylesheet" href="dist/CSS/table/table.css">
+    <link rel="stylesheet" href="dist/CSS/table/navbar.css">
     <script src="dist/JS/profile/init2.js"></script>
 	<link rel="stylesheet" type="text/css" href="./dist/CSS/profile/profile.css ">
     
+    
+
 <div class="navbar-fixed">
   <nav>
-    <div class="nav-wrapper"><a class="brand-logo" href="#"><img src="dist/images/course/logo.png"/></a>
+    <div class="nav-wrapper"><a class="brand-logo" href="#"><img src="dist/images/course/logo.png" /></a>
       <form class="input-field">
-        <input id="search1" type="search"/>
+        <input id="search1" type="search" />
         <label for="search1">找尋課程、老師</label>
       </form>
       <ul class="right hide-on-med-and-down">
         <li><a href="#" @click="change_tab('course')">找課程</a></li>
         <li><a href="#" @click="change_tab('table')">排課表<span class="new badge flex-container"> </span></a></li>
         <li><a href="#" onclick="dropdownFunction()">
-            <div class="photo"></div></a>
+            <div class="photo"></div>
+          </a>
           <div class="dropdownContent" id="dropdown1">
             <div class="photo"></div>
             <div class="profile">
@@ -505,8 +509,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="dist/JS/course.js"></script>
 <script src="dist/JS/nav_bar.js"></script>
-<!-- <script src="dist/JS/table/table.js"></script> -->
-<!-- <script src="dist/JS/table/function.js"></script> -->
+<script src="dist/JS/public.js"></script>
 <script src="dist/JS/table.js"></script>
 <script src="dist/JS/table_function.js"></script>
 <script src="dist/JS/profile/profile.js "></script>

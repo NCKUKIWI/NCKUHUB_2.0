@@ -1,0 +1,171 @@
+
+
+$blue: #18ABD6;
+
+
+nav {
+    background-color: $blue;
+    z-index: 100 ;
+    &.brand-logo {
+        padding-left: 30px
+    }
+}
+
+nav .input-field {
+    height: 80%;
+    width: 50%;
+    opacity: 1 ; 
+}
+
+nav ul {
+    padding-right: 30px ;
+}
+
+nav ul a:hover {
+    background-color: transparent ;
+}
+
+nav img {
+    margin-top: 20px;
+    width: 90% ;
+}
+
+nav .input-field label {
+    top: -22px;
+    left: 18px;
+    color: #fff;
+    font-weight: 300 ;
+}
+
+input[type=search]:not(.browser-default):focus:not([readonly])+label {
+    color: transparent ;
+}
+
+form {
+    width: 50%;
+    width: 50% ;
+}
+
+.input-field {
+    position: absolute;
+    left: 20%;
+    top: 17% ;
+}
+
+.nav-wrapper .input-field input[type=search] {
+    padding-left: 20px ;
+}
+
+.input-field>input[type]:-webkit-autofill:not(.browser-default)+label {
+    color: transparent ;
+}
+
+input[type=search]:not(.browser-default) {
+    background-color: #e0e0e0;
+    opacity: 0.5;
+    border-bottom: none;
+    width: 200px;
+    margin: 0 8px ;
+}
+
+input:-webkit-autofill {
+    background-color: #ffffff !important;
+    opacity: 0.5 ;
+}
+
+span.badge.new {
+    background-color: #fff;
+    color: #10a5d2;
+    font-weight: normal;
+    border-radius: 20px ;
+}
+
+span.badge.new:after {
+    content: "♥︎ 5" ;
+}
+
+span svg {
+    fill: #10a5d2;
+    margin-top: 3px ;
+}
+
+.photo {
+    margin: 20px 0px;
+    background-image: url("../../images/course/hugecat.png");
+    background-position: center;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px ;
+}
+
+.dropdown-content {
+    height: 300px;
+    background-color: #fff ;
+}
+
+.dropdownContent {
+    background-color: #fff;
+    right: 3%;
+    position: absolute;
+    min-width: 300px;
+    min-height: 150px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    color: #424242;
+    display: none;
+    padding: 10px 30px ;
+}
+
+.dropdownContent a,
+.dropdownContent p {
+    color: #424242;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 0px ;
+}
+
+.dropdownContent a {
+    padding: 5px 0px;
+    color: #1a77b4 ;
+}
+
+.dropdownContent .photo {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin-top: 0px ;
+}
+
+.dropdownContent .profile {
+    display: inline-block;
+    margin-left: 20px ;
+}
+
+.dropdownContent .profile__name {
+    font-size: 14px;
+    font-weight: 500 ;
+}
+
+.dropdownContent .activeWord {
+    font-size: 12px;
+    color: #10a5d2 ;
+}
+
+.dropdownContent .logout {
+    position: absolute;
+    right: 5%;
+    bottom: 7% ;
+}
+
+.dropdownContent .btn {
+    background-color: #10a5d2;
+    padding: 0 20px ;
+}
+
+.dropdownContent .btn:hover {
+    background-color: rgba(16, 165, 210, 0.9) ;
+}
+
+.show {
+    display: block ;
+}
