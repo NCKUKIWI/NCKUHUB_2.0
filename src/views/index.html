@@ -3,13 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport " content="width=device-width, initial-scale=1.0 " />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="dist/CSS/course/course.css">
     <link rel="stylesheet" href="dist/CSS/reset.css">
-	<link rel="stylesheet" href="dist/CSS/table/style.css">
+    <link rel="stylesheet" href="dist/CSS/table/style.css">
+    <script src="dist/JS/profile/init2.js"></script>
 	<link rel="stylesheet" type="text/css" href="./dist/CSS/profile/profile.css ">
     @@include('course/navbar.html')
     <body>
@@ -19,8 +21,8 @@
     	<div class="change_tab" name="table" style="display: none;">
     		@@include('table/arrange_table.html')
     	</div>
-    	<div class="change_tab" name="perfile" style="display:none;">
-    		<!-- @@include('profile/profile.html') -->
+    	<div class="change_tab" name="perfile" style="display:none; background-color:rgba(247,247,247,0.8)">
+    		< @@include('profile/profile.html')>
     	</div>
     </body>
 </head>
