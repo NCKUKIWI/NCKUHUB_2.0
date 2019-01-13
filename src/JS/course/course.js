@@ -81,7 +81,7 @@ function dropdownFunction() {
 
   $.ajax({
     type: "GET",
-    url: "https://nckuhub.com/test/course/",
+    url: "https://nckuhub.com/api/course/",
     success: function(response) {
           vue_course_item.course_data_db = response.courses;
           // vue_course_item.course_data = response.courses;

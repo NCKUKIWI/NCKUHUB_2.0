@@ -4,7 +4,7 @@
 
     var course_db = [];
 
-    axios.get ( 'https://nckuhub.com/test/course/' )
+    axios.get ( 'https://nckuhub.com/api/course/' )
         .then ( function ( response ) {
             console.log ( 'axios: 抓取資料成功！' ) ;
             course_db = response.data.courses;
@@ -21,7 +21,7 @@
 
     var user_data = {               // todo: 這邊資料之後要從後台取得
         user_name: '林耿弘',
-        user_photo: 'dist/images/profile.png', 
+        user_photo: 'dist/images/table/profile.png', 
         credit_count: 9,            // todo: 讓他可以用計算ㄉ
         now_wishlist: [ 43081, 4021, 43021, 42973, 42971, 42969, 42968 ],
         now_table: [ 43084, 4021, 43023, 43020 ]

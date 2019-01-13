@@ -9,11 +9,11 @@ var notify = require('gulp-notify');
 var fileinclude = require('gulp-file-include');
 var cleanCSS = require('gulp-clean-css');
 
-gulp.task('default', ['compresspug', 'sass', 'minify-css', 'compressjs', 'imagemin', 'lint', 'combine_html', 'webserver'], function() {
+gulp.task('default', ['compresspug', 'sass', 'minify-css', 'compressjs', 'imagemin', 'combine_html', 'webserver'], function() {
   gulp.watch('src/SCSS/*.sass', ['sass']);
   gulp.watch('src/CSS/*.css', ['minify-css']);
   gulp.watch('src/views/course/*.pug', ['compresspug', 'html']);
-  gulp.watch('src/JS/*.js', ['compressjs']);
+  gulp.watch('src/JS/*/*.js', ['compressjs']);
   gulp.watch('dist/views/*.html', ['html']);
 });
 
@@ -94,7 +94,6 @@ gulp.task('compressjs', function() {
 gulp.task('webserver', function() {
   gulp.src('./')
     .pipe(webserver({
-      livereload: true,
-      open: true
+      livereload: true
     }));
 });
