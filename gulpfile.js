@@ -11,6 +11,7 @@ var cleanCSS = require('gulp-clean-css');
 
 gulp.task('default', ['compresspug', 'sass', 'minify-css', 'compressjs', 'imagemin', 'combine_html', 'webserver'], function() {
   gulp.watch('src/SASS/*.sass', ['sass']);
+  gulp.watch('src/SCSS/*.scss', ['scss']);
   gulp.watch('src/CSS/*.css', ['minify-css']);
   gulp.watch('src/views/course/*.pug', ['compresspug', 'combine_html']);
   gulp.watch('src/JS/*/*.js', ['compressjs']);
@@ -67,6 +68,18 @@ gulp.task('sass', function () {
     .on("error", notify.onError(function (error) {
         return "Error: " + error.message;
     }));
+});
+
+
+// 耿弘の課表
+gulp.task('scss', function() {
+	return gulp.src('src/SCSS/*.scss')
+	    // .pipe(changed('dist/css', {extension:'.css'}))
+	    .pipe(sass())
+	    .pipe(gulp.dest('dist/CSS/table'))
+        .on("error", notify.onError(function (error) {
+            return "Error: " + error.message;
+        }));
 });
 
 // Task to minify css using package cleanCSs
