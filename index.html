@@ -44,7 +44,7 @@
 </div>
     <body>
     	<!-- <div class="change_tab" name="course"> -->
-    	<div class="change_tab" name="course" style="display: none;">
+    	<div class="change_tab" name="course">
     		
 <div id="courseContent" v-show="isShow" @click="showContent()">
   <div class="courseContentBody">
@@ -71,24 +71,29 @@
       <div class="courseUnit">
         <h6>評量方法</h6>
         <h5>course_data.score</h5>
-      </div><br/><br/>
+      </div><br/>
     </div>
     <div class="courseContentBody__right">
       <div>
-        <h4>課程評分 ({{course_data.comment_num}})</h4>
+        <h4>課程評分 ({{score_data.rates.length}})</h4>
         <div class="score-btn--all">
-          <button class="btn score-btn">甜度 8.7</button>
-          <button class="btn score-btn">涼度 8.7</button>
-          <button class="btn score-btn">推薦 8.7</button>
+          <button class="btn score-btn">甜度 {{score_data.sweet}}</button>
+          <button class="btn score-btn">涼度 {{score_data.hard}}</button>
+          <button class="btn score-btn">推薦 {{score_data.recommand}}</button>
           <button class="btn score-btn" style="color:rgb(241,91,94);">評分</button>
         </div>
       </div>
       <div>
-        <h4 style="margin-bottom:30px">課程心得(5)</h4>
-        <div class="courseFeedback" v-for="i in 5">
+        <h4 style="margin-bottom:30px">課程心得 ({{comment_data.length}})</h4>
+        <div class="courseFeedback courseFeedback__msg--default">
           <div class="courseFeedback__msg">
-            <p>老師上的很棒！連修了四年都沒過的我都可以輕鬆考一百分，太神啦！</p>
-            <p>老師上的很棒！連修了四年都沒過的我都可以輕鬆考一百分，太神啦！</p>
+            <p>點擊按鈕，立即提供課程心得，</p>
+            <p>幫助 480 位對這門課有興趣的同學！</p>
+          </div>
+        </div>
+        <div class="courseFeedback" v-for="comment in comment_data">
+          <div class="courseFeedback__msg">
+            <p>{{comment.comment}}</p>
           </div>
           <div class="courseFeedback__func">
             <p>15</p>
@@ -134,6 +139,11 @@
   </div>
   <div class="courseList__sideList">
     <div class="card courseList__sideList__itemBox" id="courseList">
+      <div id="test">
+        <p id="test1"></p>
+        <p id="test2"></p>
+        <p id="test3"></p>
+      </div>
       <div id="course_item">
         <div class="courseList__sideList__itemBox__item" @click="courseLink(index)" v-for="(course, index) in course_data">
           <div class="circle"> <span class="circle-content">{{course.系號}}</span></div>
@@ -156,7 +166,7 @@
   </div>
 </div>
     	</div>
-    	<div class="change_tab" name="table">
+    	<div class="change_tab" name="table" style="display: none;">
         <!-- <div class="change_tab" name="table" style="display: none;"> -->
     		<div class="left_area">
 	<div id="user_data" class="personal_data"> 
@@ -493,7 +503,7 @@
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"> </script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="dist/JS/course/course.js"></script>
+<script src="dist/JS/course.js"></script>
 <script src="dist/JS/nav_bar.js"></script>
 <!-- <script src="dist/JS/table/table.js"></script> -->
 <!-- <script src="dist/JS/table/function.js"></script> -->
