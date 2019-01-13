@@ -5,7 +5,7 @@
       <h2 style="margin-top:20px">{{course_data.課程名稱}}</h2>
       <div class="icon-span" style="margin-top:30px"><i class="material-icons tiny">favorite</i><span>加入願望清單</span></div>
       <div class="icon-span"><i class="material-icons tiny">content_paste</i><span>檢視課程大綱</span></div>
-      <div class="courseUnit" style="margin-top:60px">
+      <div class="courseUnit">
         <h6>開課單位</h6>
         <h5>{{course_data.系所名稱}}</h5>
       </div>
@@ -29,7 +29,7 @@
     <div class="courseContentBody__right">
       <div>
         <h4>課程評分 ({{course_data.comment_num}})</h4>
-        <div>
+        <div class="course__score-btns">
           <button class="btn score-btn">甜度 8.7</button>
           <button class="btn score-btn">涼度 8.7</button>
           <button class="btn score-btn">推薦 8.7</button>
@@ -88,7 +88,7 @@
   <div class="courseList__sideList">
     <div class="card courseList__sideList__itemBox" id="courseList">
       <div id="course_item">
-        <div class="courseList__sideList__itemBox__item" @click.self="courseLink(index)" v-for="(course, index) in course_data">
+        <div class="courseList__sideList__itemBox__item" @click="courseLink(index)" v-for="(course, index) in course_data">
           <div class="circle"> <span class="circle-content">{{course.系號}}</span></div>
           <div class="courseText" style="margin-left: 20px">
             <p>{{course.課程名稱}}</p>
