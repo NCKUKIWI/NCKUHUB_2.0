@@ -9,7 +9,6 @@ $('.input-number-decrement').click(function() {
   var val = parseInt($input.val(), 10);
   $input.val(val - 1);
 });
-
 */
 
 function dropdownFunction() {
@@ -85,10 +84,10 @@ function dropdownFunction() {
     success: function(response) {
           vue_course_item.course_data_db = response.courses;
           // vue_course_item.course_data = response.courses;
+
           for(var i=0;i<20;i++){
             vue_course_item.course_data.push(vue_course_item.course_data_db[i]);
           }
-
 
           // vue_course_item.course_data = vue_course_item.course_by_depart.A1;
           // for(var i in vue_course_item.course_data) {

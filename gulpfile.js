@@ -10,7 +10,7 @@ var fileinclude = require('gulp-file-include');
 var cleanCSS = require('gulp-clean-css');
 
 gulp.task('default', ['compresspug', 'sass', 'minify-css', 'compressjs', 'imagemin', 'combine_html', 'webserver'], function() {
-  gulp.watch('src/SCSS/*.sass', ['sass']);
+  gulp.watch('src/SASS/*.sass', ['sass']);
   gulp.watch('src/CSS/*.css', ['minify-css']);
   gulp.watch('src/views/course/*.pug', ['compresspug', 'combine_html']);
   gulp.watch('src/JS/*/*.js', ['compressjs']);
@@ -61,7 +61,7 @@ gulp.task('imagemin', function () {
 });
 
 gulp.task('sass', function () {
-  return gulp.src('src/SCSS/*.sass')
+  return gulp.src('src/SASS/*.sass')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(gulp.dest('dist/CSS/course'))
     .on("error", notify.onError(function (error) {
@@ -73,7 +73,7 @@ gulp.task('sass', function () {
 gulp.task('minify-css', () => {
      // Folder with files to minify
      return gulp.src(['src/CSS/**/*.css', 'src/CSS/*.css'])
-     //The method pipe() allow you to chain multiple tasks together 
+     //The method pipe() allow you to chain multiple tasks together
      //I execute the task to minify the files
     .pipe(cleanCSS())
     //I define the destination of the minified files with the method dest

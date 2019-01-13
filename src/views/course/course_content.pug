@@ -9,7 +9,8 @@ div#courseContent(v-show="isShow" @click="showContent()")
       div.icon-span
         i.material-icons.tiny content_paste
         span 檢視課程大綱
-      div.courseUnit(style="margin-top:60px")
+        
+      div.courseUnit
         h6 開課單位
         h5 {{course_data.系所名稱}}
       div.courseUnit
@@ -29,7 +30,7 @@ div#courseContent(v-show="isShow" @click="showContent()")
     div.courseContentBody__right
       div
         h4 課程評分 ({{course_data.comment_num}})
-        div
+        div.course__score-btns
           button.btn.score-btn 甜度 8.7
           button.btn.score-btn 涼度 8.7
           button.btn.score-btn 推薦 8.7
@@ -75,7 +76,7 @@ div.course__whole
   div.courseList__sideList
     div.card.courseList__sideList__itemBox#courseList
       div#course_item
-        div(@click.self="courseLink(index)" v-for="(course, index) in course_data").courseList__sideList__itemBox__item
+        div(@click="courseLink(index)" v-for="(course, index) in course_data").courseList__sideList__itemBox__item
             div.circle 
               span.circle-content {{course.系號}}
             div.courseText(style="margin-left: 20px")
