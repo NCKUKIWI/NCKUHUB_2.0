@@ -136,7 +136,7 @@ input {
     justify-content: center;
     width: 32px;
     height: 32px;
-    background-image: url("../img/icon_arrow_right.svg");
+    background-image: url("../../images/table/icon_arrow_right.svg");
     background-color: #EEEEEE;
     background-size: 14px;
     background-repeat: no-repeat;
@@ -147,7 +147,7 @@ input {
     cursor: pointer;
     background-color: #FAFAFA; }
     .list_course_item:hover .list_course_item_category.clickable {
-      background-image: url("../img/icon_close.svg");
+      background-image: url("../../images/table/icon_close.svg");
       background-size: 16px;
       background-repeat: no-repeat;
       background-position: center;
@@ -175,16 +175,18 @@ input {
   display: flex;
   flex-direction: column;
   left: 0;
+  bottom: 0;
   padding-left: 8vw;
   padding-right: 30px;
-  height: 100vh;
+  height: calc( 100vh - 64px);
   width: 35vw; }
 
 .right_area {
   position: fixed;
   right: 0;
+  bottom: 0;
   width: 65vw;
-  height: 100vh;
+  height: calc( 100vh - 64px);
   padding-right: 6vw;
   padding-left: 30px;
   display: flex;
@@ -197,7 +199,7 @@ input {
   z-index: 15;
   height: 85px;
   width: 100%;
-  margin-top: 10vh;
+  margin-top: calc( 10vh - 32px);
   padding: 0 15px;
   background: #FFFFFF;
   border: #EEEEEE 1px solid;
@@ -258,7 +260,7 @@ input {
     width: calc(100% - 67px);
     padding-left: 50px;
     padding-right: 15px;
-    background-image: url("../img/icon_data.svg");
+    background-image: url("../../images/table/icon_data.svg");
     background-color: #FFFFFF;
     background-repeat: no-repeat;
     background-position: 18px center;
@@ -292,7 +294,7 @@ input {
     left: 0;
     margin-left: 20px;
     border-radius: 100%;
-    background-image: url("../img/icon_close.svg");
+    background-image: url("../../images/table/icon_close.svg");
     background-size: 40%;
     background-repeat: no-repeat;
     background-position: center;
@@ -488,7 +490,7 @@ input {
           cursor: pointer;
           opacity: 1;
           transition: 0.2s cubic-bezier(0, 0, 0.2, 1);
-          background-image: url("../img/icon_arrow_left.svg");
+          background-image: url("../../images/table/icon_arrow_left.svg");
           background-color: #CBCBCB; }
           .class_table_cont_cell.class_cell.occupied .class_table_cont_cell_button:hover {
             background-color: #9B9B9B; }
@@ -505,7 +507,7 @@ input {
         .class_table_cont_cell.class_cell.filtering .class_table_cont_cell_button {
           opacity: 1;
           transition: opacity 0.5s cubic-bezier(0, 0, 0.2, 1), background-color 0.2s cubic-bezier(0, 0, 0.2, 1);
-          background-image: url("../img/icon_close.svg");
+          background-image: url("../../images/table/icon_close.svg");
           background-size: 8px; }
           .class_table_cont_cell.class_cell.filtering .class_table_cont_cell_button:hover {
             background-color: #4A4A4A; }
@@ -534,7 +536,7 @@ input {
         transition: background-color 0.5s cubic-bezier(0, 0, 0.2, 1); }
         .class_table_cont_cell.class_cell.rush .class_table_cont_cell_button {
           transition: 0.5s cubic-bezier(0, 0, 0.2, 1);
-          background-image: url("../img/icon_warn.svg");
+          background-image: url("../../images/table/icon_warn.svg");
           background-color: #c62828; }
         .class_table_cont_cell.class_cell.rush .class_table_cont_cell_id {
           opacity: 1; }
@@ -621,13 +623,13 @@ input {
     .fixed_button_area .major_button:active {
       filter: brightness(80%); }
     .fixed_button_area .major_button.deep_blue_edit {
-      background-image: url("../img/icon_edit.svg");
+      background-image: url("../../images/table/icon_edit.svg");
       background-size: 40%;
       background-repeat: no-repeat;
       background-position: center;
       background-color: #1A6CBD; }
     .fixed_button_area .major_button.red_done {
-      background-image: url("../img/icon_done.svg");
+      background-image: url("../../images/table/icon_done.svg");
       background-size: 40%;
       background-repeat: no-repeat;
       background-position: center;
@@ -650,7 +652,7 @@ input {
     .fixed_button_area .minor_button:active {
       filter: brightness(80%); }
     .fixed_button_area .minor_button.dark_cancel {
-      background-image: url("../img/icon_close.svg");
+      background-image: url("../../images/table/icon_close.svg");
       background-size: 30%;
       background-repeat: no-repeat;
       background-position: center;

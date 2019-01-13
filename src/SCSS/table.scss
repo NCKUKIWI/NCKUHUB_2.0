@@ -242,7 +242,7 @@ input {
         @include flex_center(row);
         width: 32px;
         height: 32px;
-        background-image: url("../img/icon_arrow_right.svg");
+        background-image: url("../../images/table/icon_arrow_right.svg");
         background-color: $light_2;
         background-size: 14px;
         background-repeat: no-repeat;
@@ -254,7 +254,7 @@ input {
         cursor: pointer;
         background-color: $light_1;
         .list_course_item_category.clickable {
-            background-image: url("../img/icon_close.svg");
+            background-image: url("../../images/table/icon_close.svg");
             background-size: 16px;
             background-repeat: no-repeat;
             background-position: center;
@@ -295,17 +295,21 @@ input {
     display: flex;
     flex-direction: column;
     left: 0;
+    bottom: 0;
     padding-left: 8vw;
     padding-right: 30px;
-    height: 100vh;
+    height: calc( 100vh - 64px );
+    // height: 100vh;
     width: 35vw;
 }
 
 .right_area {
     position: fixed;
     right: 0;
+    bottom: 0;
     width: 65vw;
-    height: 100vh;
+    height: calc( 100vh - 64px );
+    // height: 100vh;
     padding-right: 6vw;
     padding-left: 30px;
     @include flex_center(column);
@@ -319,7 +323,8 @@ input {
     z-index: 15;
     height: 85px;
     width: 100%;
-    margin-top: 10vh;
+    // margin-top: 10vh;
+    margin-top: calc( 10vh - 32px );
     padding: 0 15px;
     background: $white;
     border: $light_2 1px solid;
@@ -386,7 +391,7 @@ input {
         width: calc(100% - 67px);
         padding-left: 50px;
         padding-right: 15px;
-        background-image: url("../img/icon_data.svg");
+        background-image: url("../../images/table/icon_data.svg");
         background-color: $white;
         background-repeat: no-repeat;
         background-position: 18px center;
@@ -419,7 +424,7 @@ input {
         left: 0;
         margin-left: 20px;
         border-radius: 100%;
-        background-image: url("../img/icon_close.svg");
+        background-image: url("../../images/table/icon_close.svg");
         background-size: 40%;
         background-repeat: no-repeat;
         background-position: center;
@@ -650,7 +655,7 @@ input {
                     cursor: pointer;
                     opacity: 1;
                     transition: .2s $material_trans;
-                    background-image: url("../img/icon_arrow_left.svg");
+                    background-image: url("../../images/table/icon_arrow_left.svg");
                     background-color: $gray;
                     &:hover {
                         background-color: $dark;
@@ -672,7 +677,7 @@ input {
                 .class_table_cont_cell_button {
                     opacity: 1;
                     transition: opacity .5s $material_trans, background-color .2s $material_trans ;
-                    background-image: url("../img/icon_close.svg");
+                    background-image: url("../../images/table/icon_close.svg");
                     background-size: 8px;
                     &:hover {
                         background-color: $black;
@@ -709,7 +714,7 @@ input {
                 transition: background-color .5s $material_trans;
                 .class_table_cont_cell_button {
                     transition: .5s $material_trans;
-                    background-image: url("../img/icon_warn.svg");
+                    background-image: url("../../images/table/icon_warn.svg");
                     background-color: $warning_red;
                 }
                 .class_table_cont_cell_id {
@@ -802,14 +807,14 @@ input {
             filter: brightness(80%);
         }
         &.deep_blue_edit {
-            background-image: url("../img/icon_edit.svg") ;
+            background-image: url("../../images/table/icon_edit.svg") ;
             background-size: 40% ;
             background-repeat: no-repeat ;
             background-position: center ;
             background-color: $deep_blue;
         }
         &.red_done {
-            background-image: url("../img/icon_done.svg") ;
+            background-image: url("../../images/table/icon_done.svg") ;
             background-size: 40% ;
             background-repeat: no-repeat ;
             background-position: center ;
@@ -833,7 +838,7 @@ input {
             filter: brightness(80%);
         }
         &.dark_cancel {
-            background-image: url("../img/icon_close.svg") ;
+            background-image: url("../../images/table/icon_close.svg") ;
             background-size: 30% ;
             background-repeat: no-repeat ;
             background-position: center ;
