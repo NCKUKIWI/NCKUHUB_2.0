@@ -8,7 +8,7 @@
         .then ( function ( response ) {
             console.log ( 'axios: 抓取資料成功！' ) ;
             course_db = response.data.courses; 
-            vue_user_data.checkValid(); 
+            vue_user_data.checkValid();
             vue_wishlist.refresh(); 
             vue_classtable.refresh(); 
         })

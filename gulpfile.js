@@ -72,12 +72,11 @@ gulp.task('sass', function () {
 });
 
 
-// 耿弘の課表
 gulp.task('scss', function() {
 	return gulp.src('src/SCSS/*.scss')
 	    // .pipe(changed('dist/css', {extension:'.css'}))
 	    .pipe(sass())
-	    .pipe(gulp.dest('dist/CSS/table'))
+	    .pipe(gulp.dest('dist/CSS'))
         .on("error", notify.onError(function (error) {
             return "Error: " + error.message;
         }));
