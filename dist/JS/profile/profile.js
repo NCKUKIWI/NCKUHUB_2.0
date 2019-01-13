@@ -5,7 +5,7 @@ var grade=""
 var data;
 var test;
 $(document).ready(function() {
-   $('#content').hide();
+   // $('#content').hide();
     $('#small_card').hide();
     $('#pic').click(function()
   {

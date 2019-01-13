@@ -1,0 +1,1 @@
+$(document).ready(function(){$.ajax({url:"https://nckuhub.com/api/course",method:"GET ",success:function(c){data=c,console.log(data)}})});
