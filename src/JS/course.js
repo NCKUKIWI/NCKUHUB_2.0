@@ -21,7 +21,7 @@ $.ajax({
   success: function(response) {
         vue_course_item.course_data_db = response.courses;
 
-        for(var i=0;i<40;i++){
+        for(var i=0;i<100;i++){
           vue_course_item.course_data.push(vue_course_item.course_data_db[i]);
         }
   }
@@ -38,18 +38,11 @@ function dropdownFunction() {
 // listen scroll
 
   var scroll1 = $("#courseList").height();
-  var scroll2 = $("#course_item").height();
+
   var scroll3 = $("#course_item").scrollTop();
 
   var courseList_height = $("#courseList").height();
   var courseList_scrollTop = document.getElementById("course_item").scrollTop;
-
-
-
-
-  document.getElementById("test1").innerHTML = scroll1;
-  document.getElementById("test2").innerHTML = scroll2;
-  document.getElementById("test3").innerHTML = scroll3;
 
 
 
@@ -62,6 +55,8 @@ function dropdownFunction() {
       course_by_depart: [],
       heartColor: false,
       comment_only: false,
+      count_height: 1,
+      count_index: 0,
     },
     created: function() {
       // $.ajax({
@@ -129,7 +124,17 @@ function dropdownFunction() {
         }
       },
       handleScroll: function() {
-        console.log($("#course_item").scrollTop());
+        var list_height = $("#course_item").height();
+        var scroll_height = $("#course_item").scrollTop();
+        if(scroll_height >= list_height * this.count_height){
+          for(var i = 100 + this.count_index*20; i< 100 + (this.count_index+1)*20;i++){
+            vue_course_item.course_data.push(vue_course_item.course_data_db[i]);
+          }
+          this.count_index++;
+          this.count_height++;
+          console.log(this.count_index);
+          console.log(this.count_height);
+        }
       },
     },
     created: function() {
