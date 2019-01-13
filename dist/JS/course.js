@@ -28,18 +28,6 @@ $.ajax({
 });
 
 
-// $.ajax({
-//   type: "GET",
-//   url: "https://nckuhub.com/api/course/",
-//   success: function(response) {
-//         var test1 = response;
-//         console.log(test1);
-//
-//   }
-// });
-
-
-
 
 function dropdownFunction() {
   document.getElementById("dropdown1").classList.toggle("show");
@@ -53,18 +41,16 @@ function dropdownFunction() {
   var scroll2 = $("#course_item").height();
   var scroll3 = $("#course_item").scrollTop();
 
-  if(scroll3>100){
-    console.log("big");
-  }
-
   var courseList_height = $("#courseList").height();
   var courseList_scrollTop = document.getElementById("course_item").scrollTop;
+
+
+
 
   document.getElementById("test1").innerHTML = scroll1;
   document.getElementById("test2").innerHTML = scroll2;
   document.getElementById("test3").innerHTML = scroll3;
 
-  var bottomHeight = $(document).height()-$(window).height();
 
 
   var vue_course_item = new Vue({
@@ -141,16 +127,28 @@ function dropdownFunction() {
         } else {
           this.comment_only = false;
         }
-      }
+      },
+      handleScroll: function() {
+        console.log($("#course_item").scrollTop());
+      },
     },
+    created: function() {
+      document.getElementById("courseList").addEventListner('scroll', this.handleScroll);
+    }
   });
 
-  var vue_courseList = new Vue ({
-    el: '#courseLink',
-    data: [],
-    methods: {},
-    created: {},
-  });
+  // var vue_courseList = new Vue ({
+  //   el: '#courseList',
+  //   data: [],
+  //   methods: {
+  //     handleScroll: function() {
+  //       console.log("HI!");
+  //     },
+  //   },
+  //   created: function() {
+  //     document.getElementById("courseList").addEventListner('scroll', this.handleScroll);
+  //   },
+  // });
 
 
 
