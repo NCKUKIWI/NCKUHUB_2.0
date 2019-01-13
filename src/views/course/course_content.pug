@@ -26,21 +26,23 @@ div#courseContent(v-show="isShow" @click="showContent()")
         h6 評量方法
         h5 course_data.score
       br
-      br
     div.courseContentBody__right
       div
-        h4 課程評分 ({{course_data.comment_num}})
-        div.course__score-btns
-          button.btn.score-btn 甜度 8.7
-          button.btn.score-btn 涼度 8.7
-          button.btn.score-btn 推薦 8.7
+        h4 課程評分 ({{score_data.rates.length}})
+        div.score-btn--all
+          button.btn.score-btn 甜度 {{score_data.sweet}}
+          button.btn.score-btn 涼度 {{score_data.hard}}
+          button.btn.score-btn 推薦 {{score_data.recommand}}
           button.btn.score-btn(style="color:rgb(241,91,94);") 評分
       div
-        h4(style="margin-bottom:30px") 課程心得(5)
-        div.courseFeedback(v-for="i in 5")
+        h4(style="margin-bottom:30px") 課程心得 ({{comment_data.length}})
+        div.courseFeedback.courseFeedback__msg--default
           div.courseFeedback__msg
-            p 老師上的很棒！連修了四年都沒過的我都可以輕鬆考一百分，太神啦！
-            p 老師上的很棒！連修了四年都沒過的我都可以輕鬆考一百分，太神啦！
+            p 點擊按鈕，立即提供課程心得，
+            p 幫助 480 位對這門課有興趣的同學！
+        div.courseFeedback(v-for="comment in comment_data")
+          div.courseFeedback__msg
+            p {{comment.comment}}
           div.courseFeedback__func
             p 15
 div.course__whole         
@@ -75,6 +77,10 @@ div.course__whole
       button.btn.courseList__sidenav__courseType.course-btn 加入完成，開始安排課表！
   div.courseList__sideList
     div.card.courseList__sideList__itemBox#courseList
+      div#test
+        p#test1
+        p#test2
+        p#test3
       div#course_item
         div(@click="courseLink(index)" v-for="(course, index) in course_data").courseList__sideList__itemBox__item
             div.circle 

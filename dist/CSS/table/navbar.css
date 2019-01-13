@@ -1,10 +1,9 @@
 @charset "UTF-8";
 nav {
-  background-color: #10a5d2;
+  background-color: #18ABD6;
   z-index: 100; }
-
-nav .brand-logo {
-  padding-left: 30px; }
+  nav.brand-logo {
+    padding-left: 30px; }
 
 nav .input-field {
   height: 80%;
