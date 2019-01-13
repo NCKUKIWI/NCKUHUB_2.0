@@ -7,14 +7,14 @@
     axios.get ( 'https://nckuhub.com/api/course/' )
         .then ( function ( response ) {
             console.log ( 'axios: 抓取資料成功！' ) ;
-            course_db = response.data.courses;
-            vue_user_data.checkValid();
-            vue_wishlist.refresh();
-            vue_classtable.refresh();
+            course_db = response.data.courses; 
+            vue_user_data.checkValid(); 
+            vue_wishlist.refresh(); 
+            vue_classtable.refresh(); 
         })
         .catch ( function ( error ) {
-            console.log (  'axios:' + error ) ;
-        });
+            console.log (  'axios:' + error ) ; 
+        }); 
 
 
     // Get User Data
