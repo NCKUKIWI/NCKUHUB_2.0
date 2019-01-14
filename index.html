@@ -16,7 +16,7 @@
     <script src="dist/JS/profile/init2.js"></script>
 	<link rel="stylesheet" type="text/css" href="./dist/CSS/profile/profile.css ">
     
-    
+        
 
 <nav>
     <div class="hub_navbar">
@@ -25,22 +25,22 @@
           <input class="hub_navbar__search" type="text" placeholder="搜尋「課程名」或「教師名」" ><br>  
       </div>
       <div class="hub_navbar__left_area">
-          <div class="hub_navbar__link" @click="change_tab('course')">找課程</div>
-          <div class="hub_navbar__link on" @click="change_tab('table')">排課表 <span class="wishlist_count">5</span></div>
-          <div class="hub_navbar__profile"></div>
+          <div class="hub_navbar__link nav_link" name="course" @click="change_tab('course')">找課程</div>
+          <div class="hub_navbar__link nav_link on" name="table" @click="change_tab('table')">排課表 <span class="wishlist_count">5</span></div>
+          <div class="hub_navbar__profile nav_link" name="profile"></div>
           <div class="hub_navbar__profile__dropdown">
             <div class="hub_navbar__profile__dropdown__info">
-                <div class="hub_navbar__profile__dropdown__info__photo"></div>
-                <div class="hub_navbar__profile__dropdown__info__name"></div>
+                <!-- <div class="hub_navbar__profile__dropdown__info__photo"></div>
+                <div class="hub_navbar__profile__dropdown__info__name">吳瑋倢</div>
                 <div class="hub_navbar__profile__dropdown__info__star"></div>
-                <div class="hub_navbar__profile__dropdown__info__dept"></div>
-                <div class="hub_navbar__profile__dropdown__info__grade"></div>
-                <div @click="change_tab('profile')" class="hub_navbar__profile__dropdown__info__goto"></div> 
+                <div class="hub_navbar__profile__dropdown__info__dept">工業與資訊管理學系</div>
+                <div class="hub_navbar__profile__dropdown__info__grade">四年級</div>
+                <div class="hub_navbar__profile__dropdown__info__goto" @click="change_tab('profile')" >前往個人頁面</div>  -->
             </div>
             <div class="hub_navbar__profile__dropdown__more">
-                <div class="hub_navbar__profile__dropdown__more__link"></div>
-                <div class="hub_navbar__profile__dropdown__more__link"></div>
-                <div class="hub_navbar__profile__dropdown__more__link"></div>
+                <!-- <div class="hub_navbar__profile__dropdown__more__link">關於 NCKU HUB</div>
+                <div class="hub_navbar__profile__dropdown__more__link">回報問題</div>
+                <div class="hub_navbar__profile__dropdown__more__link">登出帳戶</div> -->
             </div>
           </div>
       </div>
@@ -50,8 +50,7 @@
           <div class="dropdownContent" id="dropdown1">
             <div class="photo"></div>
             <div class="profile">
-              <p class="profile__name">吳瑋倢</p>
-              <p style="font-weight: 100;font-size: 9px">hugecatopmeow@gmail.com</p>
+              <p style="font-weight: 100;font-size: 9px"></p>
               <p>工業與資訊管理學系</p>
               <p>四年級</p><a href="#" @click="change_tab('profile')">前往個人頁面</a>
             </div>
@@ -64,7 +63,7 @@
 </nav>
     <body>
     	<!-- <div class="change_tab" name="course"> -->
-    	<div class="change_tab" name="course">
+    	<div class="change_tab" name="course" style="display: none;">
     		
 <div id="courseContent" v-show="isShow" @click="showContent()">
   <div class="courseContentBody">
@@ -186,7 +185,7 @@
   </div>
 </div>
     	</div>
-    	<div class="change_tab" name="table" style="display: none;">
+    	<div class="change_tab" name="table">
         <!-- <div class="change_tab" name="table" style="display: none;"> -->
     		<div class="left_area">
 	<div id="user_data" class="personal_data"> 
@@ -524,7 +523,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"> </script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="dist/JS/course.js"></script>
-<script src="dist/JS/nav_bar.js"></script>
+<script src="dist/JS/navbar.js"></script>
 <script src="dist/JS/public.js"></script>
 <script src="dist/JS/table.js"></script>
 <script src="dist/JS/table_function.js"></script>

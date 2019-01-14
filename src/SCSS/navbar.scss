@@ -105,6 +105,7 @@ $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
         font-size: 16px;
         color: white;
         transition: 0.2s $material_trans;
+        cursor: pointer;
         .wishlist_count {
             position: relative;
             display: flex;
@@ -139,10 +140,7 @@ $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
             transition: 0.2s $material_trans;
         }
         &:hover {
-            cursor: pointer;
-            &::after {
-                width: 100%;
-            }
+            // 
         }
         &:active {
             opacity: 0.8;
@@ -175,7 +173,12 @@ $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
             opacity: 0.8;
         }
         &.on {
-            border: 3px solid white;
+            border-color: white;
+        }
+        &__dropdown {
+            position: fixed;
+            display: block;
+            
         }
     }
 }

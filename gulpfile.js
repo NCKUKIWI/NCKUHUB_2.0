@@ -9,7 +9,7 @@ var notify = require('gulp-notify');
 var fileinclude = require('gulp-file-include');
 var cleanCSS = require('gulp-clean-css');
 
-gulp.task('default', ['compresspug', 'sass', 'minify-css', 'compressjs', 'imagemin', 'combine_html', 'webserver'], function() {
+gulp.task('default', ['compresspug', 'sass', 'scss', 'minify-css', 'compressjs', 'imagemin', 'combine_html', 'webserver'], function() {
   gulp.watch('src/SASS/*.sass', ['sass']);
   gulp.watch('src/SCSS/*.scss', ['scss']);
   gulp.watch('src/CSS/*.css', ['minify-css']);
