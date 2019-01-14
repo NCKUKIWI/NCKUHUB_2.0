@@ -47,9 +47,9 @@ $.ajax({
 });
 
 
-function dropdownFunction() {
-  document.getElementById("dropdown1").classList.toggle("show");
-}
+// function dropdownFunction() {
+//   document.getElementById("dropdown1").classList.toggle("show");
+// }
 
 // $(document).ready(function(){
 

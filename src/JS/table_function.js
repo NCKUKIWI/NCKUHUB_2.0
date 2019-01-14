@@ -7,14 +7,19 @@
             return item.id == target_id 
         });
         if ( course_item ) {
+            var class_id = course_item.選課序號 ;
+            if ( ! class_id ) {
+                class_id = '000' ;
+            }
             return {
                 id: target_id,
                 category: deptTransCat( course_item.系號, course_item.系所名稱 ),
                 dept_id: course_item.系號,
-                class_id: '001',                                      // todo: 把 001 改成「開課序號」
+                class_id: class_id,
                 title: course_item.課程名稱,
                 teacher: course_item.老師,
-                time: course_item.時間
+                time: course_item.時間,
+                credit: course_item.學分
             }
         }
         else

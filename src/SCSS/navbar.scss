@@ -1,103 +1,188 @@
 
 
+// 共用
+
 $blue: #18ABD6;
+$material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
+
+@mixin box_shadow_1() {
+    box-shadow: 0 0 14px 0 rgba(0,0,0,0.06);
+}
+
+@mixin box_shadow_3() {
+    box-shadow: 0 0 24px 0 rgba(0,0,0,0.28);
+}
+
+@mixin ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 
-nav {
-    background-color: $blue;
+
+// Nav Bar
+
+.hub_navbar {
+    position: fixed ;
+    display: block ;
     z-index: 100 ;
-    &.brand-logo {
-        padding-left: 30px
+    top: 0 ;
+    left: 0 ;
+    height: 64px ;
+    width: 100vw ;
+    background: $blue ;
+    @include box_shadow_3();
+    overflow: hidden;
+    &__right_area {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        top: 0;
+        left: 0;
+        margin-left: 2vw;
+        height: 100%;
+        width: calc( 65vw - 2vw );
+    }
+    &__left_area {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        top: 0 ;
+        right: 0 ;
+        margin-right: 2vw;
+        height: 100%;
+        width: calc( 35vw - 2vw );
+    }
+    &__logo {
+        display: inline-block;
+        height: 100%;
+        width: 160px;
+        background-image: url("../images/table/nav_logo.svg");
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    &__search {
+        display: inline-block;
+        width: calc( 100% - 2vw - 160px );
+        margin-left: 2vw ;
+        line-height: 30px ;
+        padding: 6px 0px ;
+        padding-left: 50px;
+        font-size: 14px;
+        color: white ;
+        background-image: url("../images/table/icon_search.svg");
+        background-repeat: no-repeat;
+        background-position: 8px center;
+        background-color: rgba( 255, 255, 255, 0.25 );
+        border: 0px solid transparent ;
+        @include ellipsis();
+        transition: box-shadow .2s $material_trans;
+        &:focus {
+            @include ellipsis();
+            @include box_shadow_1();
+            outline: none;
+        }
+        &::placeholder { 
+            color: white; 
+        }
+    }
+    &__link {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 0 2px;
+        margin: 0 10px;
+        height: 100%;
+        width: auto;
+        font-size: 16px;
+        color: white;
+        transition: 0.2s $material_trans;
+        cursor: pointer;
+        .wishlist_count {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            color: $blue;
+            font-size: 12px;
+            padding: 3px 5px;
+            border-radius: 15px;
+            margin-left: 6px;
+            background: white;
+            &::before {
+                display: inline-block;
+                content: '';
+                height: 16px;
+                width: 16px;
+                margin-right: 1px;
+                background-image: url("../images/table/icon_heart_blue.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
+        &::after {
+            position: absolute;
+            display: block;
+            content: '';
+            bottom: 0;
+            height: 4px;
+            width: 0%;
+            background: white;
+            transition: 0.2s $material_trans;
+        }
+        &:hover {
+            // 
+        }
+        &:active {
+            opacity: 0.8;
+        }
+        &.on {
+            &::after {
+                width: 100%;
+            }
+        }
+    }
+    &__profile {
+        position: relative;
+        display: block;
+        margin-left: 8px;
+        background-image: url("../images/course/hugecat.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        border: 3px solid transparent;
+        box-sizing: content-box;
+        cursor: pointer;
+        transition: 0.2s $material_trans;
+        &:hover {
+            border-color: white;
+        }
+        &:active {
+            opacity: 0.8;
+        }
+        &.on {
+            border-color: white;
+        }
+        &__dropdown {
+            position: fixed;
+            display: block;
+            
+        }
     }
 }
 
-nav .input-field {
-    height: 80%;
-    width: 50%;
-    opacity: 1 ; 
-}
-
-nav ul {
-    padding-right: 30px ;
-}
-
-nav ul a:hover {
-    background-color: transparent ;
-}
-
-nav img {
-    margin-top: 20px;
-    width: 90% ;
-}
-
-nav .input-field label {
-    top: -22px;
-    left: 18px;
-    color: #fff;
-    font-weight: 300 ;
-}
-
-input[type=search]:not(.browser-default):focus:not([readonly])+label {
-    color: transparent ;
-}
-
-form {
-    width: 50%;
-    width: 50% ;
-}
-
-.input-field {
-    position: absolute;
-    left: 20%;
-    top: 17% ;
-}
-
-.nav-wrapper .input-field input[type=search] {
-    padding-left: 20px ;
-}
-
-.input-field>input[type]:-webkit-autofill:not(.browser-default)+label {
-    color: transparent ;
-}
-
-input[type=search]:not(.browser-default) {
-    background-color: #e0e0e0;
-    opacity: 0.5;
-    border-bottom: none;
-    width: 200px;
-    margin: 0 8px ;
-}
-
-input:-webkit-autofill {
-    background-color: #ffffff !important;
-    opacity: 0.5 ;
-}
-
-span.badge.new {
-    background-color: #fff;
-    color: #10a5d2;
-    font-weight: normal;
-    border-radius: 20px ;
-}
-
-span.badge.new:after {
-    content: "♥︎ 5" ;
-}
-
-span svg {
-    fill: #10a5d2;
-    margin-top: 3px ;
-}
-
-.photo {
-    margin: 20px 0px;
-    background-image: url("../../images/course/hugecat.png");
-    background-position: center;
-    background-size: contain;
-    width: 30px;
-    height: 30px;
-    border-radius: 15px ;
-}
 
 .dropdown-content {
     height: 300px;
@@ -148,7 +233,7 @@ span svg {
 
 .dropdownContent .activeWord {
     font-size: 12px;
-    color: #10a5d2 ;
+    color: $blue  ;
 }
 
 .dropdownContent .logout {
@@ -158,7 +243,7 @@ span svg {
 }
 
 .dropdownContent .btn {
-    background-color: #10a5d2;
+    background-color: $blue ;
     padding: 0 20px ;
 }
 

@@ -1,31 +1,45 @@
 
 
-<div class="navbar-fixed">
-  <nav>
-    <div class="nav-wrapper"><a class="brand-logo" href="#"><img src="dist/images/course/logo.png" /></a>
-      <form class="input-field">
-        <input id="search1" type="search" />
-        <label for="search1">找尋課程、老師</label>
-      </form>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#" @click="change_tab('course')">找課程</a></li>
-        <li><a href="#" @click="change_tab('table')">排課表<span class="new badge flex-container"> </span></a></li>
-        <li><a href="#" onclick="dropdownFunction()">
-            <div class="photo"></div>
-          </a>
+<nav>
+    <div class="hub_navbar">
+      <div class="hub_navbar__right_area">
+          <a class="hub_navbar__logo"></a>
+          <input class="hub_navbar__search" type="text" placeholder="搜尋「課程名」或「教師名」" ><br>  
+      </div>
+      <div class="hub_navbar__left_area">
+          <div class="hub_navbar__link nav_link" name="course" @click="change_tab('course')">找課程</div>
+          <div class="hub_navbar__link nav_link on" name="table" @click="change_tab('table')">排課表 <span class="wishlist_count">5</span></div>
+          <div class="hub_navbar__profile nav_link" name="profile"></div>
+          <div class="hub_navbar__profile__dropdown">
+            <div class="hub_navbar__profile__dropdown__info">
+                <!-- <div class="hub_navbar__profile__dropdown__info__photo"></div>
+                <div class="hub_navbar__profile__dropdown__info__name">吳瑋倢</div>
+                <div class="hub_navbar__profile__dropdown__info__star"></div>
+                <div class="hub_navbar__profile__dropdown__info__dept">工業與資訊管理學系</div>
+                <div class="hub_navbar__profile__dropdown__info__grade">四年級</div>
+                <div class="hub_navbar__profile__dropdown__info__goto" @click="change_tab('profile')" >前往個人頁面</div>  -->
+            </div>
+            <div class="hub_navbar__profile__dropdown__more">
+                <!-- <div class="hub_navbar__profile__dropdown__more__link">關於 NCKU HUB</div>
+                <div class="hub_navbar__profile__dropdown__more__link">回報問題</div>
+                <div class="hub_navbar__profile__dropdown__more__link">登出帳戶</div> -->
+            </div>
+          </div>
+      </div>
+        
+      <!-- 這個 function 是幹嘛用ㄉ？ -->
+      <!--  <li><a href="#" onclick="dropdownFunction()">
           <div class="dropdownContent" id="dropdown1">
             <div class="photo"></div>
             <div class="profile">
-              <p class="profile__name">吳瑋倢</p>
-              <p style="font-weight: 100;font-size: 9px">hugecatopmeow@gmail.com</p>
+              <p style="font-weight: 100;font-size: 9px"></p>
               <p>工業與資訊管理學系</p>
               <p>四年級</p><a href="#" @click="change_tab('profile')">前往個人頁面</a>
             </div>
             <div class="activeWord"><span>★已啟用小幫手</span></div>
             <div class="btn logout">登出</div>
           </div>
-        </li>
-      </ul>
+        </li>  -->
+
     </div>
-  </nav>
-</div>
+</nav>
