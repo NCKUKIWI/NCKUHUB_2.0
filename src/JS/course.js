@@ -92,7 +92,9 @@ $.ajax({
       },
 
       addCourse: function(index){
+        var chooseCourse_id = vue_course_item.course_data[index].id;
         var chooseCourse = vue_course_item.course_data[index];
+        vue_user_data.wishlistAdd(chooseCourse_id);
         vue_courseFilter.wishList.push(chooseCourse);
       },
 
