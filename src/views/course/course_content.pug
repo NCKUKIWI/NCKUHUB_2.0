@@ -46,26 +46,20 @@ div#courseContent(v-show="isShow" @click="showContent()")
           div.courseFeedback__func
             p 15
 div.course__whole         
-  div.courseList__sidenav
+  div.courseList__sidenav#courseFilter
     div.courseList__sidenav__courseType
       p 開課單位
-      input(type="search") 
-      div(id="apitest") 
+      input#dpmtFilter(type="text" v-model="keyword") 
+      div(v-for="(result, index) in search_result").quick_search--course
+        div(@click="result_click(index)")
+          h4 {{result.prefix}} {{result.name}}
     div#courseArrange.courseList__sidenav__courseType
       p 檢視選項
-      div.courseList__sidenav__option.z-depth-1   
-        label
-          input.filled-in#commentCheck(type="checkbox" @click="cfilter()")
-          span 僅顯示有心得之課程
-      div.courseList__sidenav__option.z-depth-1 
-        a.dropdown-trigger(href="#" data-target="dropdown1")
-          p 依「開課單位」排序
       div.courseList__sidenav__option.z-depth-1
-        span 依開課教師
-      div.courseList__sidenav__option.z-depth-1(@click="sortByDept()")
-        span 依開課單位
-      div.courseList__sidenav__option.z-depth-1(@click="")
-        span 依課程名稱
+        label
+          input#commentCheck(type="checkbox" @click="comment_filter()")
+          span 僅顯示有心得之課程
+
     div#wishList.courseList__sidenav__wishList
       p 願望清單
       div.courseList__sidenav__wishList__scroll
@@ -77,12 +71,8 @@ div.course__whole
       button.btn.courseList__sidenav__courseType.course-btn 加入完成，開始安排課表！
   div.courseList__sideList
     div.card.courseList__sideList__itemBox#courseList
-      div#test
-        p#test1
-        p#test2
-        p#test3
       div#course_item(v-on:scroll="handleScroll")
-        div(@click="courseLink(index)" v-for="(course, index) in course_data").courseList__sideList__itemBox__item
+        div(@click.self="courseLink(index)" v-for="(course, index) in course_data").courseList__sideList__itemBox__item
             div.circle 
               span.circle-content {{course.系號}}
             div.courseText(style="margin-left: 20px")
