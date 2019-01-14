@@ -1,61 +1,4 @@
 
-<div id="courseContent" v-show="isShow" @click="showContent()">
-  <div class="courseContentBody">
-    <div class="courseContentBody__left"><span class="courseSerial">{{course_data.系號}}{{course_data.選課序號}}</span>
-      <h2 style="margin-top:20px">{{course_data.課程名稱}}</h2>
-      <div class="icon-span" style="margin-top:30px"><i class="material-icons tiny">favorite</i><span>加入願望清單</span></div>
-      <div class="icon-span"><i class="material-icons tiny">content_paste</i><span>檢視課程大綱</span></div>
-      <div class="courseUnit">
-        <h6>開課單位</h6>
-        <h5>{{course_data.系所名稱}}</h5>
-      </div>
-      <div class="courseUnit">
-        <h6>開課老師</h6>
-        <h5>{{course_data.老師}}</h5>
-      </div>
-      <div class="courseUnit">
-        <h6>開課時段</h6>
-        <h5>{{course_data.時間}}</h5>
-      </div>
-      <div class="courseUnit">
-        <h6>教學方法</h6>
-        <h5>course_data.lecture</h5>
-      </div>
-      <div class="courseUnit">
-        <h6>評量方法</h6>
-        <h5>course_data.score</h5>
-      </div><br/>
-    </div>
-    <div class="courseContentBody__right">
-      <div>
-        <h4>課程評分 ({{score_data.rates.length}})</h4>
-        <div class="score-btn--all">
-          <button class="btn score-btn">甜度 {{score_data.sweet}}</button>
-          <button class="btn score-btn">涼度 {{score_data.hard}}</button>
-          <button class="btn score-btn">推薦 {{score_data.recommand}}</button>
-          <button class="btn score-btn" style="color:rgb(241,91,94);">評分</button>
-        </div>
-      </div>
-      <div>
-        <h4 style="margin-bottom:30px">課程心得 ({{comment_data.length}})</h4>
-        <div class="courseFeedback courseFeedback__msg--default">
-          <div class="courseFeedback__msg">
-            <p>點擊按鈕，立即提供課程心得，</p>
-            <p>幫助 480 位對這門課有興趣的同學！</p>
-          </div>
-        </div>
-        <div class="courseFeedback" v-for="comment in comment_data">
-          <div class="courseFeedback__msg">
-            <p>{{comment.comment}}</p>
-          </div>
-          <div class="courseFeedback__func">
-            <p>15</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="course__whole">        
   <div class="courseList__sidenav" id="courseFilter">
     <div class="courseList__sidenav__courseType">
@@ -75,18 +18,10 @@
         </label>
       </div>
     </div>
-    <div class="courseList__sidenav__wishList" id="wishList">
-      <p>願望清單</p>
-      <div class="courseList__sidenav__wishList__scroll">
-        <div class="courseList__sideList__itemBox__item wishList__item z-depth-1" v-for="wish in wishList">
-          <div class="circle"> </div>
-          <div class="courseList__item">
-            <p>{{wish.課程碼}} {{wish.課程名稱}}</p>
-            <p class="courseList__item__info">{{wish.老師}} {{wish.時間}}</p>
-          </div>
-        </div>
+    <div class="wishlist">
+      <div class="block_title">
+        <p class="text_18">願望清單（{{ wishlist_cont.length }})</p>
       </div>
-      <button class="btn courseList__sidenav__courseType course-btn">加入完成，開始安排課表！</button>
     </div>
   </div>
   <div class="courseList__sideList">
