@@ -2,8 +2,8 @@ var vue_nav_bar = new Vue({
 	el: '.hub_navbar',
 	// el: '.nav-wrapper',
     data: {
-        now_tab : ''
-    },
+        now_tab : 'default'
+	},
     methods: {
     	change_tab: function( tab ) {
 			now_tab = tab ;
@@ -14,8 +14,12 @@ var vue_nav_bar = new Vue({
     		$( ".nav_link" ).removeClass( "on" );
     		$( ".nav_link[name='" + tab + "']" ).addClass( "on" );
 		},
-		// dropdownFunction: function() {
-		// 	document.getElementById("dropdown1").classList.toggle("show");
-		// }
+		switch_profile_window: function() {
+			// todo: 切換用起來怪怪的，有空再調整一下？
+			if ( now_tab != 'profile' ) {
+				$( ".nav_link[name='profile']" ).toggleClass( "on" );
+			}
+			$( ".hub_navbar__profile__dropdown" ).toggleClass( "on" );
+		}
     }
 })
