@@ -121,16 +121,6 @@ div {
     box-sizing: border-box;
 }
 
-input {
-    background: $white;
-    padding: 16px 0;
-    width: 100%;
-    font-size: 14px;
-    box-sizing: content-box;
-    border: $light_2 1px solid;
-    @include box_shadow_1();
-}
-
 .text {
     &_24 {
         font-size: 18px;
@@ -242,7 +232,7 @@ input {
         @include flex_center(row);
         width: 32px;
         height: 32px;
-        background-image: url("../../images/table/icon_arrow_right.svg");
+        background-image: url("../images/table/icon_arrow_right.svg");
         background-color: $light_2;
         background-size: 14px;
         background-repeat: no-repeat;
@@ -254,7 +244,7 @@ input {
         cursor: pointer;
         background-color: $light_1;
         .list_course_item_category.clickable {
-            background-image: url("../../images/table/icon_close.svg");
+            background-image: url("../images/table/icon_close.svg");
             background-size: 16px;
             background-repeat: no-repeat;
             background-position: center;
@@ -298,7 +288,7 @@ input {
     bottom: 0;
     padding-left: 8vw;
     padding-right: 30px;
-    height: calc( 100vh - 64px );
+    height: calc( 100vh - 60px );
     // height: 100vh;
     width: 35vw;
 }
@@ -308,7 +298,7 @@ input {
     right: 0;
     bottom: 0;
     width: 65vw;
-    height: calc( 100vh - 64px );
+    height: calc( 100vh - 60px );
     // height: 100vh;
     padding-right: 6vw;
     padding-left: 30px;
@@ -324,7 +314,7 @@ input {
     height: 85px;
     width: 100%;
     // margin-top: 10vh;
-    margin-top: calc( 10vh - 32px );
+    margin-top: calc( 10vh - 30px );
     padding: 0 15px;
     background: $white;
     border: $light_2 1px solid;
@@ -389,12 +379,17 @@ input {
     &_input {
         position: relative;
         width: calc(100% - 67px);
+        font-size: 14px;
+        padding: 16px 0;
         padding-left: 50px;
         padding-right: 15px;
-        background-image: url("../../images/table/icon_data.svg");
+        background-image: url("../images/table/icon_data.svg");
         background-color: $white;
         background-repeat: no-repeat;
         background-position: 18px center;
+        box-sizing: content-box;
+        border: $light_2 1px solid;
+        @include box_shadow_1();
         @include ellipsis();
         @include box_shadow_1_hover();
         &:focus {
@@ -424,7 +419,7 @@ input {
         left: 0;
         margin-left: 20px;
         border-radius: 100%;
-        background-image: url("../../images/table/icon_close.svg");
+        background-image: url("../images/table/icon_close.svg");
         background-size: 40%;
         background-repeat: no-repeat;
         background-position: center;
@@ -434,7 +429,7 @@ input {
     &_dropdown {
         position: absolute;
         z-index: 100;
-        top: calc( 85px + 10vh + 3vh + 85px );
+        top: calc( 85px + 10vh + 3vh + 55px );
         height: auto;
         max-height: 210px;
         // width: 100%;
@@ -655,7 +650,7 @@ input {
                     cursor: pointer;
                     opacity: 1;
                     transition: .2s $material_trans;
-                    background-image: url("../../images/table/icon_arrow_left.svg");
+                    background-image: url("../images/table/icon_arrow_left.svg");
                     background-color: $gray;
                     &:hover {
                         background-color: $dark;
@@ -677,7 +672,7 @@ input {
                 .class_table_cont_cell_button {
                     opacity: 1;
                     transition: opacity .5s $material_trans, background-color .2s $material_trans ;
-                    background-image: url("../../images/table/icon_close.svg");
+                    background-image: url("../images/table/icon_close.svg");
                     background-size: 8px;
                     &:hover {
                         background-color: $black;
@@ -714,7 +709,7 @@ input {
                 transition: background-color .5s $material_trans;
                 .class_table_cont_cell_button {
                     transition: .5s $material_trans;
-                    background-image: url("../../images/table/icon_warn.svg");
+                    background-image: url("../images/table/icon_warn.svg");
                     background-color: $warning_red;
                 }
                 .class_table_cont_cell_id {
@@ -807,14 +802,14 @@ input {
             filter: brightness(80%);
         }
         &.deep_blue_edit {
-            background-image: url("../../images/table/icon_edit.svg") ;
+            background-image: url("../images/table/icon_edit.svg") ;
             background-size: 40% ;
             background-repeat: no-repeat ;
             background-position: center ;
             background-color: $deep_blue;
         }
         &.red_done {
-            background-image: url("../../images/table/icon_done.svg") ;
+            background-image: url("../images/table/icon_done.svg") ;
             background-size: 40% ;
             background-repeat: no-repeat ;
             background-position: center ;
@@ -838,7 +833,7 @@ input {
             filter: brightness(80%);
         }
         &.dark_cancel {
-            background-image: url("../../images/table/icon_close.svg") ;
+            background-image: url("../images/table/icon_close.svg") ;
             background-size: 30% ;
             background-repeat: no-repeat ;
             background-position: center ;
