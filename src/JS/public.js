@@ -10,6 +10,10 @@
         now_table: [ 43084, 4021, 43023, 43020 ]
     }
 
+    /* 說明：
+        課程加入願望清單：  vue_user_data.wishlistAdd( id );
+        課程移出願望清單：  vue_user_data.wishlistRemove( id );
+    */
 
     // User Data
 

@@ -3,10 +3,19 @@
 // 共用
 
 $blue: #18ABD6;
+$blue_darken: #19A3CB;
+$light_2: #EEEEEE;
+$dark: #9B9B9B;
+$black: #4A4A4A;
 $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
+
 
 @mixin box_shadow_1() {
     box-shadow: 0 0 14px 0 rgba(0,0,0,0.06);
+}
+
+@mixin box_shadow_2() {
+    box-shadow: 0 0 14px 0 rgba(0,0,0,0.10);
 }
 
 @mixin box_shadow_3() {
@@ -42,7 +51,7 @@ $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
         justify-content: flex-start;
         top: 0;
         left: 0;
-        margin-left: 2vw;
+        margin-left: 4vw;
         height: 100%;
         width: calc( 65vw - 2vw );
     }
@@ -54,7 +63,7 @@ $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
         justify-content: flex-end;
         top: 0 ;
         right: 0 ;
-        margin-right: 2vw;
+        margin-right: 4vw;
         height: 100%;
         width: calc( 35vw - 2vw );
     }
@@ -80,7 +89,7 @@ $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
         background-repeat: no-repeat;
         background-position: 8px center;
         background-color: rgba( 255, 255, 255, 0.25 );
-        border: 0px solid transparent ;
+        border: transparent 0px solid;
         @include ellipsis();
         transition: box-shadow .2s $material_trans;
         &:focus {
@@ -139,9 +148,6 @@ $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
             background: white;
             transition: 0.2s $material_trans;
         }
-        &:hover {
-            // 
-        }
         &:active {
             opacity: 0.8;
         }
@@ -162,7 +168,7 @@ $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
         width: 30px;
         height: 30px;
         border-radius: 30px;
-        border: 3px solid transparent;
+        border: transparent 3px solid;
         box-sizing: content-box;
         cursor: pointer;
         transition: 0.2s $material_trans;
@@ -177,80 +183,126 @@ $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
         }
         &__dropdown {
             position: fixed;
-            display: block;
-            
+            display: none;
+            top: 0;
+            right: 0;
+            margin-top: 64px;
+            margin-right: 4vw;
+            width: 250px;
+            padding: 20px 25px 15px 25px;
+            background: white;
+            border: $light_2 1px solid;
+            border-bottom: $blue 4px solid;
+            @include box_shadow_2();
+            overflow: hidden;
+            &.on {
+                display: block;
+            }
+            &__info {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                &__photo {
+                    display: block;
+                    height: 76px;
+                    width: 76px;
+                    border: $light_2 4px solid;
+                    border-radius: 50px;
+                    background-image: url("../images/course/hugecat.png");
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: contain;
+                    margin-right: 10px;
+                }
+                &__detail {
+                    .nav_profile_name {
+                        font-size: 16px;
+                        line-height: 28px;
+                        color: $black;
+                        @include ellipsis();
+                        &.vip {
+                            &::after {
+                                display: inline-block;
+                                content: '';
+                                height: 14px;
+                                width: 12px;
+                                margin-left: 6px;
+                                background-image: url("../images/table/icon_star_dark_blue.svg");
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                background-size: 100%;
+                            }
+                        }
+                    }
+                    .nav_profile_dept {
+                        font-size: 12px;             
+                        color: $dark;       
+                        line-height: 16px;
+                        @include ellipsis();
+
+                    }
+                    .nav_profile_grade {
+                        font-size: 12px;             
+                        color: $dark;
+                        line-height: 16px;
+                        @include ellipsis();
+                        margin-bottom: 4px;
+                    }
+                }
+            }
+            &__goto {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 32px;
+                width: 90%;
+                font-size: 12px;
+                color: white;
+                background: $blue;
+                margin-top: 15px;
+                margin-left: 5%;
+                margin-bottom: 15px;
+                @include box_shadow_1();
+                cursor: pointer;
+                transition: .2s $material_trans;
+                &:hover {
+                    background: $blue_darken;
+                }
+                &:active {
+                    filter: brightness(95%);
+                }
+            }
+            &__links {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                & > a {
+                    position: relative;
+                    display: block;
+                    font-size: 14px;
+                    margin: 10px 5%;
+                    cursor: pointer;
+                    transition: .2s $material_trans;
+                    &:hover {
+                        opacity: 0.8;
+                    }
+                    &:active {
+                        opacity: 0.6;
+                    }
+                }
+                &::before {
+                    position: relative;
+                    display: block;
+                    content: '';
+                    left: -50%;
+                    height: 1px;
+                    width: 200%;
+                    margin-bottom: 15px;
+                    background: $light_2;
+                }
+            }
         }
     }
-}
-
-
-.dropdown-content {
-    height: 300px;
-    background-color: #fff ;
-}
-
-.dropdownContent {
-    background-color: #fff;
-    right: 3%;
-    position: absolute;
-    min-width: 300px;
-    min-height: 150px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
-    color: #424242;
-    display: none;
-    padding: 10px 30px ;
-}
-
-.dropdownContent a,
-.dropdownContent p {
-    color: #424242;
-    font-size: 12px;
-    line-height: 1.5;
-    padding: 0px ;
-}
-
-.dropdownContent a {
-    padding: 5px 0px;
-    color: #1a77b4 ;
-}
-
-.dropdownContent .photo {
-    display: inline-block;
-    width: 60px;
-    height: 60px;
-    margin-top: 0px ;
-}
-
-.dropdownContent .profile {
-    display: inline-block;
-    margin-left: 20px ;
-}
-
-.dropdownContent .profile__name {
-    font-size: 14px;
-    font-weight: 500 ;
-}
-
-.dropdownContent .activeWord {
-    font-size: 12px;
-    color: $blue  ;
-}
-
-.dropdownContent .logout {
-    position: absolute;
-    right: 5%;
-    bottom: 7% ;
-}
-
-.dropdownContent .btn {
-    background-color: $blue ;
-    padding: 0 20px ;
-}
-
-.dropdownContent .btn:hover {
-    background-color: rgba(16, 165, 210, 0.9) ;
-}
-
-.show {
-    display: block ;
 }
