@@ -111,24 +111,23 @@
   </div>
 </div>
 <div class="course__whole">        
-  <div class="courseList__sidenav">
+  <div class="courseList__sidenav" id="courseFilter">
     <div class="courseList__sidenav__courseType">
       <p>開課單位</p>
-      <input type="search"/>
-      <div id="apitest"> </div>
+      <input id="dpmtFilter" type="text" v-model="keyword"/>
+      <div class="quick_search--course" v-for="(result, index) in search_result">
+        <div @click="result_click(index)">
+          <h4>{{result.prefix}} {{result.name}}</h4>
+        </div>
+      </div>
     </div>
     <div class="courseList__sidenav__courseType" id="courseArrange">
       <p>檢視選項</p>
-      <div class="courseList__sidenav__option z-depth-1">  
+      <div class="courseList__sidenav__option z-depth-1">
         <label>
-          <input class="filled-in" id="commentCheck" type="checkbox" @click="cfilter()"/><span>僅顯示有心得之課程</span>
+          <input id="commentCheck" type="checkbox" @click="comment_filter()"/><span>僅顯示有心得之課程</span>
         </label>
       </div>
-      <div class="courseList__sidenav__option z-depth-1"> <a class="dropdown-trigger" href="#" data-target="dropdown1">
-          <p>依「開課單位」排序</p></a></div>
-      <div class="courseList__sidenav__option z-depth-1"><span>依開課教師</span></div>
-      <div class="courseList__sidenav__option z-depth-1" @click="sortByDept()"><span>依開課單位</span></div>
-      <div class="courseList__sidenav__option z-depth-1" @click=""><span>依課程名稱</span></div>
     </div>
     <div class="courseList__sidenav__wishList" id="wishList">
       <p>願望清單</p>
@@ -146,13 +145,8 @@
   </div>
   <div class="courseList__sideList">
     <div class="card courseList__sideList__itemBox" id="courseList">
-      <div id="test">
-        <p id="test1"></p>
-        <p id="test2"></p>
-        <p id="test3"></p>
-      </div>
       <div id="course_item" v-on:scroll="handleScroll">
-        <div class="courseList__sideList__itemBox__item" @click="courseLink(index)" v-for="(course, index) in course_data">
+        <div class="courseList__sideList__itemBox__item" @click.self="courseLink(index)" v-for="(course, index) in course_data">
           <div class="circle"> <span class="circle-content">{{course.系號}}</span></div>
           <div class="courseText" style="margin-left: 20px">
             <p>{{course.課程名稱}}</p>
