@@ -27,38 +27,26 @@
       <div class="hub_navbar__left_area">
           <div class="hub_navbar__link nav_link" name="course" @click="change_tab('course')">找課程</div>
           <div class="hub_navbar__link nav_link on" name="table" @click="change_tab('table')">排課表 <span class="wishlist_count">5</span></div>
-          <div class="hub_navbar__profile nav_link" name="profile"></div>
+          <div class="hub_navbar__profile nav_link" name="profile" @click="switch_profile_window()"></div>
           <div class="hub_navbar__profile__dropdown">
             <div class="hub_navbar__profile__dropdown__info">
-                <!-- <div class="hub_navbar__profile__dropdown__info__photo"></div>
-                <div class="hub_navbar__profile__dropdown__info__name">吳瑋倢</div>
-                <div class="hub_navbar__profile__dropdown__info__star"></div>
-                <div class="hub_navbar__profile__dropdown__info__dept">工業與資訊管理學系</div>
-                <div class="hub_navbar__profile__dropdown__info__grade">四年級</div>
-                <div class="hub_navbar__profile__dropdown__info__goto" @click="change_tab('profile')" >前往個人頁面</div>  -->
+                <div class="hub_navbar__profile__dropdown__info__photo"></div>
+                <div class="hub_navbar__profile__dropdown__info__detail">
+                    <!-- 若有開通權限則在 nav_profile_name 添加 vip class  -->
+                    <!-- todo: 這邊要 vue 化（含未登入狀態） -->
+                    <div class="nav_profile_name vip">吳瑋倢</div>
+                    <div class="nav_profile_dept">工業與資訊管理學系</div>
+                    <div class="nav_profile_grade">四年級</div>
+                </div>
             </div>
-            <div class="hub_navbar__profile__dropdown__more">
-                <!-- <div class="hub_navbar__profile__dropdown__more__link">關於 NCKU HUB</div>
-                <div class="hub_navbar__profile__dropdown__more__link">回報問題</div>
-                <div class="hub_navbar__profile__dropdown__more__link">登出帳戶</div> -->
+            <div class="hub_navbar__profile__dropdown__goto" @click="change_tab('profile')" >前往個人頁面</div>
+            <div class="hub_navbar__profile__dropdown__links">
+                <a>關於 NCKU HUB</a>
+                <a>回報問題</a>
+                <a>登出帳戶</a>
             </div>
           </div>
       </div>
-        
-      <!-- 這個 function 是幹嘛用ㄉ？ -->
-      <!--  <li><a href="#" onclick="dropdownFunction()">
-          <div class="dropdownContent" id="dropdown1">
-            <div class="photo"></div>
-            <div class="profile">
-              <p style="font-weight: 100;font-size: 9px"></p>
-              <p>工業與資訊管理學系</p>
-              <p>四年級</p><a href="#" @click="change_tab('profile')">前往個人頁面</a>
-            </div>
-            <div class="activeWord"><span>★已啟用小幫手</span></div>
-            <div class="btn logout">登出</div>
-          </div>
-        </li>  -->
-
     </div>
 </nav>
     <body>
@@ -123,24 +111,23 @@
   </div>
 </div>
 <div class="course__whole">        
-  <div class="courseList__sidenav">
+  <div class="courseList__sidenav" id="courseFilter">
     <div class="courseList__sidenav__courseType">
       <p>開課單位</p>
-      <input type="search"/>
-      <div id="apitest"> </div>
+      <input id="dpmtFilter" type="text" v-model="keyword"/>
+      <div class="quick_search--course" v-for="(result, index) in search_result">
+        <div @click="result_click(index)">
+          <h4>{{result.prefix}} {{result.name}}</h4>
+        </div>
+      </div>
     </div>
     <div class="courseList__sidenav__courseType" id="courseArrange">
       <p>檢視選項</p>
-      <div class="courseList__sidenav__option z-depth-1">  
+      <div class="courseList__sidenav__option z-depth-1">
         <label>
-          <input class="filled-in" id="commentCheck" type="checkbox" @click="cfilter()"/><span>僅顯示有心得之課程</span>
+          <input id="commentCheck" type="checkbox" @click="comment_filter()"/><span>僅顯示有心得之課程</span>
         </label>
       </div>
-      <div class="courseList__sidenav__option z-depth-1"> <a class="dropdown-trigger" href="#" data-target="dropdown1">
-          <p>依「開課單位」排序</p></a></div>
-      <div class="courseList__sidenav__option z-depth-1"><span>依開課教師</span></div>
-      <div class="courseList__sidenav__option z-depth-1" @click="sortByDept()"><span>依開課單位</span></div>
-      <div class="courseList__sidenav__option z-depth-1" @click=""><span>依課程名稱</span></div>
     </div>
     <div class="courseList__sidenav__wishList" id="wishList">
       <p>願望清單</p>
@@ -158,13 +145,8 @@
   </div>
   <div class="courseList__sideList">
     <div class="card courseList__sideList__itemBox" id="courseList">
-      <div id="test">
-        <p id="test1"></p>
-        <p id="test2"></p>
-        <p id="test3"></p>
-      </div>
       <div id="course_item" v-on:scroll="handleScroll">
-        <div class="courseList__sideList__itemBox__item" @click="courseLink(index)" v-for="(course, index) in course_data">
+        <div class="courseList__sideList__itemBox__item" @click.self="courseLink(index)" v-for="(course, index) in course_data">
           <div class="circle"> <span class="circle-content">{{course.系號}}</span></div>
           <div class="courseText" style="margin-left: 20px">
             <p>{{course.課程名稱}}</p>
