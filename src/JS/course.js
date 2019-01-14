@@ -197,9 +197,6 @@ $.ajax({
               }
             }
           }
-        } else {
-          console.log(this.keyword);
-
         }
 
         $(".quick_search--course").css("display","none");
@@ -220,10 +217,7 @@ $.ajax({
               this.dept_dropdown.push(result_candidate);
             }
           }
-          // var test = this.dept[0].DepPrefix+ " "+this.dept[0].DepName;
-          // var test2 = this.dept[1].DepPrefix+ " "+this.dept[1].DepName;
-          // this.dept_dropdown.push(test);
-          // this.dept_dropdown.push(test2);
+
         } else if (!this.keyword) {
           console.log("empty!!");
           vue_course_item.course_data = [];
