@@ -1,4 +1,4 @@
-div#courseContent(v-show="isShow" @click="showContent()")
+div#courseContent(v-show="isShow" @click.self="showContent()")
   div.courseContentBody
     div.courseContentBody__left
       span.courseSerial {{course_data.系號}}{{course_data.選課序號}}

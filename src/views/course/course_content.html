@@ -1,5 +1,5 @@
 
-<div id="courseContent" v-show="isShow" @click="showContent()">
+<div id="courseContent" v-show="isShow" @click.self="showContent()">
   <div class="courseContentBody">
     <div class="courseContentBody__left"><span class="courseSerial">{{course_data.系號}}{{course_data.選課序號}}</span>
       <h2 style="margin-top:20px">{{course_data.課程名稱}}</h2>
