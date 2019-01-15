@@ -111,7 +111,7 @@ $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
 
 body {
     background: $bg_color;
-    font-family: 'Noto Sans', helvetica, Microsoft JhengHei, serif, sans-serif, monospace;
+    // font-family: 'Noto Sans', helvetica, Microsoft JhengHei, serif, sans-serif, monospace;
     color: $black;
     font-size: 14px;
     overflow: hidden;
@@ -143,7 +143,7 @@ div {
         line-height: 150%;
     }
     &_12 {
-        font-size: 10px;        
+        font-size: 10px;
         line-height: 150%;
     }
     &_dark {
@@ -361,7 +361,7 @@ div {
             &:hover {
                 .quick_search_input {
                     color: $dark;
-                    text-decoration: line-through;	
+                    text-decoration: line-through;
                     box-shadow: 0 0 14px 0 rgba(0,0,0,0.06);
                 }
                 .quick_search_clear_filter {

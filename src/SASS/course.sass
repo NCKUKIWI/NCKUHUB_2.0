@@ -11,10 +11,19 @@ $colorgrey250: rgb(250,250,250)
 $colorRed: rgb(241,91,94)
 
 
-
+/* reset style of input number */
 input[type=number]:not(.browser-default)
   -webkit-appearance: none
   appearance: none
+input[type=number]::-webkit-inner-spin-button
+  -webkit-appearance: none
+  appearance: none
+input[type=number]::-webkit-outer-spin-button
+  -webkit-appearance: none
+  appearance: none
+.score-btn--edit input
+  border: none
+  text-align: center
 /* overall */
 div, p
   display: block
@@ -375,11 +384,34 @@ section
     height: 100%
     padding: 9vh 3.5vw
     overflow-y: scroll
+    font-size: 16px
     h4
       font-size: 16px
       font-weight: normal
+    &__comment
+      margin-top: 3vh
+      width: 90%
+    &__score
+      width: 90%
   h2
     font-size: 26px
+
+.arrow-left
+  width: 0
+  height: 0
+  border-top: 5px solid transparent
+  border-bottom: 5px solid transparent
+  border-right: 5px solid black
+  display: inline-block
+  cursor: pointer
+.arrow-right
+  width: 0
+  height: 0
+  border-top: 5px solid transparent
+  border-bottom: 5px solid transparent
+  border-left: 5px solid black
+  display: inline-block
+  cursor: pointer
 
 .courseSerial
   padding: 4px 10px
@@ -407,7 +439,7 @@ section
     margin-bottom: 5px
 
 .score-btn--all
-  margin: 10px 0px
+  margin: 2vh 0px
 .score-btn
   background-color: $colorgrey250
   color: $colorBlack66
@@ -417,6 +449,9 @@ section
   padding: 15px 20px
   line-height: 0px
   font-size: 16px
+  width: 20%
+  &--edit
+    display: inline-block
 .score-btn:hover
   background-color: $colorBlack5
 .courseFeedback
@@ -424,7 +459,7 @@ section
   border-radius: 5px
   display: flex
   padding: 20px 20px
-  margin-bottom: 10px
+  margin: 1vh 0px
   &__msg
     width: 90%
 

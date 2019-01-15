@@ -2,11 +2,11 @@ var vue_nav_bar = new Vue({
 	el: '#navbar',
     data: {
 		now_tab : '',
-		search_keyword: '', 
+		search_keyword: '',
 		result_cont: [],
 	},
 	created: function() {
-		var initial_tab = 'table';
+		var initial_tab = 'course';
 		this.change_tab( initial_tab );
 	},
 	computed: {
