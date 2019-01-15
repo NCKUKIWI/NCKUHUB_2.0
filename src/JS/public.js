@@ -12,19 +12,24 @@
 
     var course_db = [];
 
-    axios.get ( 'https://nckuhub.com/api/course/' )
+    axios.get ( 'http://localhost:3000/course/' )
         .then ( function ( response ) {
             course_db = response.data.courses; 
             console.log ( '課程資料庫: 抓取資料成功！' ) ;
+            if(response.data.user_data !== undefined) {
+            	console.log(response.data.user_data[0]);
+            	console.log(response.data.user_data[0].name);
+            	vue_user_data.user_name = response.data.user_data[0].name;
+            	vue_nav_bar.logIn();
+            }
             vue_user_data.checkValid();
             vue_wishlist.refresh(); 
             vue_courseFilter.refresh(); 
-            vue_classtable.refresh(); 
+            vue_classtable.refresh();
         })
         .catch ( function ( error ) {
             console.log (  '課程資料庫:' + error ) ; 
         }); 
-
 
     // User Data
 
@@ -32,7 +37,7 @@
         el: '#user_data',
         data: {                                                 // todo: 不合格或重複的兩清單內容要刪掉（並存回資料庫）
             user_id: '5',                                       // todo: 從登錄狀態取得
-            user_name: '',
+            user_name: 'guest',
             user_photo: 'dist/images/table/profile.png',        // todo: 取得正確圖片
             credit_count: 9,                                    // todo: 讓他可以用計算ㄉ
             now_wishlist: [],
@@ -45,7 +50,7 @@
         methods: {
             getData: function( user_id ) {
                 var user_data = {} ;
-                axios.get ( 'https://nckuhub.com/api/user/getList/'+ user_id )
+                axios.get ( 'http://localhost:3000/user/getList/'+ user_id )
                     .then ( function ( response ) {
                         user_data = response.data ;
                         console.log ( '使用者資料: 抓取資料成功！' ) ;
@@ -57,13 +62,13 @@
             },
             fillData: function ( user_data ) {
                 // 初始化用戶資料
-                this.user_name = '';
+                // this.user_name = '';
                 // this.user_photo = '';                       // todo
                 // this.credit_count = 0;                      // todo
                 this.now_wishlist.length = 0;
                 this.now_table.length = 0;
                 // 填入取得の資料
-                this.user_name = user_data.name;
+                // this.user_name = user_data.name;
                 // this.user_photo = user_data.photo;          // todo
                 // this.credit_count = 計算 ;                   // todo
                 this.now_wishlist = user_data.now_wishlist;
@@ -104,7 +109,7 @@
                 vue_classtable.refresh();
             },
             // wishlistUpdate: function() {
-            //     axios.post('https://nckuhub.com/api/post/setWish/5', {
+            //     axios.post('http://localhost:3000/post/setWish/5', {
             //             "now_table": [43081, 4021, 43021, 42973, 42971, 42969, 42968, 99999]        // todo: 不知為啥傳不成功？？
             //         })
             //         .then ( function ( response ) {

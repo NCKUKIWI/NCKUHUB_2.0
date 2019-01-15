@@ -9,8 +9,9 @@ var notify = require('gulp-notify');
 var fileinclude = require('gulp-file-include');
 var cleanCSS = require('gulp-clean-css');
 
-gulp.task('default', ['compresspug', 'sass', 'scss', 'minify-css', 'compressjs', 'imagemin', 'combine_html', 'webserver'], function() {
+gulp.task('default', ['compresspug', 'sass', 'scss', 'minify-css', 'compressjs', 'imagemin', 'combine_html'], function() {
   gulp.watch('src/SASS/*.sass', ['sass']);
+  gulp.watch('src/images/**/*', ['imagemin']);
   gulp.watch('src/SCSS/*.scss', ['scss']);
   gulp.watch('src/CSS/*.css', ['minify-css']);
   gulp.watch('src/views/course/*.pug', ['compresspug', 'combine_html']);
@@ -30,13 +31,13 @@ gulp.task('compresspug', function buildHTML() {
 // gulp.task('html', function () {
 //     return gulp.src(['./src/views/**/*.html'])
 //     .pipe(fileinclude())
-//     .pipe(gulp.dest('./dist/views'));
+//     .pipe(gulp.dest('./../KIWI/dist/views'));
 // });
 
 gulp.task('combine_html', function () {
     return gulp.src('./src/views/index.html')
     .pipe(fileinclude())
-    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest('../KIWI/'))
     .on("error", notify.onError(function (error) {
         return "Error: " + error.message;
     }));
@@ -54,7 +55,7 @@ gulp.task('lint', function() {
 gulp.task('imagemin', function () {
   gulp.src('src/images/**/*')
     .pipe(imagemin())
-    .pipe(gulp.dest('dist/images'))
+    .pipe(gulp.dest('../KIWI/dist/images'))
     .on("error", notify.onError(function (error) {
         return "Error: " + error.message;
     }));
@@ -63,7 +64,7 @@ gulp.task('imagemin', function () {
 gulp.task('sass', function () {
   return gulp.src('src/SASS/*.sass')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(gulp.dest('dist/CSS/course'))
+    .pipe(gulp.dest('../KIWI/dist/CSS/course'))
     .on("error", notify.onError(function (error) {
         return "Error: " + error.message;
     }));
@@ -72,9 +73,9 @@ gulp.task('sass', function () {
 
 gulp.task('scss', function() {
 	return gulp.src('src/SCSS/*.scss')
-	    // .pipe(changed('dist/css', {extension:'.css'}))
+	    // .pipe(changed('../KIWI/dist/css', {extension:'.css'}))
 	    .pipe(sass())
-	    .pipe(gulp.dest('dist/CSS'))
+	    .pipe(gulp.dest('../KIWI/dist/CSS'))
         .on("error", notify.onError(function (error) {
             return "Error: " + error.message;
         }));
@@ -88,7 +89,7 @@ gulp.task('minify-css', () => {
      //I execute the task to minify the files
     .pipe(cleanCSS())
     //I define the destination of the minified files with the method dest
-    .pipe(gulp.dest('dist/CSS'))
+    .pipe(gulp.dest('../KIWI/dist/CSS'))
     .on("error", notify.onError(function (error) {
         return "Error: " + error.message;
     }));
@@ -97,7 +98,7 @@ gulp.task('minify-css', () => {
 gulp.task('compressjs', function() {
   gulp.src(['src/JS/*.js', 'src/JS/**/*.js'])
     .pipe(minify({}))
-    .pipe(gulp.dest('dist/JS'))
+    .pipe(gulp.dest('../KIWI/dist/JS'))
     .on("error", notify.onError(function (error) {
         return "Error: " + error.message;
     }));
