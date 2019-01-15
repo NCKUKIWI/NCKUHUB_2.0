@@ -14,10 +14,8 @@ gulp.task('default', ['compresspug', 'sass', 'scss', 'minify-css', 'compressjs',
   gulp.watch('src/SCSS/*.scss', ['scss']);
   gulp.watch('src/CSS/*.css', ['minify-css']);
   gulp.watch('src/views/course/*.pug', ['compresspug', 'combine_html']);
-  gulp.watch('src/JS/*/*.js', ['compressjs']);
   gulp.watch('src/JS/*.js', ['compressjs']);
   gulp.watch('src/views/*/*.html', ['combine_html']);
-  gulp.watch('src/views/index.html', ['combine_html']);
 });
 
 gulp.task('compresspug', function buildHTML() {
