@@ -3,8 +3,8 @@
   <div class="courseContentBody">
     <div class="courseContentBody__left"><span class="courseSerial">{{course_data.系號}}{{course_data.選課序號}}</span>
       <h2 style="margin-top:20px">{{course_data.課程名稱}}</h2>
-      <div class="icon-span" style="margin-top:30px"><i class="material-icons tiny">favorite</i><span>加入願望清單</span></div>
-      <div class="icon-span"><i class="material-icons tiny">content_paste</i><span>檢視課程大綱</span></div>
+      <div class="icon-span" style="margin-top:30px"><span>加入願望清單</span></div>
+      <div class="icon-span"><span>檢視課程大綱</span></div>
       <div class="courseUnit">
         <h6>開課單位</h6>
         <h5>{{course_data.系所名稱}}</h5>
@@ -36,23 +36,25 @@
           <button class="btn score-btn" style="color:rgb(241,91,94);">評分</button>
         </div>
         <div class="score-btn--all">
-          <div class="score-btn--edit" id="sweet"><span>甜度</span>
-            <div class="arrow-left"></div>
-            <input class="score_input" id="sweet_rate" type="number" value="5" min="1" max="10"/>
-            <div class="arrow-right"></div>
-          </div>
-          <div class="score-btn--edit" id="hard"><span>涼度</span>
-            <div class="arrow-left"></div>
-            <input class="score_input" type="number" value="5" min="1" max="10"/>
-            <div class="arrow-right"></div>
-          </div>
-          <div class="score-btn--edit" id="recommend"><span>推薦</span>
-            <div class="arrow-left"></div>
-            <input class="score_input" type="number" value="5" min="1" max="10"/>
-            <div class="arrow-right"></div>
+          <div id="score-contents" style="display:inline-block">
+            <div class="score-btn--edit"><span>甜度</span>
+              <div class="arrow-left" @click="minusRate('sweet_rate')"></div>
+              <input class="score_input" id="sweet_rate" type="number" value="5" min="1" max="10"/>
+              <div class="arrow-right" @click="addRate('sweet_rate')"></div>
+            </div>
+            <div class="score-btn--edit"><span>涼度</span>
+              <div class="arrow-left" @click="minusRate('hard_rate')"></div>
+              <input class="score_input" id="hard_rate" type="number" value="5" min="1" max="10"/>
+              <div class="arrow-right" @click="addRate('hard_rate')"></div>
+            </div>
+            <div class="score-btn--edit"><span>推薦</span>
+              <div class="arrow-left" @click="minusRate('recom_rate')"></div>
+              <input class="score_input" id="recom_rate" type="number" value="5" min="1" max="10"/>
+              <div class="arrow-right" @click="addRate('recom_rate')"></div>
+            </div>
           </div>
           <div class="score-btn--edit">
-            <input class="score_input" type="submit" value="送出"/>
+            <button id="score_input" type="submit" @click="submit_score()">送出</button>
           </div>
         </div>
       </div>
@@ -111,12 +113,13 @@
           <div class="list_course_item_right"> </div>
         </div>
       </div>
+      <button class="btn courseList__sidenav__courseType course-btn">加入完成，開始安排課表！</button>
     </div>
   </div>
   <div class="courseList__sideList">
     <div class="card courseList__sideList__itemBox" id="courseList">
       <div id="course_item" v-on:scroll="handleScroll">
-        <div class="courseList__sideList__itemBox__item" @click="courseLink(index)" v-for="(course, index) in course_data">
+        <div class="courseList__sideList__itemBox__item" @click.self="courseLink(index)" v-for="(course, index) in course_data">
           <div class="circle"> <span class="circle-content">{{course.系號}}</span></div>
           <div class="courseText" style="margin-left: 20px">
             <p>{{course.課程名稱}}</p>

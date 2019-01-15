@@ -31,12 +31,6 @@ $.ajax({
 
 //js functions -------------------------
 
-// var sweet_rate = document.getElementById("sweet_rate").value;
-// document.getElementById("sweet").querySelectorAll(".score_input").click(function() {
-//
-// })
-// console.log(sweet_rate);
-
 
 // end -------------------------/
 
@@ -123,8 +117,25 @@ $.ajax({
     },
     methods: {
       showContent: function() {
+        
         // vue_courseContent.isShow = false;
         //if click outside then hide
+      },
+      minusRate: function(rate_name) {
+        var rate_input = rate_name;
+        if(document.getElementById(rate_input).value>0){
+            document.getElementById(rate_input).stepDown();
+        }
+      },
+      addRate: function(rate_name) {
+        var rate_input = rate_name;
+        if(document.getElementById(rate_input).value<10){
+            document.getElementById(rate_input).stepUp();
+        }
+      },
+      submit_score: function() {
+        document.getElementById("score-contents").innerHTML = "LOLOLOL";
+        document.getElementById("score_input").innerHTML = "寫心得";
       },
     }
   });
