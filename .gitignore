@@ -5,5 +5,8 @@ npm-debug.log
 *.log
 .vscode
 index.html
-dist/*
 dist/**/*
+dist/*
+dist/JS/course.js
+dist/JS/course-min.js
+dist/CSS/course/course.css

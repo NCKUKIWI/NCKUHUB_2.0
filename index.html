@@ -50,66 +50,9 @@
     </div>
 </nav>
     <body>
-    	<!-- <div class="change_tab" name="course"> -->
     	<div class="change_tab" name="course">
+    	<!-- <div class="change_tab" name="course" style="display: none;"> -->
     		
-<div id="courseContent" v-show="isShow" @click="showContent()">
-  <div class="courseContentBody">
-    <div class="courseContentBody__left"><span class="courseSerial">{{course_data.系號}}{{course_data.選課序號}}</span>
-      <h2 style="margin-top:20px">{{course_data.課程名稱}}</h2>
-      <div class="icon-span" style="margin-top:30px"><i class="material-icons tiny">favorite</i><span>加入願望清單</span></div>
-      <div class="icon-span"><i class="material-icons tiny">content_paste</i><span>檢視課程大綱</span></div>
-      <div class="courseUnit">
-        <h6>開課單位</h6>
-        <h5>{{course_data.系所名稱}}</h5>
-      </div>
-      <div class="courseUnit">
-        <h6>開課老師</h6>
-        <h5>{{course_data.老師}}</h5>
-      </div>
-      <div class="courseUnit">
-        <h6>開課時段</h6>
-        <h5>{{course_data.時間}}</h5>
-      </div>
-      <div class="courseUnit">
-        <h6>教學方法</h6>
-        <h5>course_data.lecture</h5>
-      </div>
-      <div class="courseUnit">
-        <h6>評量方法</h6>
-        <h5>course_data.score</h5>
-      </div><br/>
-    </div>
-    <div class="courseContentBody__right">
-      <div>
-        <h4>課程評分 ({{score_data.rates.length}})</h4>
-        <div class="score-btn--all">
-          <button class="btn score-btn">甜度 {{score_data.sweet}}</button>
-          <button class="btn score-btn">涼度 {{score_data.hard}}</button>
-          <button class="btn score-btn">推薦 {{score_data.recommand}}</button>
-          <button class="btn score-btn" style="color:rgb(241,91,94);">評分</button>
-        </div>
-      </div>
-      <div>
-        <h4 style="margin-bottom:30px">課程心得 ({{comment_data.length}})</h4>
-        <div class="courseFeedback courseFeedback__msg--default">
-          <div class="courseFeedback__msg">
-            <p>點擊按鈕，立即提供課程心得，</p>
-            <p>幫助 480 位對這門課有興趣的同學！</p>
-          </div>
-        </div>
-        <div class="courseFeedback" v-for="comment in comment_data">
-          <div class="courseFeedback__msg">
-            <p>{{comment.comment}}</p>
-          </div>
-          <div class="courseFeedback__func">
-            <p>15</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="course__whole">        
   <div class="courseList__sidenav" id="courseFilter">
     <div class="courseList__sidenav__courseType">
@@ -129,24 +72,16 @@
         </label>
       </div>
     </div>
-    <div class="courseList__sidenav__wishList" id="wishList">
-      <p>願望清單</p>
-      <div class="courseList__sidenav__wishList__scroll">
-        <div class="courseList__sideList__itemBox__item wishList__item z-depth-1" v-for="wish in wishList">
-          <div class="circle"> </div>
-          <div class="courseList__item">
-            <p>{{wish.課程碼}} {{wish.課程名稱}}</p>
-            <p class="courseList__item__info">{{wish.老師}} {{wish.時間}}</p>
-          </div>
-        </div>
+    <div class="wishlist">
+      <div class="block_title">
+        <p class="text_18">願望清單（{{ wishlist_cont.length }})</p>
       </div>
-      <button class="btn courseList__sidenav__courseType course-btn">加入完成，開始安排課表！</button>
     </div>
   </div>
   <div class="courseList__sideList">
     <div class="card courseList__sideList__itemBox" id="courseList">
       <div id="course_item" v-on:scroll="handleScroll">
-        <div class="courseList__sideList__itemBox__item" @click.self="courseLink(index)" v-for="(course, index) in course_data">
+        <div class="courseList__sideList__itemBox__item" @click="courseLink(index)" v-for="(course, index) in course_data">
           <div class="circle"> <span class="circle-content">{{course.系號}}</span></div>
           <div class="courseText" style="margin-left: 20px">
             <p>{{course.課程名稱}}</p>
@@ -167,8 +102,8 @@
   </div>
 </div>
     	</div>
-    	<div class="change_tab" name="table" style="display: none;">
-        <!-- <div class="change_tab" name="table" style="display: none;"> -->
+    	<!-- <div class="change_tab" name="table"> -->
+        <div class="change_tab" name="table" style="display: none;">
     		<div class="left_area">
 	<div id="user_data" class="personal_data"> 
 		<div class="personal_data_image">
@@ -192,13 +127,13 @@
 			<result-list-item v-for="item in result_cont" :class_item="item"></result-list-item>
 		</div>
 	</div>
-	<div id="wishlist" class="wishlist"> 
+	<div id="wishlist_in_table" class="wishlist"> 
 		<div class="block_title">
 			<p class="text_18">願望清單（{{ wishlist_cont.length }}） </p>
 		</div>
 		<div class="wishlist_cont" :class="{ locked: class_table_locked }" >
 			<wishlist-item v-for="item in wishlist_cont" :class_item="item"></wishlist-item>
-			</div>
+		</div>
 	</div>
 </div>
 
@@ -249,264 +184,21 @@
 	</div>
 </div>
 
-<div id="fixed_button" class="fixed_button_area" :class="{ locked: class_table_locked }">
+<div id="fixed_button_table" class="fixed_button_area" :class="{ locked: class_table_locked }">
 	<div class="major_button" :class="[{ deep_blue_edit: class_table_locked },{ red_done: !class_table_locked }]" @click="switchLockStatus"></div>
 	<div class="minor_button dark_cancel" @click="switchLockStatus"></div>
 </div>
     	</div>
     	<div class="change_tab" name="profile" style="display:none; background-color:rgba(247,247,247,0.8)">
-    		  <script>
-    $.ajax({                //get the courses information  
-       url:'https://nckuhub.com/test/course', 
-        method:"GET ",
-     	  success:function(result){
-          data=result
-          console.log(data);
-	      },
-    });
-      function OnInput (event){
-       $('#test').html('');
-       var input,i,j
-        j=0;
-       input=event.target.value
-       var get=new RegExp(input)
-         var array = new Array(); //for courses name
-       for(i=0;i<5112;i++)
-        {
-           if((get.test(data[i]["課程名稱 "])||get.test(data[i]["老師 "]))&&(input!=''))  //get the courses matched 
-         {
-           array[j]=data[i];
-            j++; 
-          }
-          }
-        console.log(array);
-        for(i=0;i<array.length;i++)
-       // {
-         //$('#test').append("<li class='collection-item'><span class='secondary-content' style='padding-right:320px'>"+array[i]["課程名稱"]+"</span></li>") } }
-    </script>
-<!-- <body tyle="font-family:Microsoft JhengHei">
-    <div style=" position:absolute; top:5.2vh; left:16.8vw; width:60vw; z-index:3; height:70vh;" id="search_output">
-        <ul class="collection oo1" style="width:100%; margin:0;" v-for="(list,index) in items">
-            <li class="collection-item avatar row11" style="padding-top:30px; padding-left:80px; cursor:pointer" id="row11">
-                <i class=" circle red" style="width:50px; height:50px;">{{list.type}}</i>
-                <div>
-                    <div class="title" style="font-size:20px; padding-left:20px">{{list.name}}</div>
-                    <div class="title" style="font-size:85%; padding-left:20px; color:gray">{{list.teacher}}</div>
-                </div>
-                <i class="small secondary-content" style="padding-right:380px; padding-top:20px; "><img src="./dist/images/table/icon_completed.png"></i>
-                <span class="secondary-content" style="padding-right:290px; padding-top:15px">2018.11.02</span>
-                <div style="width:2px; height:8vh; background-color:rgba(230,230,230,1); margin-right:250px" class="secondary-content"></div>
-                <i class="secondary-content gray" style="padding-right:230px; cursor:pointer"><img src="./dist/images/table/icon_edit.png"></i>
-                <i class="o1 secondary-content" style="cursor:pointer; padding-right:170px" @click="deleteitem(index)"><img src="./dist/images/table/icon_delete.png"></i>
-            </li>
-        </ul>
-    </div>
-    <nav style="height:6vh">
-        <div class="nav-wrapper" style="background-color:0fa5d1">
-            <img src="./dist/images/table/hub.png" style="height:100%; width:auto"></img>
-            <ul class="right hide-on-med-and-down" id="searchitem">
-                <li style="position:relative !important;">
-                    <form>
-                        <div class="input-field">
-                            <input id="search" type="search" placeholder="輸入「課程名」或「教師名」" oninput="OnInput (event)" />
-                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                        </div>
-                    </form>
-                </li>
-                <li><a href="#">找課程</a></li>
-                <li><a href="#">排班表</a></li>
-                <li><i class="material-icons">favorite</i></li>
-                <li>
-                    <div class="chip">number</div>
-                </li>
-                <li style="padding-top:10px" id="pic"><img src="./dist/images/table/picture.png" alt="" class="circle" style="height:50px; width:50px; cursor:pointer"></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="card horizontal" style="position:absolute; z-index:2; right:7vw; top:6vh; margin:0px; width:15vw;" id="small_card">
-        <div style="padding:25px; padding-right:0px">
-            <img src="./dist/images/table/picture.png" style="border-radius:50%; width:90px; height:90px">
-        </div>
-        <div class="card-stacked">
-            <div class="card-content">
-                <h5><strong><b>汪宗諺</b></strong></h3>
-                    <h6 style="color:gray">工程科學系</h6>
-                    <h6 style="color:gray">三年級</h6>
-                    <a style="cursor:pointer" id="go">前往個人頁</a>
-            </div>
-        </div>
-    </div> -->
-    <div class="row" style="padding:5vw" id="content">
-        <div class="col s7 push-s5">
-            <div class="container" style="width:90%">
-                <h6>已提供心得(13)
-                    <h6>
-                        <div id="frame1">
-                            <!--frame-->
-                            <ul class="collection oo1" style="width:950px; margin:0;" v-for="(list,index) in items">
-                                <li class="collection-item avatar row11" style="padding-top:30px; padding-left:80px; cursor:pointer" id="row11">
-                                    <i class=" circle red" style="width:50px; height:50px;">{{list.type}}</i>
-                                    <div>
-                                        <div class="title" style="font-size:20px; padding-left:20px">{{list.name}}</div>
-                                        <div class="title" style="font-size:85%; padding-left:20px; color:gray">{{list.teacher}}</div>
-                                    </div>
-                                    <i class="small secondary-content" style="padding-right:380px; padding-top:20px; "><img src="./dist/images/table/icon_completed.png"></i>
-                                    <span class="secondary-content" style="padding-right:290px; padding-top:15px">2018.11.02</span>
-                                    <div style="width:2px; height:8vh; background-color:rgba(230,230,230,1); margin-right:250px" class="secondary-content"></div>
-                                    <i class="secondary-content gray" style="padding-right:230px; cursor:pointer"><img src="./dist/images/table/icon_edit.png"></i>
-                                    <i class="o1 secondary-content" style="cursor:pointer; padding-right:170px" @click="deleteitem(index)"><img
-                      src="./dist/images/table/icon_delete.png"></i>
-                                </li>
-                            </ul>
-                        </div>
-                        <br>
-                        <br>
-                        <h6>編輯中心得(13)
-                            <h6>
-                                <div id="frame2">
-                                    <!--frame-->
-                                    <ul class="collection oo1" style="width:950px; margin:0;" v-for="(list2,index) in items">
-                                        <li class="collection-item avatar row11" style="padding-top:30px; padding-left:80px; cursor:pointer" id="row11">
-                                            <i class=" circle blue" style="width:50px; height:50px;">{{list2.type}}</i>
-                                            <div>
-                                                <div class="title" style="font-size:20px; padding-left:20px">{{list2.name}}</div>
-                                                <div class="title" style="font-size:85%; padding-left:20px; color:gray">{{list2.teacher}}</div>
-                                            </div>
-                                            <i class="small secondary-content" style="padding-right:350px;"><img src="./dist/images/table/icon_edit_2.png"></i>
-                                            <span class="secondary-content" style="padding-right:250px;">2018.11.02</span>
-                                            <div style="width:2px; height:8vh; background-color:rgba(230,230,230,1); margin-right:250px" class="secondary-content"></div>
-                                            <i class="secondary-content gray" style="padding-right:230px; cursor:pointer"><img src="./dist/images/table/icon_edit.png"></i>
-                                            <i class="o1 secondary-content" style="cursor:pointer; padding-right:200px" @click="deleteitem(index)"><img
-                          src="./dist/images/table/icon_delete.png"></i>
-                                        </li>
-                                    </ul>
-                                </div>
-            </div>
-        </div>
-        <div class="col s5 pull-s7">
-            <div class="container">
-                <div class="row">
-                    <div class="col s8 push-s4" style="padding-top:20px; padding-left:0px">
-                        <div style="background-color:gray; width:100%; height:1px"></div>
-                    </div>
-                    <div class="col s4 pull-s8" style="padding-right:0px">
-                        <h6>個人資料
-                            <h6>
-                    </div>
-                </div>
-                <div style="width:100%;">
-                    <div class="card horizontal">
-                        <div style="padding:25px; padding-right:0px">
-                            <img src="./dist/images/table/picture.png" style="border-radius:50%; width:90px; height:90px">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <h5><strong><b>汪宗諺</b></strong></h3>
-                                    <h6 style="color:gray">工程科學系</h6>
-                                    <h6 style="color:gray">三年級</h6>
-                                    <div><img src="./dist/images/table/material.png"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <ul class="collection">
-                    <li class="collection-item" id="link" style="padding-right:300px">
-                        <img src="./dist/images/table/icon_profile.png">
-                        <h6 class="secondary-content" style="margin-top:4px">修改個人資料</h6>
-                    </li>
-                    <li class="collection-item" style="padding-right:300px">
-                        <img src="./dist/images/table/icon_auth.png">
-                        <h6 class="secondary-content" style="margin-top:4px">開通使用權限</h6>
-                    </li>
-                </ul>
-                <ul class="collection">
-                    <li class="collection-item" style="padding-right:330px">
-                        <img src="./dist/images/table/icon_enter.png">
-                        <h6 class="secondary-content" style="margin-top:4px">進入課表</h6>
-                    </li>
-                    <li class="collection-item" style="padding-right:330px">
-                        <img src="./dist/images/table/icon_logout.png">
-                        <h6 class="secondary-content" style="margin-top:4px">登出課表</h6>
-                    </li>
-                </ul>
-            </div>
-            <!--end container-->
-            <div class="col s12 m7" id="pic1" style="position:absolute; top:58px; display:none; right:90px; width:20vw">
-                <div class="card horizontal">
-                    <div class="card-image" style="height:100px">
-                        <img src="./dist/images/table/picture.png" style="width:80px; height:80px;border-radius:50%; margin-top:40px; margin-left:10px;">
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-content" style="padding-bottom:0">
-                            <h6 class="secondary-content left">汪宗諺</h6>
-                            <h6 class="grey-text">qw1562435@gmail.com
-                                <h6>
-                                    <h6>工程科學系</h6>
-                                    <h6>三年級</h6>
-                                    <h6 style="color:0fa5d1">前往個人頁面</h6>
-                        </div>
-                        <a style=" margin-left:-60px; margin-top:10px"><i class="material-icons">grade</i>已啟動小幫手</a>
-                        <a class="waves-effect waves-light btn blue secondary-content" style="width:70px; margin-bottom:10px; left:170px;">登出</a>
-                    </div>
-                </div>
-            </div>
-            <div id="box" style="position:absolute; z-index:3; background-color:white; top:20vh; left:30vw; width:25vw; height:60vh; display:none">
-                <div style="width:100%; height:15%; background-color:0fa5d1">
-                    <h6 style="margin-top:0; color:white; padding-top:3vh; padding-left:3vw">編輯個人資料</h6>
-                </div>
-                <div class="container">
-                    <div class="row" style="margin-bottom:0; ">
-                        <div class="input-field col s6 push-s6" style="padding:0">
-                            <input placeholder="姓名" id="first_name1" type="text" class="validate" style="" value="">
-                        </div>
-                        <div class="col s6 pull-s6">
-                            姓名
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:0;">
-                        <div class="input-field col s6 push-s6" style="padding:0 !important">
-                            <input placeholder="信箱" id="first_name2" type="text" class="validate" value="">
-                        </div>
-                        <div class="col s6 pull-s6">
-                            信箱
-                        </div>
-                    </div>
-                    <div class="input-field col s12" style="width:100% !important" id="department">
-                        <select class="browser-default" v-model="message">
-              <option value="" disabled selected>系所</option>
-              <option value="a系">a系</option>
-              <option value="b系">b系</option>
-              <option value="c系">c系</option>
-            </select>
-                    </div>
-                    <div class="input-field col s12" style="width:100% !important" id="grade">
-                        <select class="browser-default" v-model="message">
-              <option value="" disabled selected>年級</option>
-              <option value="一年級">一年級</option>
-              <option value="二年級">二年級</option>
-              <option value="三年級">三年級</option>
-            </select>
-                    </div>
-                    <a class="waves-effect waves-light btn-small" id="submit">送出</a>
-                    <a class="waves-effect waves-light btn-small" id="back">返回</a>
-                </div>
-            </div>
-            <a class="btn-floating btn-large waves-effect waves-light red" style="position:fixed; z-index:2; bottom:40px; right:40px"><i
-          class="material-icons">add</i></a>
-        </div>
-        <div id="mask" style="width:100%; height:1200px; background-color:rgba(100,100,100,0.5); z-index:2; position:absolute; top:0px; left:0px; display:none "></div>
-    </div>
-<!-- </body> -->
-
-
+    		
     	</div>
     </body>
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"> </script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="dist/JS/course.js"></script>
 <script src="dist/JS/navbar.js"></script>
 <script src="dist/JS/public.js"></script>
+<script src="dist/JS/course.js"></script>
 <script src="dist/JS/table.js"></script>
 <script src="dist/JS/table_function.js"></script>
 <script src="dist/JS/profile/profile.js "></script>

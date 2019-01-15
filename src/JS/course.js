@@ -137,7 +137,8 @@ $.ajax({
       keyword: '',
       dept: [],
       course_data: [],
-      wishList: [],
+      // wishList: [],
+      wishlist_cont: [],
       dept_dropdown: [],
       filter_by_dpmt: [],
     },
@@ -203,7 +204,15 @@ $.ajax({
 
         $(".quick_search--course").css("display","none");
         vue_course_item.course_data = this.filter_by_dpmt;
-
+        console.log(this.filter_by_dpmt);
+      },
+      refresh: function () {    
+        this.wishlist_cont.length = 0;
+        console.log ( course_db );
+        for ( var i = 0 ; i < vue_user_data.now_wishlist.length ; i ++ ) {
+            var class_item = getClassObject ( course_db, vue_user_data.now_wishlist[i] ) ;
+            this.wishlist_cont.push( class_item );
+        }
       }
     },
     computed: {

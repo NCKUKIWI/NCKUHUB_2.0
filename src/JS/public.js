@@ -15,6 +15,25 @@
         課程移出願望清單：  vue_user_data.wishlistRemove( id );
     */
 
+
+    // Get Course Data
+
+    var course_db = [];
+
+    axios.get ( 'https://nckuhub.com/api/course/' )
+        .then ( function ( response ) {
+            console.log ( 'axios: 抓取資料成功！' ) ;
+            course_db = response.data.courses; 
+            vue_user_data.checkValid();
+            vue_wishlist.refresh(); 
+            // vue_courseFilter.refresh(); 
+            vue_classtable.refresh(); 
+        })
+        .catch ( function ( error ) {
+            console.log (  'axios:' + error ) ; 
+        }); 
+
+
     // User Data
 
     var vue_user_data = new Vue ({
@@ -56,101 +75,3 @@
             }
         }
     })
-
-    // Component: wishlist-item
-
-    Vue.component( 'wishlist-item', {
-        data: function () {
-            return {
-                hover_now: false
-            }
-        },
-        props: ['class_item'],
-        template: [
-            '<div v-if="class_item.isSeen" class="list_course_item" @mouseover="mouseoverItem" @mouseout="mouseoutItem" >',
-                '<div class="list_course_item_left">',
-                    '<p class="list_course_item_category text_20 text_white clickable" @click="deleteItem" :class="getClass()"> {{ class_item.category }} </p>',
-                '</div>',
-                '<div class="list_course_item_mid" @click="addToTable">',
-                    '<p class="list_course_item_title text_16">{{ class_item.dept_id }}-{{ class_item.class_id }} {{ class_item.title }}</p>',
-                    '<p class="list_course_item_description text_14 text_dark">{{ class_item.teacher }} — {{ class_item.time }}</p>',
-                '</div>',
-                '<div class="list_course_item_right" @click="addToTable">',
-                    '<div class="list_course_item_button"></div>',
-                '</div>',
-            '</div>'
-        ].join(''),
-        methods: {
-            getClass: function() {
-                var class_context = this.class_item.dept_id ;
-                return class_context;
-            },
-            addToTable: function () {
-                if ( checkConflict ( this.class_item, vue_classtable ) ) {
-                    vue_user_data.tableAdd( this.class_item.id );
-                    vue_user_data.wishlistRemove( this.class_item.id );
-                    vue_classtable.clearFilterCell();
-                }
-            },
-            deleteItem: function () {
-                console.log ( 'wishlist killed: ' +  vue_wishlist.wishlist_cont.indexOf( this.class_item ) + ' (' + this.class_item.title + ')' ); 
-                vue_user_data.wishlistRemove( this.class_item.id );
-            },
-            mouseoverItem: function () {
-                if ( checkConflict ( this.class_item, vue_classtable ) ) {
-                    vue_classtable.refresh( this.class_item.id );
-                }
-            },
-            mouseoutItem: function () {
-                vue_classtable.refresh();
-            }
-        }
-    })
-
-
-    // Wishlist
-
-    var vue_wishlist = new Vue({
-        el: '#wishlist',
-        data: {
-            wishlist_cont: [],
-            class_table_locked: true
-        },
-        methods: {
-            refresh: function () {    
-                this.wishlist_cont.length = 0;
-                for ( var i = 0 ; i < vue_user_data.now_wishlist.length ; i ++ ) {
-                    var class_item = getClassObject ( course_db, vue_user_data.now_wishlist[i] ) ;
-                    class_item.isSeen = true;
-                    this.wishlist_cont.push( class_item );
-                }
-                this.clearFilter() ;
-            },
-            clearFilter: function () {
-                // 重新將所有 wishlist item 設為可見
-                for ( var i = 0 ; i < this.wishlist_cont.length ; i ++ ) {
-                    this.wishlist_cont[i].isSeen = true ;
-                }
-            },
-            filterItemTIme: function ( filter_day, filter_time ) {
-                // 篩選出不符合條件的 item 設為不可見
-                filter_time = textTransTime( filter_time );
-                for ( var i = 0 ; i < this.wishlist_cont.length ; i ++ ) {
-                    var wishlist_item_day = getTimeObject(this.wishlist_cont[i])[0].day ;
-                    var wishlist_item_start = getTimeObject(this.wishlist_cont[i])[0].start ;
-                    wishlist_item_start = textTransTime( wishlist_item_start );
-                    var wishlist_item_end = parseInt(wishlist_item_start) + getTimeObject(this.wishlist_cont[i])[0].hrs - 1 ;
-                    if ( filter_day == wishlist_item_day && filter_time >= wishlist_item_start && filter_time <= wishlist_item_end ) {
-                    }
-                    else {
-                        this.wishlist_cont[i].isSeen = false ;
-                    }
-                }
-            },
-            switchLockStatus: function () {
-                this.class_table_locked = ! this.class_table_locked;
-            }
-        }
-    })
-
-

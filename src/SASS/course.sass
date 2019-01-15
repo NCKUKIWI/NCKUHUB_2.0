@@ -214,11 +214,21 @@ section
 /* course list */
 .courseList
   &__sidenav
+    position: fixed
+    display: flex
+    flex-direction: column
+    left: 0
+    bottom: 0
+    padding-left: 5vw
+    padding-right: 10px
+    height: calc( 100vh - 60px )
     width: 30vw
-    height: 100vh
-    text-align: center
-    padding: 3vh 3vw 0vh 4vw
-    display: inline-block
+    background: yellow
+    // width: 30vw
+    // height: 100vh
+    // text-align: center
+    // padding: 3vh 3vw 0vh 4vw
+    // display: inline-block
     input[type=search]:not(.browser-default)
       background-color: #fff
       opacity: 0.5
@@ -257,10 +267,18 @@ section
         height: 34%
   /* side list */
   &__sideList
+    position: fixed
+    right: 0
+    bottom: 0
     width: 70vw
-    display: inline-block
-    position: absolute
-    padding: 3vh 3vw
+    height: calc( 100vh - 60px )
+    padding-right: 5vw
+    padding-left: 30px
+    background: blue
+    // width: 70vw
+    // display: inline-block
+    // position: absolute
+    // padding: 3vh 3vw
     p
       font-size: 12px
     &__itemBox
