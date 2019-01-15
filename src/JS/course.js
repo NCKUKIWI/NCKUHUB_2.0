@@ -50,7 +50,7 @@ $.ajax({
 //   document.getElementById("dropdown1").classList.toggle("show");
 // }
 
-// $(document).ready(function(){
+$(document).ready(function(){
 
   var vue_course_item = new Vue({
     el: '#course_item',
@@ -112,6 +112,7 @@ $.ajax({
     },
     created: function() {
       document.getElementById("courseList").addEventListner('scroll', this.handleScroll);
+      
     }
   });
 
@@ -213,7 +214,11 @@ $.ajax({
             var class_item = getClassObject ( course_db, vue_user_data.now_wishlist[i] ) ;
             this.wishlist_cont.push( class_item );
         }
-      }
+      },
+      deleteItem: function ( id ) {
+        console.log ( 'wishlist killed: ' + id ); 
+        vue_user_data.wishlistRemove( id );
+      },
     },
     computed: {
       search_result: function() {
@@ -257,4 +262,4 @@ $.ajax({
     }
   });
 
-// });
+});

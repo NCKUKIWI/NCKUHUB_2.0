@@ -26,7 +26,7 @@
             course_db = response.data.courses; 
             vue_user_data.checkValid();
             vue_wishlist.refresh(); 
-            // vue_courseFilter.refresh(); 
+            vue_courseFilter.refresh(); 
             vue_classtable.refresh(); 
         })
         .catch ( function ( error ) {
@@ -55,13 +55,16 @@
             wishlistAdd: function ( target_id ) {
                 this.now_wishlist.push( target_id );
                 vue_wishlist.refresh();
+                vue_courseFilter.refresh();
             },
             wishlistRemove: function ( target_id ) {
                 var index = this.now_wishlist.indexOf( target_id );
                 console.log( 'kill wishlist: ' + index );
                 this.now_wishlist.splice( index, 1 );
                 vue_wishlist.wishlist_cont.splice( index, 1 );
+                vue_courseFilter.wishlist_cont.splice( index, 1 );
                 // vue_wishlist.refresh();
+                // vue_courseFilter.refresh(); 
             },
             tableAdd: function ( target_id ) {
                 this.now_table.push( target_id );

@@ -1,50 +1,50 @@
-//- div#courseContent(v-show="isShow" @click="showContent()")
-//-   div.courseContentBody
-//-     div.courseContentBody__left
-//-       span.courseSerial {{course_data.系號}}{{course_data.選課序號}}
-//-       h2(style="margin-top:20px") {{course_data.課程名稱}}
-//-       div(style="margin-top:30px").icon-span
-//-         i.material-icons.tiny favorite
-//-         span 加入願望清單
-//-       div.icon-span
-//-         i.material-icons.tiny content_paste
-//-         span 檢視課程大綱
+div#courseContent(v-show="isShow" @click="showContent()")
+  div.courseContentBody
+    div.courseContentBody__left
+      span.courseSerial {{course_data.系號}}{{course_data.選課序號}}
+      h2(style="margin-top:20px") {{course_data.課程名稱}}
+      div(style="margin-top:30px").icon-span
+        i.material-icons.tiny favorite
+        span 加入願望清單
+      div.icon-span
+        i.material-icons.tiny content_paste
+        span 檢視課程大綱
         
-//-       div.courseUnit
-//-         h6 開課單位
-//-         h5 {{course_data.系所名稱}}
-//-       div.courseUnit
-//-         h6 開課老師
-//-         h5 {{course_data.老師}}
-//-       div.courseUnit
-//-         h6 開課時段
-//-         h5 {{course_data.時間}}
-//-       div.courseUnit
-//-         h6 教學方法
-//-         h5 course_data.lecture
-//-       div.courseUnit
-//-         h6 評量方法
-//-         h5 course_data.score
-//-       br
-//-     div.courseContentBody__right
-//-       div
-//-         h4 課程評分 ({{score_data.rates.length}})
-//-         div.score-btn--all
-//-           button.btn.score-btn 甜度 {{score_data.sweet}}
-//-           button.btn.score-btn 涼度 {{score_data.hard}}
-//-           button.btn.score-btn 推薦 {{score_data.recommand}}
-//-           button.btn.score-btn(style="color:rgb(241,91,94);") 評分
-//-       div
-//-         h4(style="margin-bottom:30px") 課程心得 ({{comment_data.length}})
-//-         div.courseFeedback.courseFeedback__msg--default
-//-           div.courseFeedback__msg
-//-             p 點擊按鈕，立即提供課程心得，
-//-             p 幫助 480 位對這門課有興趣的同學！
-//-         div.courseFeedback(v-for="comment in comment_data")
-//-           div.courseFeedback__msg
-//-             p {{comment.comment}}
-//-           div.courseFeedback__func
-//-             p 15
+      div.courseUnit
+        h6 開課單位
+        h5 {{course_data.系所名稱}}
+      div.courseUnit
+        h6 開課老師
+        h5 {{course_data.老師}}
+      div.courseUnit
+        h6 開課時段
+        h5 {{course_data.時間}}
+      div.courseUnit
+        h6 教學方法
+        h5 course_data.lecture
+      div.courseUnit
+        h6 評量方法
+        h5 course_data.score
+      br
+    div.courseContentBody__right
+      div
+        h4 課程評分 ({{score_data.rates.length}})
+        div.score-btn--all
+          button.btn.score-btn 甜度 {{score_data.sweet}}
+          button.btn.score-btn 涼度 {{score_data.hard}}
+          button.btn.score-btn 推薦 {{score_data.recommand}}
+          button.btn.score-btn(style="color:rgb(241,91,94);") 評分
+      div
+        h4(style="margin-bottom:30px") 課程心得 ({{comment_data.length}})
+        div.courseFeedback.courseFeedback__msg--default
+          div.courseFeedback__msg
+            p 點擊按鈕，立即提供課程心得，
+            p 幫助 480 位對這門課有興趣的同學！
+        div.courseFeedback(v-for="comment in comment_data")
+          div.courseFeedback__msg
+            p {{comment.comment}}
+          div.courseFeedback__func
+            p 15
 div.course__whole         
   div.courseList__sidenav#courseFilter
     div.courseList__sidenav__courseType
@@ -62,10 +62,17 @@ div.course__whole
 
     div.wishlist
       div.block_title
-        //- p.text_18 願望清單 {{test}}
         p.text_18 願望清單（{{ wishlist_cont.length }})
-    //-   div.wishlist_cont(:class="{ locked: class_table_locked }")
-    //-     wishlist-item(v-for="item in wishlist_cont" :class_item="item")
+      div.wishlist_cont
+        div.list_course_item(v-for="item in wishlist_cont")
+          div.list_course_item_left
+            p.list_course_item_category.text_20.text_white.clickable(:class="item.dept_id" @click="deleteItem(item.id)") {{ item.category }}
+          div.list_course_item_mid
+            p.list_course_item_title.text_16 {{ item.dept_id }}-{{ item.class_id }} {{ item.title }}
+            p.list_course_item_description.text_14.text_dark {{ item.teacher }} — {{ item.time }}
+          div.list_course_item_right 
+            //- div.list_course_item_button
+
 
 
     //- div#wishList.courseList__sidenav__wishList
@@ -80,14 +87,14 @@ div.course__whole
   div.courseList__sideList
     div.card.courseList__sideList__itemBox#courseList
       div#course_item(v-on:scroll="handleScroll")
-        div(@click="courseLink(index)" v-for="(course, index) in course_data").courseList__sideList__itemBox__item
+        div(@click.self="courseLink(index)" v-for="(course, index) in course_data").courseList__sideList__itemBox__item
             div.circle 
               span.circle-content {{course.系號}}
             div.courseText(style="margin-left: 20px")
               p {{course.課程名稱}}
               p(style="font-size: 12px;color:#9e9e9e;") {{course.系號}}{{course.選課序號}} - {{course.老師}}
             div(style="float:right;margin: auto 0")
-              div.circle.circle__heart(style="margin-right:10px",@click.self="addCourse(index)")
+              div.circle.circle__heart(style="margin-right:10px",@click="addCourse(index)")
               div.circle.circle__heart
               
             //  div.circle.heart-circle(@click="addCourse(index)")
