@@ -45,6 +45,9 @@ var vue_nav_bar = new Vue({
 				$( ".nav_link[name='profile']" ).toggleClass( "on" );
 			}
 			$( ".hub_navbar__profile__dropdown" ).toggleClass( "on" );
+		},
+		openCourse: function(id) {
+			vue_course_item.openCoursePage(id);
 		}
 	}
 })

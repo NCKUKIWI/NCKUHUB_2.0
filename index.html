@@ -25,7 +25,7 @@
           <!-- todo: 新增「查無結果」的顯示 -->
           <input class="hub_navbar__search" type="text" v-model="search_keyword" placeholder="搜尋「課程名」或「教師名」" ><br>
           <div v-if="search_keyword.replace(' ','') != ''" class="hub_navbar__search__dropdown">
-              <div v-for="item in result_cont" class="list_course_item" >
+              <div v-for="item in result_cont" class="list_course_item" @click="openCourse(item.id)">
                 <div class="list_course_item_left">
                   <p class="list_course_item_category text_20 text_white" :class="item.dept_id"> {{ item.category }} </p>
                 </div>
@@ -64,6 +64,7 @@
       </div>
     </div>
 </nav>
+
     <body>
     	<div class="change_tab" name="course">
     	<!-- <div class="change_tab" name="course" style="display: none;"> -->

@@ -72,14 +72,15 @@ $.ajax({
         });
       },
       openCoursePage: function(id) {
-        console.log("open the page");
+        console.log("open the page"+id);
         vue_courseContent.isShow = true;
         for(var i in vue_course_item.course_data_db){
           if(id == vue_course_item.course_data_db[i].id){
             vue_courseContent.course_data = vue_course_item.course_data_db[i];
-            break;
           }
         }
+        console.log(vue_courseContent.course_data);
+
       },
       addCourse: function(index){
         var chooseCourse_id = vue_course_item.course_data[index].id;
@@ -117,8 +118,8 @@ $.ajax({
     },
     methods: {
       showContent: function() {
-        
-        // vue_courseContent.isShow = false;
+
+        vue_courseContent.isShow = false;
         //if click outside then hide
       },
       minusRate: function(rate_name) {
