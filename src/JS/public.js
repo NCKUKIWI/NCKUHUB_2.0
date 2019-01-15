@@ -40,7 +40,7 @@
         },
         created: function() {
             this.getData( this.user_id );                       // todo: 每次登入都要重新開始
-            this.wishlistUpdate() ;
+            // this.wishlistUpdate() ;                          // 好像怪怪的，先關掉一下
         },
         methods: {
             getData: function( user_id ) {
@@ -103,17 +103,17 @@
                 vue_user_data.now_table.splice( index, 1 );
                 vue_classtable.refresh();
             },
-            wishlistUpdate: function() {
-                axios.post('https://nckuhub.com/api/post/setWish/5', {
-                        "now_table": [43081, 4021, 43021, 42973, 42971, 42969, 42968, 99999]        // todo: 不知為啥傳不成功？？
-                    })
-                    .then ( function ( response ) {
-                        console.log ( response ) ;
-                        // console.log ( '更新願望清單: 更新成功！' ) ;
-                    })
-                    .catch ( function ( error ) {
-                        console.log (  '更新願望清單:' + error ) ; 
-                    });
-            }
+            // wishlistUpdate: function() {
+            //     axios.post('https://nckuhub.com/api/post/setWish/5', {
+            //             "now_table": [43081, 4021, 43021, 42973, 42971, 42969, 42968, 99999]        // todo: 不知為啥傳不成功？？
+            //         })
+            //         .then ( function ( response ) {
+            //             console.log ( response ) ;
+            //             // console.log ( '更新願望清單: 更新成功！' ) ;
+            //         })
+            //         .catch ( function ( error ) {
+            //             console.log (  '更新願望清單:' + error ) ; 
+            //         });
+            // }
         }
     })
