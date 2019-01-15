@@ -27,15 +27,33 @@ div#courseContent(v-show="isShow" @click="showContent()")
         h5 course_data.score
       br
     div.courseContentBody__right
-      div
+      div.courseContentBody__right__score
         h4 課程評分 ({{score_data.rates.length}})
-        div.score-btn--all
+        div.score-btn--all(style="display:none")
           button.btn.score-btn 甜度 {{score_data.sweet}}
           button.btn.score-btn 涼度 {{score_data.hard}}
           button.btn.score-btn 推薦 {{score_data.recommand}}
           button.btn.score-btn(style="color:rgb(241,91,94);") 評分
-      div
-        h4(style="margin-bottom:30px") 課程心得 ({{comment_data.length}})
+        div.score-btn--all
+          div.score-btn--edit#sweet
+            span 甜度
+            div.arrow-left
+            input#sweet_rate.score_input(type="number" value="5" min="1" max="10")
+            div.arrow-right
+          div.score-btn--edit#hard
+            span 涼度
+            div.arrow-left
+            input.score_input(type="number" value="5" min="1" max="10")
+            div.arrow-right
+          div.score-btn--edit#recommend
+            span 推薦
+            div.arrow-left
+            input.score_input(type="number" value="5" min="1" max="10")
+            div.arrow-right
+          div.score-btn--edit
+            input.score_input(type="submit" value="送出")
+      div.courseContentBody__right__comment
+        h4 課程心得 ({{comment_data.length}})
         div.courseFeedback.courseFeedback__msg--default
           div.courseFeedback__msg
             p 點擊按鈕，立即提供課程心得，
