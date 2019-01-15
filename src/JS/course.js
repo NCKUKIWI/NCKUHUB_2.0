@@ -18,19 +18,20 @@ $('.input-number-decrement').click(function() {
 $.ajax({
   type: "GET",
   url: "https://nckuhub.com/api/course/",
-  success: function(response) {
+  success: function (response) {
         vue_course_item.course_data_db = response.courses;
 
         for(var i=0;i<100;i++){
           vue_course_item.course_data.push(vue_course_item.course_data_db[i]);
         }
-        console.log(vue_course_item.course_data[0]);
 
         for( var i in vue_course_item.course_data_db) {
           if(vue_course_item.course_data_db[i].comment_num>0) {
             vue_course_item.course_with_comment.push(vue_course_item.course_data_db[i]);
           }
         }
+
+        console.log(vue_course_item.course_with_comment);
         // vue_course_item.course_data = vue_course_item.course_with_comment;
 
   }
@@ -50,7 +51,7 @@ $.ajax({
 //   document.getElementById("dropdown1").classList.toggle("show");
 // }
 
-$(document).ready(function(){
+// $(document).ready(function(){
 
   var vue_course_item = new Vue({
     el: '#course_item',
@@ -87,8 +88,6 @@ $(document).ready(function(){
           }
 
         });
-
-
       },
 
       addCourse: function(index){
@@ -108,11 +107,12 @@ $(document).ready(function(){
           this.count_index++;
           this.count_height++;
         }
+        console.log(this.count_index);
       },
     },
     created: function() {
       document.getElementById("courseList").addEventListner('scroll', this.handleScroll);
-      
+
     }
   });
 
@@ -207,16 +207,15 @@ $(document).ready(function(){
         vue_course_item.course_data = this.filter_by_dpmt;
         console.log(this.filter_by_dpmt);
       },
-      refresh: function () {    
+      refresh: function () {
         this.wishlist_cont.length = 0;
-        console.log ( course_db );
         for ( var i = 0 ; i < vue_user_data.now_wishlist.length ; i ++ ) {
             var class_item = getClassObject ( course_db, vue_user_data.now_wishlist[i] ) ;
             this.wishlist_cont.push( class_item );
         }
       },
       deleteItem: function ( id ) {
-        console.log ( 'wishlist killed: ' + id ); 
+        console.log ( 'wishlist killed: ' + id );
         vue_user_data.wishlistRemove( id );
       },
     },
@@ -262,4 +261,4 @@ $(document).ready(function(){
     }
   });
 
-});
+// });
