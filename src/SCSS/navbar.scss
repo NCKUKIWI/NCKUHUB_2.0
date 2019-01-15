@@ -53,7 +53,7 @@ $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
         left: 0;
         margin-left: 4vw;
         height: 100%;
-        width: calc( 65vw - 2vw );
+        width: calc( 65vw - 4vw );
     }
     &__left_area {
         position: absolute;
@@ -65,7 +65,7 @@ $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
         right: 0 ;
         margin-right: 4vw;
         height: 100%;
-        width: calc( 35vw - 2vw );
+        width: calc( 35vw - 4vw );
     }
     &__logo {
         display: inline-block;
@@ -78,8 +78,9 @@ $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
     }
     &__search {
         display: inline-block;
-        width: calc( 100% - 2vw - 160px );
-        margin-left: 2vw ;
+        box-sizing: border-box;
+        width: calc( 100% - 2vw - 160px);
+        margin-left: 2vw;
         line-height: 30px ;
         padding: 6px 0px ;
         padding-left: 50px;
@@ -99,6 +100,20 @@ $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
         }
         &::placeholder { 
             color: white; 
+        }
+        &__dropdown {
+            position: fixed;
+            display: block;
+            height: auto;
+            max-height: 280px;
+            width: calc( 65vw - 6vw - 160px);
+            top: 64px;
+            left: calc( 4vw + 160px + 2vw );
+            border: $light_2 1px solid;
+            box-sizing: border-box;
+            overflow: scroll;
+            background: white;
+            @include box_shadow_1();
         }
     }
     &__link {
@@ -306,3 +321,4 @@ $material_trans: cubic-bezier(0.0, 0.0, 0.2, 1);
         }
     }
 }
+

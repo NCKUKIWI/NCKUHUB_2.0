@@ -158,6 +158,7 @@
         },
         computed: {
             result: function () {
+    			this.result_cont = [];
                 this.result_cont.length = 0;
                 if ( this.keyword ) {
                     for ( var i = 0 ; i < course_db.length ; i ++ ) {           // todo: 讓已經在 table 或 wishlist 的課程不顯示

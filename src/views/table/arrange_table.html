@@ -9,6 +9,7 @@
 		</div>
 	</div>
 	<div id="quick_search" class="quick_search"> 
+          <!-- todo: 新增：查無結果的顯示 -->
 		<div class="block_title">
 			<p class="text_18 "> {{ title_text }} </p>
 		</div>
@@ -16,7 +17,7 @@
 			<div v-if="filter_status" class="quick_search_clear_filter"></div>
 			<input class="quick_search_input" type="text" v-model="keyword" :disabled="filter_status || class_table_locked" :class="{ locked: class_table_locked }" placeholder="輸入「課程名」或「教師名」" ><br>
 		</div>
-		<div v-if="!filter_status" class="quick_search_dropdown">
+		<div v-if="keyword.replace(' ','') != '' && !filter_status" class="quick_search_dropdown">
 			<span> {{ result }} </span>
 			<result-list-item v-for="item in result_cont" :class_item="item"></result-list-item>
 		</div>
