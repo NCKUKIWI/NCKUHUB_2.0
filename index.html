@@ -5,16 +5,21 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" id="viewport" name="viewport">
     <title>NCKU HUB｜資訊改善校園</title>
+<<<<<<< HEAD
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css"> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script> -->
+=======
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script> -->
+>>>>>>> c0ce73968f5b43ce2f2ce01e0a935c6a6720f18e
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     <link rel="stylesheet" href="dist/CSS/course/course.css">
     <link rel="stylesheet" href="dist/CSS/reset.css">
     <link rel="stylesheet" href="dist/CSS/table.css">
     <link rel="stylesheet" href="dist/CSS/navbar.css">
-    <script src="dist/JS/profile/init2.js"></script>
-	<link rel="stylesheet" type="text/css" href="./dist/CSS/profile/profile.css ">
+    <!-- <script src="dist/JS/profile/init2.js"></script> -->
+	<!-- <link rel="stylesheet" type="text/css" href="./dist/CSS/profile/profile.css "> -->
     
         
 
@@ -165,14 +170,14 @@
   <div class="courseList__sideList">
     <div class="card courseList__sideList__itemBox" id="courseList">
       <div id="course_item" v-on:scroll="handleScroll">
-        <div class="courseList__sideList__itemBox__item" @click.self="courseLink(index)" v-for="(course, index) in course_data">
+        <div class="courseList__sideList__itemBox__item" @click="courseLink(index)" v-for="(course, index) in course_data">
           <div class="circle"> <span class="circle-content">{{course.系號}}</span></div>
           <div class="courseText" style="margin-left: 20px">
             <p>{{course.課程名稱}}</p>
             <p style="font-size: 12px;color:#9e9e9e;">{{course.系號}}{{course.選課序號}} - {{course.老師}}</p>
           </div>
           <div style="float:right;margin: auto 0">
-            <div class="circle circle__heart" style="margin-right:10px" @click="addCourse(index)"></div>
+            <div class="circle circle__heart" style="margin-right:10px" @click.self="addCourse(index)"></div>
             <div class="circle circle__heart"></div>
           </div>
           <!--  div.circle.heart-circle(@click="addCourse(index)")
@@ -287,5 +292,5 @@
 <script src="dist/JS/course.js"></script>
 <script src="dist/JS/table.js"></script>
 <script src="dist/JS/table_function.js"></script>
-<script src="dist/JS/profile/profile.js "></script>
+<!-- <script src="dist/JS/profile/profile.js "></script> -->
 </html>
