@@ -46,11 +46,8 @@ $.ajax({
 });
 
 
-// function dropdownFunction() {
-//   document.getElementById("dropdown1").classList.toggle("show");
-// }
 
-$(document).ready(function(){
+// $(document).ready(function(){
 
   var vue_course_item = new Vue({
     el: '#course_item',
@@ -262,4 +259,4 @@ $(document).ready(function(){
     }
   });
 
-});
+// });

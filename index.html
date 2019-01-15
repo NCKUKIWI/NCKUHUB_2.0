@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" id="viewport" name="viewport">
     <title>NCKU HUB｜資訊改善校園</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css"> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     <link rel="stylesheet" href="dist/CSS/course/course.css">
     <link rel="stylesheet" href="dist/CSS/reset.css">
     <link rel="stylesheet" href="dist/CSS/table.css">
@@ -19,14 +19,29 @@
         
 
 <nav>
-    <div class="hub_navbar">
+    <div id="navbar" class="hub_navbar">
       <div class="hub_navbar__right_area">
           <a class="hub_navbar__logo"></a>
-          <input class="hub_navbar__search" type="text" placeholder="搜尋「課程名」或「教師名」" ><br>  
+          <!-- todo: 新增「查無結果」的顯示 -->
+          <input class="hub_navbar__search" type="text" v-model="search_keyword" placeholder="搜尋「課程名」或「教師名」" ><br>
+          <div v-if="search_keyword.replace(' ','') != ''" class="hub_navbar__search__dropdown">
+              <div v-for="item in result_cont" class="list_course_item" >
+                <div class="list_course_item_left">
+                  <p class="list_course_item_category text_20 text_white" :class="item.dept_id"> {{ item.category }} </p>
+                </div>
+                <div class="list_course_item_mid">
+                  <p class="list_course_item_title text_16">{{ item.dept_id }}-{{ item.class_id }} {{ item.title }}</p>
+                  <p class="list_course_item_description text_14 text_dark">{{ item.teacher }} — {{ item.time }}</p>
+                </div>
+                <div class="list_course_item_right">
+                </div>
+              </div>
+              <span> {{ result }} </span>
+          </div>
       </div>
       <div class="hub_navbar__left_area">
           <div class="hub_navbar__link nav_link" name="course" @click="change_tab('course')">找課程</div>
-          <div class="hub_navbar__link nav_link on" name="table" @click="change_tab('table')">排課表 <span class="wishlist_count">5</span></div>
+          <div class="hub_navbar__link nav_link" name="table" @click="change_tab('table')">排課表 <span class="wishlist_count">5</span></div>
           <div class="hub_navbar__profile nav_link" name="profile" @click="switch_profile_window()"></div>
           <div class="hub_navbar__profile__dropdown">
             <div class="hub_navbar__profile__dropdown__info">
@@ -171,8 +186,8 @@
   </div>
 </div>
     	</div>
-    	<!-- <div class="change_tab" name="table"> -->
-        <div class="change_tab" name="table" style="display: none;">
+    	<div class="change_tab" name="table">
+        <!-- <div class="change_tab" name="table" style="display: none;"> -->
     		<div class="left_area">
 	<div id="user_data" class="personal_data"> 
 		<div class="personal_data_image">
@@ -184,6 +199,7 @@
 		</div>
 	</div>
 	<div id="quick_search" class="quick_search"> 
+          <!-- todo: 新增：查無結果的顯示 -->
 		<div class="block_title">
 			<p class="text_18 "> {{ title_text }} </p>
 		</div>
@@ -191,7 +207,7 @@
 			<div v-if="filter_status" class="quick_search_clear_filter"></div>
 			<input class="quick_search_input" type="text" v-model="keyword" :disabled="filter_status || class_table_locked" :class="{ locked: class_table_locked }" placeholder="輸入「課程名」或「教師名」" ><br>
 		</div>
-		<div v-if="!filter_status" class="quick_search_dropdown">
+		<div v-if="keyword.replace(' ','') != '' && !filter_status" class="quick_search_dropdown">
 			<span> {{ result }} </span>
 			<result-list-item v-for="item in result_cont" :class_item="item"></result-list-item>
 		</div>
@@ -258,7 +274,8 @@
 	<div class="minor_button dark_cancel" @click="switchLockStatus"></div>
 </div>
     	</div>
-    	<div class="change_tab" name="profile" style="display:none; background-color:rgba(247,247,247,0.8)">
+    	<div class="change_tab" name="profile" style="background-color:rgba(247,247,247,0.8)">
+        <!-- <div class="change_tab" name="profile" style="display:none; background-color:rgba(247,247,247,0.8)"> -->
     		
     	</div>
     </body>
