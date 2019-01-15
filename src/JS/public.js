@@ -40,6 +40,7 @@
         },
         created: function() {
             this.getData( this.user_id );                       // todo: 每次登入都要重新開始
+            this.wishlistUpdate() ;
         },
         methods: {
             getData: function( user_id ) {
@@ -91,8 +92,6 @@
                 this.now_wishlist.splice( index, 1 );
                 vue_wishlist.wishlist_cont.splice( index, 1 );
                 vue_courseFilter.wishlist_cont.splice( index, 1 );
-                // vue_wishlist.refresh();
-                // vue_courseFilter.refresh(); 
             },
             tableAdd: function ( target_id ) {
                 this.now_table.push( target_id );
@@ -103,6 +102,18 @@
                 var index = vue_user_data.now_table.indexOf( target_id );
                 vue_user_data.now_table.splice( index, 1 );
                 vue_classtable.refresh();
+            },
+            wishlistUpdate: function() {
+                axios.post('https://nckuhub.com/api/post/setWish/5', {
+                        "now_table": [43081, 4021, 43021, 42973, 42971, 42969, 42968, 99999]        // todo: 不知為啥傳不成功？？
+                    })
+                    .then ( function ( response ) {
+                        console.log ( response ) ;
+                        // console.log ( '更新願望清單: 更新成功！' ) ;
+                    })
+                    .catch ( function ( error ) {
+                        console.log (  '更新願望清單:' + error ) ; 
+                    });
             }
         }
     })
