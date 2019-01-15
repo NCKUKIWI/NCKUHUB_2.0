@@ -31,7 +31,7 @@ $.ajax({
           }
         }
 
-        console.log(vue_course_item.course_with_comment);
+        // console.log(vue_course_item.course_with_comment);
         // vue_course_item.course_data = vue_course_item.course_with_comment;
 
   }
