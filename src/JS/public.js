@@ -32,7 +32,6 @@
     
         
 
-
     // User Data
 
     var vue_user_data = new Vue ({
@@ -47,7 +46,7 @@
         methods: {
             getData: function( user_id ) {
                 var user_data = {} ;
-                axios.get ( 'https://nckuhub.com/api/user/getList/'+ user_id )
+                axios.get ( 'http://localhost:3000/user/getList/'+ user_id )
                     .then ( function ( response ) {
                         user_data = response.data ;
                         console.log ( '使用者資料: 抓取資料成功！' ) ;
@@ -63,7 +62,7 @@
                 // this.user_photo = user_data.photo;          // todo: 取得圖片
                 // this.credit_count = 0;                      // todo 計算學分數
                 
-                // 篩選出有開設且不重複者填入願望清單
+                // 篩選合格且不重複者填入願望清單
                 this.now_wishlist.length = 0;           // todo: 篩選完成後把 this.now_wishlist 存回資料庫
                 for ( var i = 0 ; i < user_data.now_wishlist.length ; i ++ ) {
                     if ( getClassObject ( course_db, user_data.now_wishlist[i] ) ) {
@@ -78,7 +77,7 @@
                 vue_wishlist.refresh(); 
                 vue_courseFilter.refresh();
 
-                // 篩選出有開設且不重複者填入課表
+                // 篩選合格且不重複者填入課表
                 this.now_table.length = 0;                  // todo: 篩選完成後把 this.now_table 存回資料庫
                 for ( var i = 0 ; i < user_data.now_table.length ; i ++ ) {
                     if ( getClassObject ( course_db, user_data.now_table[i] ) ) {
@@ -115,7 +114,7 @@
                 vue_classtable.refresh();
             },
             // wishlistUpdate: function() {
-            //     axios.post('https://nckuhub.com/api/post/setWish/5', {
+            //     axios.post('http://localhost:3000/post/setWish/5', {
             //             "now_table": [43081, 4021, 43021, 42973, 42971, 42969, 42968, 99999]        // todo: 不知為啥傳不成功？？
             //         })
             //         .then ( function ( response ) {

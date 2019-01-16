@@ -4,6 +4,9 @@ var vue_nav_bar = new Vue({
 		now_tab : '',
 		search_keyword: '',
 		result_cont: [],
+		user_name: '訪客',
+		user_department: '',
+		user_grade: '',
 	},
 	created: function() {
 		var initial_tab = 'course';
@@ -48,6 +51,9 @@ var vue_nav_bar = new Vue({
 		},
 		openCourse: function(id) {
 			vue_course_item.openCoursePage(id);
+		},
+		logIn: function(){
+			vue_nav_bar.user_name = vue_user_data.user_name;
 		}
 	}
 })
