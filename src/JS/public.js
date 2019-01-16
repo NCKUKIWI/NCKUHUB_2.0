@@ -19,7 +19,7 @@
     var user_id = '5';                                       // todo: 從登錄狀態取得
 
     
-    axios.get ( 'https://nckuhub.com/api/course/' )
+    axios.get ( '/course/' )
         .then ( function ( response ) {
             course_db = response.data.courses; 
             console.log ( '課程資料庫: 抓取資料成功！' ) ;
@@ -46,7 +46,7 @@
         methods: {
             getData: function( user_id ) {
                 var user_data = {} ;
-                axios.get ( 'https://nckuhub.com/api/user/getList/'+ user_id )
+                axios.get ( '/user/getList/'+ user_id )
                     .then ( function ( response ) {
                         user_data = response.data ;
                         console.log ( '使用者資料: 抓取資料成功！' ) ;

@@ -198,8 +198,10 @@ gulp.task('js', function() {
 
 gulp.task('compresspug', function buildHTML() {
     return gulp.src('src/views/course/*.pug')
+        // .pipe(changed('src/views/course'))
         .pipe(pug({pretty: true}))
         .pipe(gulp.dest('src/views/course'))
+        .pipe(browserSync.stream())
         .on("error", notify.onError(function (error) {
             return "Error: " + error.message;
         }));
@@ -248,3 +250,4 @@ gulp.task('watch', ['compile'], function() {
 });
 
 gulp.task('default', ['watch']);
+

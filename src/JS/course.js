@@ -2,7 +2,7 @@
 
 $.ajax({
   type: "GET",
-  url: "https://nckuhub.com/api/course/",
+  url: "/course/",
   success: function (response) {
         vue_course_item.course_data_db = response.courses;
 
@@ -21,7 +21,7 @@ $.ajax({
 
 $.ajax({
   type: "GET",
-  url: "https://nckuhub.com/api/course/allDpmt",
+  url: "/course/allDpmt",
   success: function(response) {
     vue_courseFilter.dept = response;
   }
@@ -54,7 +54,7 @@ $.ajax({
         vue_courseContent.course_data = vue_course_item.course_data[index];
 
         var course_id = vue_courseContent.course_data.id;
-        var course_url = "https://nckuhub.com/api/course/" + course_id;
+        var course_url = "/course/" + course_id;
 
         $.ajax({
           type: "GET",
@@ -80,7 +80,6 @@ $.ajax({
           }
         }
         console.log(vue_courseContent.course_data);
-
       },
       addCourse: function(index){
         var chooseCourse_id = vue_course_item.course_data[index].id;
@@ -118,7 +117,6 @@ $.ajax({
     },
     methods: {
       showContent: function() {
-
         vue_courseContent.isShow = false;
         //if click outside then hide
       },
@@ -135,7 +133,7 @@ $.ajax({
         }
       },
       submit_score: function() {
-        document.getElementById("score-contents").innerHTML = "LOLOLOL";
+        document.getElementById("score-contents").innerHTML = "<p>你是第9487位評分者！要不要順便寫個心得</p>";
         document.getElementById("score_input").innerHTML = "寫心得";
       },
     }

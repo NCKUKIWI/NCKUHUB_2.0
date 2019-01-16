@@ -24,12 +24,18 @@ input[type=number]::-webkit-outer-spin-button
 .score-btn--edit input
   border: none
   text-align: center
+
 /* overall */
 div, p
   display: block
   margin: 0
 
-html
+button
+  background-color: $colorBlack6
+  border-radius: 5px
+  box-shadow: none
+  border-width: 0px
+  opacity: 0.7
 
 
 body
@@ -60,129 +66,6 @@ h4
 
 p
   font-size: 16px
-
-// /* navbar */
-// nav
-//   .brand-logo
-//     padding-left: 30px
-//   background-color: #10a5d2
-//   z-index: 100
-//   .input-field
-//     height: 80%
-//     width: 50%
-//     opacity: 1
-//   ul
-//     padding-right: 30px
-//     a:hover
-//       background-color: transparent
-// nav img
-//   margin-top: 20px
-//   width: 90%
-
-// nav .input-field label
-//   top: -22px
-//   left: 18px
-//   color: #fff
-//   font-weight: 300
-// input[type=search]:not(.browser-default):focus:not([readonly])+label
-//   color: transparent
-
-
-// form
-//   width: 50%
-//   input
-//   width: 50%
-// .input-field
-//   position: absolute
-//   left: 20%
-//   top: 17%
-
-// .nav-wrapper .input-field input[type=search]
-//   padding-left: 20px
-
-// .input-field>input[type]:-webkit-autofill:not(.browser-default)+label
-//   color: transparent
-
-// input[type=search]:not(.browser-default)
-//   background-color: #e0e0e0
-//   opacity: 0.5
-//   border-bottom: none
-//   width: 200px
-//   margin: 0 8px
-
-// input:-webkit-autofill
-//   background-color: #ffffff !important
-//   opacity: 0.5
-// span
-//   &.badge.new
-//     &:after
-//       content: "♥︎ 5"
-//     background-color: #fff
-//     color: #10a5d2
-//     font-weight: normal
-//     border-radius: 20px
-//   svg
-//     fill: #10a5d2
-//     margin-top: 3px
-
-// .photo
-//   margin: 20px 0px
-//   background-image: url('../../images/course/hugecat.png')
-//   background-position: center
-//   background-size: contain
-//   width: 30px
-//   height: 30px
-//   border-radius: 15px
-
-// .dropdown-content
-//   height: 300px
-//   background-color: #fff
-
-// .dropdownContent
-//   background-color: #fff
-//   right: 3%
-//   position: absolute
-//   min-width: 300px
-//   min-height: 150px
-//   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3)
-//   color: $colorBlack66
-//   display: none
-//   padding: 10px 30px
-//   a, p
-//     color: $colorBlack66
-//     font-size: 12px
-//     line-height: 1.5
-//     padding: 0px
-//   a
-//     padding: 5px 0px
-//     color: $colorBlue1
-//   .photo
-//     display: inline-block
-//     width: 60px
-//     height: 60px
-//     margin-top: 0px
-//   .profile
-//     display: inline-block
-//     margin-left: 20px
-//     &__name
-//       font-size: 14px
-//       font-weight: 500
-//   .activeWord
-//     font-size: 12px
-//     color: $colorBlue2
-//   .logout
-//     position: absolute
-//     right: 5%
-//     bottom: 7%
-//   .btn
-//     background-color: $colorBlue2
-//     padding: 0 20px
-//   .btn:hover
-//     background-color: rgba(16, 165, 210, 0.9)
-
-// .show
-//   display: block
-/* course content */
 
 .quick_search--course
   height: 50px
@@ -239,14 +122,15 @@ section
     // text-align: center
     // padding: 3vh 3vw 0vh 4vw
     // display: inline-block
-    input[type=search]:not(.browser-default)
+    input[type=text]
       background-color: #fff
       opacity: 0.5
       border-bottom: none
-      margin: 5px 0px
+      border: none
       width: 100%
-      height: 40px
+      height: 30px
       font-size: 14px
+      -webkit-appearance: none
     p, span
       font-size: 12px
     h5 span
@@ -420,6 +304,22 @@ section
   border-left: 5px solid black
   display: inline-block
   cursor: pointer
+.arrow-up
+  width: 0
+  height: 0
+  border-right: 5px solid transparent
+  border-bottom: 5px solid black
+  border-left: 5px solid transparent
+  cursor: pointer
+  margin-bottom: 2px
+.arrow-down
+  width: 0
+  height: 0
+  border-top: 5px solid black
+  border-right: 5px solid transparent
+  border-left: 5px solid transparent
+  cursor: pointer
+  margin-top: 2px
 
 .courseSerial
   padding: 4px 10px
@@ -470,11 +370,27 @@ section
   margin: 1vh 0px
   &__msg
     width: 90%
+    display: inline-block
+    p
+      line-height: 1.5
 
   &__func
-    width: 10%
+    width: 20%
+    left: 75%
+    position: absolute
+    display: inline-block
     p
       color: $colorBlack3
+    input
+      width: 10px
+      text-align: center
+      border: none
+  &__score
+    position: absolute
+    width: 20%
+    left: 75%
+    display: inline-block
+
   p
     font-size: 14px
 .heart-circle
