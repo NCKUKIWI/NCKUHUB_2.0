@@ -209,7 +209,7 @@ gulp.task('compresspug', function buildHTML() {
 
 gulp.task('combine_html', function () {
     return gulp.src('src/views/index.html')
-        .pipe(changed('dist'))
+        .pipe(changed('./'))
         .pipe(fileinclude())
         .pipe(gulp.dest('./'))
         .pipe(browserSync.stream())
@@ -250,4 +250,3 @@ gulp.task('watch', ['compile'], function() {
 });
 
 gulp.task('default', ['watch']);
-

@@ -2,7 +2,7 @@
 
 $.ajax({
   type: "GET",
-  url: "/course/",
+  url: "https://nckuhub.com/api/course/",
   success: function (response) {
         vue_course_item.course_data_db = response.courses;
 
@@ -21,7 +21,7 @@ $.ajax({
 
 $.ajax({
   type: "GET",
-  url: "/course/allDpmt",
+  url: "https://nckuhub.com/api/course/allDpmt",
   success: function(response) {
     vue_courseFilter.dept = response;
   }
@@ -54,7 +54,7 @@ $.ajax({
         vue_courseContent.course_data = vue_course_item.course_data[index];
 
         var course_id = vue_courseContent.course_data.id;
-        var course_url = "/course/" + course_id;
+        var course_url = "https://nckuhub.com/api/course/" + course_id;
 
         $.ajax({
           type: "GET",
@@ -86,6 +86,7 @@ $.ajax({
         var chooseCourse = vue_course_item.course_data[index];
         vue_user_data.wishlistAdd(chooseCourse_id);
         vue_courseFilter.wishList.push(chooseCourse);
+        console.log("add");
       },
 
       handleScroll: function() {
@@ -145,7 +146,7 @@ $.ajax({
       keyword: '',
       dept: [],
       course_data: [],
-      // wishList: [],
+      wishList: [],
       wishlist_cont: [],
       dept_dropdown: [],
       filter_by_dpmt: [],
