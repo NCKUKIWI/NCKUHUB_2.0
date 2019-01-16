@@ -60,18 +60,36 @@
       </div>
       <div class="courseContentBody__right__comment">
         <h4>課程心得 ({{comment_data.length}})</h4>
-        <div class="courseFeedback courseFeedback__msg--default">
+        <div class="courseFeedback courseFeedback__msg--default" style="display:none">
           <div class="courseFeedback__msg">
             <p>點擊按鈕，立即提供課程心得，</p>
             <p>幫助 480 位對這門課有興趣的同學！</p>
+          </div>
+        </div>
+        <div class="courseFeedback courseFeedback__msg--default">
+          <div class="courseFeedback__msg">
+            <p>我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得</p>
+          </div>
+          <div class="flex-container courseFeedback__func">
+            <div>...</div>
+            <div class="arrow-up"></div>
+            <input class="score_input" type="number" min="0" value="0"/>
+            <div class="arrow-down"></div>
+          </div>
+        </div>
+        <div class="courseFeedback courseFeedback__msg--default">
+          <div class="courseFeedback__msg">
+            <p>我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得</p>
           </div>
         </div>
         <div class="courseFeedback" v-for="comment in comment_data">
           <div class="courseFeedback__msg">
             <p>{{comment.comment}}</p>
           </div>
-          <div class="courseFeedback__func">
-            <p>15</p>
+          <div class="flex-container courseFeedback__func">
+            <div class="arrow-up"></div>
+            <input class="score_input" type="number" min="0" value="0"/>
+            <div class="arrow-down"></div>
           </div>
         </div>
       </div>
@@ -80,8 +98,8 @@
 </div>
 <div class="course__whole">        
   <div class="courseList__sidenav" id="courseFilter">
-    <div class="courseList__sidenav__courseType">
-      <p>開課單位</p>
+    <p>開課單位</p>
+    <div class="courseList__sidenav__option">
       <input id="dpmtFilter" type="text" v-model="keyword"/>
       <div class="quick_search--course" v-for="(result, index) in search_result">
         <div @click="result_click(index)">
@@ -91,7 +109,7 @@
     </div>
     <div class="courseList__sidenav__courseType" id="courseArrange">
       <p>檢視選項</p>
-      <div class="courseList__sidenav__option z-depth-1">
+      <div class="courseList__sidenav__option">
         <label>
           <input id="commentCheck" type="checkbox" @click="comment_filter()"/><span>僅顯示有心得之課程</span>
         </label>
@@ -119,7 +137,7 @@
   <div class="courseList__sideList">
     <div class="card courseList__sideList__itemBox" id="courseList">
       <div id="course_item" v-on:scroll="handleScroll">
-        <div class="courseList__sideList__itemBox__item" @click.self="courseLink(index)" v-for="(course, index) in course_data">
+        <div class="courseList__sideList__itemBox__item" @click="courseLink(index)" v-for="(course, index) in course_data">
           <div class="circle"> <span class="circle-content">{{course.系號}}</span></div>
           <div class="courseText" style="margin-left: 20px">
             <p>{{course.課程名稱}}</p>
