@@ -26,11 +26,20 @@ div#courseContent(v-show="isShow" @click.self="showContent()")
     div.courseContentBody__right
       div.courseContentBody__right__score
         h4 課程評分 ({{score_data.rates.length}})
-        div.score-btn--all(style="display:none")
-          button.btn.score-btn 甜度 {{score_data.sweet}}
-          button.btn.score-btn 涼度 {{score_data.hard}}
-          button.btn.score-btn 推薦 {{score_data.recommand}}
-          button.btn.score-btn(style="color:rgb(241,91,94);") 評分
+        div.score-btn--all
+          div.score-btn
+            span 甜度
+            div.arrow-left(@click="minusRate('sweet_rate')")
+            span {{score_data.sweet}}
+            input#sweet_rate.score_input(type="number" value="5" min="1" max="10")
+            div.arrow-right(@click="addRate('sweet_rate')")
+          div.score-btn
+            span 涼度 
+            span {{score_data.hard}}
+          div.score-btn 
+            span 推薦 
+            span {{score_data.recommand}}
+        div.score-btn(style="color:rgb(241,91,94);") 評分
         div.score-btn--all
           div#score-contents(style="display:inline-block")
             div.score-btn--edit
@@ -60,13 +69,10 @@ div#courseContent(v-show="isShow" @click.self="showContent()")
           div.courseFeedback__msg
             p 我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得
           div.flex-container.courseFeedback__func
-            div ...
+            div
             div.arrow-up
             input(type="number" min="0" value="0").score_input
             div.arrow-down
-        div.courseFeedback.courseFeedback__msg--default
-          div.courseFeedback__msg
-            p 我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得
         div.courseFeedback(v-for="comment in comment_data")
           div.courseFeedback__msg
             p {{comment.comment}}
@@ -105,15 +111,15 @@ div.course__whole
   div.courseList__sideList
     div.card.courseList__sideList__itemBox#courseList
       div#course_item(v-on:scroll="handleScroll")
-        div(@click="courseLink(index)" v-for="(course, index) in course_data").courseList__sideList__itemBox__item
+        div(@click.self="courseLink(index)" v-for="(course, index) in course_data" style="").courseList__sideList__itemBox__item
             div.circle 
               span.circle-content {{course.系號}}
             div.courseText(style="margin-left: 20px")
               p {{course.課程名稱}}
               p(style="font-size: 12px;color:#9e9e9e;") {{course.系號}}{{course.選課序號}} - {{course.老師}}
             div(style="float:right;margin: auto 0")
-              div.circle--img
+              div.circle--img()
                 img(src="./dist/images/course/edit.png")
-              div.circle--img(@click="addCourse(index)")
+              div.circle--img(@click.self="addCourse(index)" style="z-index: 20")
                 img(src="./dist/images/course/heart.png")
               
