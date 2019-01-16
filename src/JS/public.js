@@ -1,17 +1,17 @@
 
 
 
-    /* 
+    /*
         函數：
             1. 課程加入願望清單：  vue_user_data.wishlistAdd( id );
             2. 課程移出願望清單：  vue_user_data.wishlistRemove( id );
 
         注意：
             1. 任何需要用到 ajax 內容的 function 都必須寫在 ajax 完成後，否則會出錯。
-            
+
     */
 
-    
+
 
     // Get Course Data
 
@@ -21,27 +21,17 @@
     
     axios.get ( 'https://nckuhub.com/api/course/' )
         .then ( function ( response ) {
-            course_db = response.data.courses; 
+            course_db = response.data.courses;
             console.log ( '課程資料庫: 抓取資料成功！' ) ;
             vue_user_data.getData( user_id );                 // todo: 每次登入都要重新開始
             // vue_course_item.refresh();
         })
         .catch ( function ( error ) {
-            console.log (  '課程資料庫:' + error ) ; 
-        }); 
-    
-        
-
-    axios.post('https://nckuhub.com/api/post/setWish/5', {
-            "now_wishlist": [ 43081, 4021, 43021, 42973, 42971, 42969, 42968 ]        // todo: 不知為啥傳不成功？？
-        })
-        .then ( function ( response ) {
-            console.log ( response ) ;
-            console.log ( '更新願望清單: 更新成功！' ) ;
-        })
-        .catch ( function ( error ) {
-            console.log (  '更新願望清單:' + error ) ; 
+            console.log (  '課程資料庫:' + error ) ;
         });
+
+
+
 
 
 
@@ -49,7 +39,7 @@
 
     var vue_user_data = new Vue ({
         el: '#user_data',
-        data: { 
+        data: {
             user_name: '',
             user_photo: 'dist/images/table/profile.png',        // todo: 取得正確圖片
             credit_count: 9,                                    // todo: 讓他可以用計算ㄉ
@@ -67,14 +57,14 @@
                     })
                     .catch ( function ( error ) {
                         console.log (  '使用者資料:' + error ) ;
-                    }); 
+                    });
             },
             fillData: function ( user_data ) {
                 // 初始化用資料
                 this.user_name = user_data.name;
                 // this.user_photo = user_data.photo;          // todo: 取得圖片
                 // this.credit_count = 0;                      // todo 計算學分數
-                
+
                 // 篩選合格且不重複者填入願望清單
                 this.now_wishlist.length = 0;           // todo: 篩選完成後把 this.now_wishlist 存回資料庫
                 for ( var i = 0 ; i < user_data.now_wishlist.length ; i ++ ) {
@@ -87,7 +77,7 @@
                         }
                     }
                 }
-                vue_wishlist.refresh(); 
+                vue_wishlist.refresh();
                 vue_courseFilter.refresh();
 
                 // 篩選合格且不重複者填入課表
@@ -128,15 +118,15 @@
             },
             wishlistUpdate: function() {
                 axios.post('https://nckuhub.com/api/post/setWish/5', {
-                    "now_table": [43081, 4021, 43021, 42973, 42971, 42969, 42968, 99999]        // todo: 不知為啥傳不成功？？
-                    })
-                    .then ( function ( response ) {
-                        console.log ( response ) ;
-                        console.log ( '更新願望清單: 更新成功！' ) ;
-                    })
-                    .catch ( function ( error ) {
-                        console.log (  '更新願望清單:' + error ) ; 
-                    });
+                    "now_wishlist": [ 43081, 4021, 43021, 42973, 42971, 42969, 42968 ]        // todo
+                })
+                .then ( function ( response ) {
+                    console.log ( response ) ;
+                    console.log ( '更新願望清單: 更新成功！' ) ;
+                })
+                .catch ( function ( error ) {
+                    console.log (  '更新願望清單:' + error ) ; 
+                });
             }
         }
     })

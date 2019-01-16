@@ -8,84 +8,79 @@ div#courseContent(v-show="isShow" @click.self="showContent()")
       div.icon-span
         span 檢視課程大綱
       div.courseUnit
-        h6 開課單位
-        h5 {{course_data.系所名稱}}
+        div.block_title
+          p.text_14 開課單位
+        p.text_16 {{course_data.系所名稱}}
       div.courseUnit
-        h6 開課老師
-        h5 {{course_data.老師}}
+        div.block_title
+          p.text_14 開課老師
+        p.text_16 {{course_data.老師}}
       div.courseUnit
-        h6 開課時段
-        h5 {{course_data.時間}}
+        div.block_title
+          p.text_14 開課時段
+        p.text_16 {{course_data.時間}}
       div.courseUnit
-        h6 教學方法
-        h5 course_data.lecture
+        div.block_title
+          p.text_14 教學方法
+        p.text_16 course_data.lecture
       div.courseUnit
-        h6 評量方法
-        h5 course_data.score
+        div.block_title
+          p.text_14 評量方法
+        p.text_16 course_data.score
       br
     div.courseContentBody__right
       div.courseContentBody__right__score
-        h4 課程評分 ({{score_data.rates.length}})
-        div.score-btn--all(style="display:none")
-          button.btn.score-btn 甜度 {{score_data.sweet}}
-          button.btn.score-btn 涼度 {{score_data.hard}}
-          button.btn.score-btn 推薦 {{score_data.recommand}}
-          button.btn.score-btn(style="color:rgb(241,91,94);") 評分
-        div.score-btn--all
-          div#score-contents(style="display:inline-block")
-            div.score-btn--edit
-              span 甜度
-              div.arrow-left(@click="minusRate('sweet_rate')")
-              input#sweet_rate.score_input(type="number" value="5" min="1" max="10")
-              div.arrow-right(@click="addRate('sweet_rate')")
-            div.score-btn--edit
-              span 涼度
-              div.arrow-left(@click="minusRate('hard_rate')")
-              input#hard_rate.score_input(type="number" value="5" min="1" max="10")
-              div.arrow-right(@click="addRate('hard_rate')")
-            div.score-btn--edit
-              span 推薦
-              div.arrow-left(@click="minusRate('recom_rate')")
-              input#recom_rate.score_input(type="number" value="5" min="1" max="10")
-              div.arrow-right(@click="addRate('recom_rate')")
-          div.score-btn--edit
-            button#score_input(type="submit" @click="submit_score()") 送出
+        div.block_title
+          p 課程評分 ({{score_data.rates.length}})
+        div.flex-container.score-btn--all
+          div.score-btn
+            span 甜度
+            div.arrow-left(@click="minusRate('sweet_rate')")
+            span.score_span {{score_data.sweet}}
+            input#sweet_rate.score_input(type="number" value="5" min="1" max="10")
+            div.arrow-right(@click="addRate('sweet_rate')")
+          div.score-btn
+            span 涼度 
+            div.arrow-left(@click="minusRate('hard_rate')")
+            span.score_span {{score_data.hard}}
+            input#hard_rate.score_input(type="number" value="5" min="1" max="10")
+            div.arrow-right(@click="addRate('hard_rate')")
+          div.score-btn
+            span 推薦 
+            div.arrow-left(@click="minusRate('recom_rate')")
+            span.score_span {{score_data.recommand}}
+            input#recom_rate.score_input(type="number" value="5" min="1" max="10")
+            div.arrow-right(@click="addRate('recom_rate')")
+          //button.score-btn.score-btn__submit#score_input(type="submit" @click="submit_score()") 評分
       div.courseContentBody__right__comment
-        h4 課程心得 ({{comment_data.length}})
-        div.courseFeedback.courseFeedback__msg--default(style="display:none")
-          div.courseFeedback__msg
-            p 點擊按鈕，立即提供課程心得，
-            p 幫助 480 位對這門課有興趣的同學！
-        div.courseFeedback.courseFeedback__msg--default
-          div.courseFeedback__msg
-            p 我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得
-          div.flex-container.courseFeedback__func
-            div ...
-            div.arrow-up
-            input(type="number" min="0" value="0").score_input
-            div.arrow-down
-        div.courseFeedback.courseFeedback__msg--default
-          div.courseFeedback__msg
-            p 我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得
-        div.courseFeedback(v-for="comment in comment_data")
-          div.courseFeedback__msg
-            p {{comment.comment}}
-          div.flex-container.courseFeedback__func
-            div.arrow-up
-            input(type="number" min="0" value="0").score_input
-            div.arrow-down
+        div.block_title
+          p 課程心得 ({{comment_data.length}})
+        div.courseFeedback
+          div.courseFeedback__single.courseFeedback__single--default
+            div.courseFeedback__msg
+              p 點擊按鈕，立即提供課程心得，
+              p 幫助 480 位對這門課有興趣的同學！
+          div.courseFeedback__single(v-for="comment in comment_data")
+            div.courseFeedback__msg
+              p(v-html='comment.comment') {{comment.comment}}
+          //  div.flex-container.courseFeedback__func
+              div.arrow-up
+              input(type="number" min="0" value="0").score_input
+              div.arrow-down
 div.course__whole         
   div.courseList__sidenav#courseFilter
-    p 開課單位
-    div.courseList__sidenav__option
-      input#dpmtFilter(type="text" v-model="keyword") 
+    div.block_title
+      p.text_18 開課單位
+    div.quick_search_area
+      input#dpmtFilter(type="text" v-model="keyword" placeholder="選擇開課單位" class="quick_search_input") 
       div(v-for="(result, index) in search_result").quick_search--course
         div(@click="result_click(index)")
           h4 {{result.prefix}} {{result.name}}
     div#courseArrange.courseList__sidenav__courseType
-      p 檢視選項
-      div.courseList__sidenav__option
-        label
+      div.block_title
+        p.text_18 檢視選項
+      div.quick_search_area
+        div.quick_search_checkbox
           input#commentCheck(type="checkbox" @click="comment_filter()")
           span 僅顯示有心得之課程
 
@@ -102,10 +97,10 @@ div.course__whole
           div.list_course_item_right 
       button.btn.courseList__sidenav__courseType.course-btn 加入完成，開始安排課表！
         
-  div.courseList__sideList
+  div.flex-container.courseList__sideList
     div.card.courseList__sideList__itemBox#courseList
       div#course_item(v-on:scroll="handleScroll")
-        div(@click="courseLink(index)" v-for="(course, index) in course_data").courseList__sideList__itemBox__item
+        div(@click.self="courseLink(index)" v-for="(course, index) in course_data" style="").courseList__sideList__itemBox__item
             div.circle 
               span.circle-content {{course.系號}}
             div.courseText(style="margin-left: 20px")
@@ -114,6 +109,6 @@ div.course__whole
             div(style="float:right;margin: auto 0")
               div.circle--img
                 img(src="./dist/images/course/edit.png")
-              div.circle--img(@click="addCourse(index)")
+              div.circle--img(style="z-index: 20" @click="addCourse(index)")
                 img(src="./dist/images/course/heart.png")
               

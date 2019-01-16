@@ -31,7 +31,6 @@ $.ajax({
 
 //js functions -------------------------
 
-
 // end -------------------------/
 
 // vue functions -----------------------
@@ -86,6 +85,7 @@ $.ajax({
         var chooseCourse = vue_course_item.course_data[index];
         vue_user_data.wishlistAdd(chooseCourse_id);
         vue_courseFilter.wishList.push(chooseCourse);
+        console.log("add");
       },
 
       handleScroll: function() {
@@ -132,9 +132,23 @@ $.ajax({
             document.getElementById(rate_input).stepUp();
         }
       },
-      submit_score: function() {
-        document.getElementById("score-contents").innerHTML = "<p>你是第9487位評分者！要不要順便寫個心得</p>";
-        document.getElementById("score_input").innerHTML = "寫心得";
+      submit_score: function(index) {
+          // $(".score_input").each(function() {
+          //   $(".score_input").css("display","inline-block");
+          // });
+          // $(".score_span").each(function() {
+          //   $(".score_span").css("display","none");
+          // });
+          // $(".arrow-left").each(function() {
+          //   $(".arrow-left").css("display","inline-block");
+          // });
+          // $(".arrow-right").each(function() {
+          //   $(".arrow-right").css("display","inline-block");
+          // });
+
+
+          // document.getElementById("score_input").innerHTML = "寫心得";
+
       },
     }
   });
@@ -145,7 +159,7 @@ $.ajax({
       keyword: '',
       dept: [],
       course_data: [],
-      // wishList: [],
+      wishList: [],
       wishlist_cont: [],
       dept_dropdown: [],
       filter_by_dpmt: [],
