@@ -201,15 +201,15 @@ gulp.task('compresspug', function buildHTML() {
         // .pipe(changed('src/views/course'))
         .pipe(pug({pretty: true}))
         .pipe(gulp.dest('src/views/course'))
-        .pipe(browserSync.stream())
+        // .pipe(browserSync.stream())
         .on("error", notify.onError(function (error) {
             return "Error: " + error.message;
         }));
 });
 
-gulp.task('combine_html', function () {
+gulp.task('combine_html', ['compresspug'], function () {
     return gulp.src('src/views/index.html')
-        .pipe(changed('dist'))
+        // .pipe(changed('./'))
         .pipe(fileinclude())
         .pipe(gulp.dest('./'))
         .pipe(browserSync.stream())
@@ -245,9 +245,9 @@ gulp.task('watch', ['compile'], function() {
     gulp.watch('src/SCSS/*.scss', ['scss']);
     gulp.watch('src/JS/*.js', ['js']);
     gulp.watch('src/views/course/*.pug', ['compresspug', 'combine_html']);
+    // gulp.watch('src/views/course/*.pug', ['compresspug']);
     gulp.watch('src/views/*/*.html', ['combine_html']);
 	gulp.watch('src/{images,music}/**', ['assets']);
 });
 
 gulp.task('default', ['watch']);
-

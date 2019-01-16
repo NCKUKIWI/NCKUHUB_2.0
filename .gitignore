@@ -11,3 +11,4 @@ dist/*
 dist/JS/course.js
 dist/JS/course-min.js
 dist/CSS/course/course.css
+gulpfile.js
