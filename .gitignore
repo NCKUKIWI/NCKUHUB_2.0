@@ -5,6 +5,7 @@ npm-debug.log
 *.log
 .vscode
 index.html
+gulpfile.js
 dist/**/*
 dist/*
 dist/JS/course.js
