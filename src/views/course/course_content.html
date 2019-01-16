@@ -29,13 +29,25 @@
     <div class="courseContentBody__right">
       <div class="courseContentBody__right__score">
         <h4>課程評分 ({{score_data.rates.length}})</h4>
-        <div class="score-btn--all">
-          <button class="btn score-btn">甜度 {{score_data.sweet}}</button>
-          <button class="btn score-btn">涼度 {{score_data.hard}}</button>
-          <button class="btn score-btn">推薦 {{score_data.recommand}}</button>
-          <button class="btn score-btn" style="color:rgb(241,91,94);">評分</button>
+        <div class="flex-container score-btn--all">
+          <div class="score-btn"><span>甜度</span>
+            <div class="arrow-left" @click="minusRate('sweet_rate')"></div><span class="score_span">{{score_data.sweet}}</span>
+            <input class="score_input" id="sweet_rate" type="number" value="5" min="1" max="10"/>
+            <div class="arrow-right" @click="addRate('sweet_rate')"></div>
+          </div>
+          <div class="score-btn"><span>涼度 </span>
+            <div class="arrow-left" @click="minusRate('hard_rate')"></div><span class="score_span">{{score_data.hard}}</span>
+            <input class="score_input" id="hard_rate" type="number" value="5" min="1" max="10"/>
+            <div class="arrow-right" @click="addRate('hard_rate')"></div>
+          </div>
+          <div class="score-btn"><span>推薦 </span>
+            <div class="arrow-left" @click="minusRate('recom_rate')"></div><span class="score_span">{{score_data.recommand}}</span>
+            <input class="score_input" id="recom_rate" type="number" value="5" min="1" max="10"/>
+            <div class="arrow-right" @click="addRate('recom_rate')"></div>
+          </div>
+          <button class="score-btn score-btn__submit" id="score_input" type="submit" @click="submit_score()">評分</button>
         </div>
-        <div class="score-btn--all">
+        <div class="score-btn--all" style="display:none">
           <div id="score-contents" style="display:inline-block">
             <div class="score-btn--edit"><span>甜度</span>
               <div class="arrow-left" @click="minusRate('sweet_rate')"></div>
@@ -71,15 +83,10 @@
             <p>我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得</p>
           </div>
           <div class="flex-container courseFeedback__func">
-            <div>...</div>
+            <div></div>
             <div class="arrow-up"></div>
             <input class="score_input" type="number" min="0" value="0"/>
             <div class="arrow-down"></div>
-          </div>
-        </div>
-        <div class="courseFeedback courseFeedback__msg--default">
-          <div class="courseFeedback__msg">
-            <p>我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得我是假心得</p>
           </div>
         </div>
         <div class="courseFeedback" v-for="comment in comment_data">
@@ -96,7 +103,7 @@
     </div>
   </div>
 </div>
-<div class="course__whole">
+<div class="course__whole">        
   <div class="courseList__sidenav" id="courseFilter">
     <p>開課單位</p>
     <div class="courseList__sidenav__option">
@@ -137,7 +144,7 @@
   <div class="courseList__sideList">
     <div class="card courseList__sideList__itemBox" id="courseList">
       <div id="course_item" v-on:scroll="handleScroll">
-        <div class="courseList__sideList__itemBox__item" @click="courseLink(index)" v-for="(course, index) in course_data">
+        <div class="courseList__sideList__itemBox__item" @click.self="courseLink(index)" v-for="(course, index) in course_data">
           <div class="circle"> <span class="circle-content">{{course.系號}}</span></div>
           <div class="courseText" style="margin-left: 20px">
             <p>{{course.課程名稱}}</p>
@@ -145,7 +152,7 @@
           </div>
           <div style="float:right;margin: auto 0">
             <div class="circle--img"><img src="./dist/images/course/edit.png"/></div>
-            <div class="circle--img" @click="addCourse(index)"><img src="./dist/images/course/heart.png"/></div>
+            <div class="circle--img" @click.self="addCourse(index)" style="z-index: 20"><img src="./dist/images/course/heart.png"/></div>
           </div>
         </div>
       </div>

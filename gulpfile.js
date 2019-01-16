@@ -123,8 +123,8 @@ gulp.task('webserver', function() {
 // var fileinclude = require('gulp-file-include');
 // var browserSync = require('browser-sync').create();
 // var notify = require('gulp-notify');
-
-
+//
+//
 // gulp.task('sass', function () {
 //     return gulp.src('src/SASS/*.sass')
 //         .pipe(changed('dist/CSS', {extension:'.css'}))
@@ -135,7 +135,7 @@ gulp.task('webserver', function() {
 //             return "Error: " + error.message;
 //         }));
 // });
-
+//
 // gulp.task('scss', function () {
 //     return gulp.src('src/SCSS/*.scss')
 //         .pipe(changed('dist/CSS', {extension:'.css'}))
@@ -146,8 +146,8 @@ gulp.task('webserver', function() {
 //             return "Error: " + error.message;
 //         }));
 //   });
-
-
+//
+//
 // gulp.task('js', function() {
 // 	return gulp.src('src/JS/*.js')
 //         .pipe(changed('dist/JS'))
@@ -157,12 +157,12 @@ gulp.task('webserver', function() {
 //             return "Error: " + error.message;
 //         }));
 // });
-
+//
 // // 檢查更動後是否能及時反應
-
+//
 // gulp.task('compresspug', function buildHTML() {
 //     return gulp.src('src/views/course/*.pug')
-//         .pipe(changed('src/views/course'))
+//         // .pipe(changed('src/views/course'))
 //         .pipe(pug({pretty: true}))
 //         .pipe(gulp.dest('src/views/course'))
 //         // .pipe(browserSync.stream())
@@ -170,7 +170,7 @@ gulp.task('webserver', function() {
 //             return "Error: " + error.message;
 //         }));
 // });
-
+//
 // gulp.task('combine_html', function () {
 //     return gulp.src('src/views/index.html')
 //         .pipe(changed('dist'))
@@ -181,7 +181,7 @@ gulp.task('webserver', function() {
 //             return "Error: " + error.message;
 //         }));
 // });
-
+//
 // gulp.task('assets', function() {
 // 	return gulp.src('src/{images,music}/**')
 // 		.pipe(changed('dist'))
@@ -191,11 +191,11 @@ gulp.task('webserver', function() {
 //             return "Error: " + error.message;
 //         }));
 // });
-
-
-
+//
+//
+//
 // gulp.task('compile', ['sass','scss', 'js', 'compresspug', 'combine_html', 'assets']);
-
+//
 // gulp.task('watch', ['compile'], function() {
 // 	browserSync.init({
 //         port: 8000,
@@ -212,5 +212,5 @@ gulp.task('webserver', function() {
 //     gulp.watch('src/views/*/*.html', ['combine_html']);
 // 	gulp.watch('src/{images,music}/**', ['assets']);
 // });
-
+//
 // gulp.task('default', ['watch']);

@@ -26,21 +26,27 @@ div#courseContent(v-show="isShow" @click.self="showContent()")
     div.courseContentBody__right
       div.courseContentBody__right__score
         h4 課程評分 ({{score_data.rates.length}})
-        div.score-btn--all
+        div.flex-container.score-btn--all
           div.score-btn
             span 甜度
             div.arrow-left(@click="minusRate('sweet_rate')")
-            span {{score_data.sweet}}
+            span.score_span {{score_data.sweet}}
             input#sweet_rate.score_input(type="number" value="5" min="1" max="10")
             div.arrow-right(@click="addRate('sweet_rate')")
           div.score-btn
             span 涼度 
-            span {{score_data.hard}}
-          div.score-btn 
+            div.arrow-left(@click="minusRate('hard_rate')")
+            span.score_span {{score_data.hard}}
+            input#hard_rate.score_input(type="number" value="5" min="1" max="10")
+            div.arrow-right(@click="addRate('hard_rate')")
+          div.score-btn
             span 推薦 
-            span {{score_data.recommand}}
-        div.score-btn(style="color:rgb(241,91,94);") 評分
-        div.score-btn--all
+            div.arrow-left(@click="minusRate('recom_rate')")
+            span.score_span {{score_data.recommand}}
+            input#recom_rate.score_input(type="number" value="5" min="1" max="10")
+            div.arrow-right(@click="addRate('recom_rate')")
+          button.score-btn.score-btn__submit#score_input(type="submit" @click="submit_score()") 評分
+        div.score-btn--all(style="display:none")
           div#score-contents(style="display:inline-block")
             div.score-btn--edit
               span 甜度

@@ -13,7 +13,7 @@ $colorRed: rgb(241,91,94)
 
 /* reset style of input number */
 input[type=number]:not(.browser-default)
-  -webkit-appearance: none
+  // -webkit-appearance: none
   appearance: none
 input[type=number]::-webkit-inner-spin-button
   -webkit-appearance: none
@@ -44,6 +44,9 @@ body
 
 ::-webkit-scrollbar
   display: none
+
+.flex-container
+  display: flex
 /* font-color */
 h1, h4, p
   color: #424242
@@ -347,18 +350,30 @@ section
 
 .score-btn--all
   margin: 2vh 0px
+  width: 100%
+  justify-content: space-between
 .score-btn
+  display: inline-block
   background-color: $colorgrey250
   color: $colorBlack66
   box-shadow: none
   -webkit-box-shadow: none
-  margin: 0 5px
-  padding: 15px 20px
+  margin: 0 5px 0 0
   line-height: 0px
   font-size: 16px
-  width: 20%
+  padding: 10px 15px
+  text-align: center
+  border: none
+  border-radius: 5px
   &--edit
     display: inline-block
+
+  &__submit
+    color: rgb(241,91,94)
+    margin: 0
+.score_span
+  display: none
+
 #score_input:hover
   background-color: $colorBlack5
 .courseFeedback
