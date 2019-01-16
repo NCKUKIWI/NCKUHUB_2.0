@@ -46,25 +46,6 @@ div#courseContent(v-show="isShow" @click.self="showContent()")
             input#recom_rate.score_input(type="number" value="5" min="1" max="10")
             div.arrow-right(@click="addRate('recom_rate')")
           button.score-btn.score-btn__submit#score_input(type="submit" @click="submit_score()") 評分
-        div.score-btn--all(style="display:none")
-          div#score-contents(style="display:inline-block")
-            div.score-btn--edit
-              span 甜度
-              div.arrow-left(@click="minusRate('sweet_rate')")
-              input#sweet_rate.score_input(type="number" value="5" min="1" max="10")
-              div.arrow-right(@click="addRate('sweet_rate')")
-            div.score-btn--edit
-              span 涼度
-              div.arrow-left(@click="minusRate('hard_rate')")
-              input#hard_rate.score_input(type="number" value="5" min="1" max="10")
-              div.arrow-right(@click="addRate('hard_rate')")
-            div.score-btn--edit
-              span 推薦
-              div.arrow-left(@click="minusRate('recom_rate')")
-              input#recom_rate.score_input(type="number" value="5" min="1" max="10")
-              div.arrow-right(@click="addRate('recom_rate')")
-          div.score-btn--edit
-            button#score_input(type="submit" @click="submit_score()") 送出
       div.courseContentBody__right__comment
         h4 課程心得 ({{comment_data.length}})
         div.courseFeedback.courseFeedback__msg--default(style="display:none")
@@ -88,14 +69,16 @@ div#courseContent(v-show="isShow" @click.self="showContent()")
             div.arrow-down
 div.course__whole         
   div.courseList__sidenav#courseFilter
-    p 開課單位
-    div.courseList__sidenav__option
+    div.block_title
+      p.text_18 開課單位
+    div.quick_search_area
       input#dpmtFilter(type="text" v-model="keyword") 
       div(v-for="(result, index) in search_result").quick_search--course
         div(@click="result_click(index)")
           h4 {{result.prefix}} {{result.name}}
     div#courseArrange.courseList__sidenav__courseType
-      p 檢視選項
+      div.block_title
+        p.text_18 檢視選項
       div.courseList__sidenav__option
         label
           input#commentCheck(type="checkbox" @click="comment_filter()")

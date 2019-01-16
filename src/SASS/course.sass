@@ -24,6 +24,14 @@ input[type=number]::-webkit-outer-spin-button
 .score-btn--edit input
   border: none
   text-align: center
+  border-width: 0px
+  background-color: transparent
+  cursor: default
+  -webkit-appearance: none
+
+input
+  border-width: 0px
+  background-color: transparent
 
 /* overall */
 div, p
@@ -361,17 +369,21 @@ section
   margin: 0 5px 0 0
   line-height: 0px
   font-size: 16px
-  padding: 10px 15px
+  padding: 10px 20px
   text-align: center
   border: none
   border-radius: 5px
+  span
+    height: 20px
+  input
+    text-align: center
   &--edit
     display: inline-block
 
   &__submit
     color: rgb(241,91,94)
     margin: 0
-.score_span
+.score_input, .arrow-left, .arrow-right
   display: none
 
 #score_input:hover
@@ -398,7 +410,7 @@ section
     input
       width: 10px
       text-align: center
-      border: none
+      border-width: 0px
   &__score
     position: absolute
     width: 20%

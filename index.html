@@ -119,28 +119,6 @@
           </div>
           <button class="score-btn score-btn__submit" id="score_input" type="submit" @click="submit_score()">評分</button>
         </div>
-        <div class="score-btn--all" style="display:none">
-          <div id="score-contents" style="display:inline-block">
-            <div class="score-btn--edit"><span>甜度</span>
-              <div class="arrow-left" @click="minusRate('sweet_rate')"></div>
-              <input class="score_input" id="sweet_rate" type="number" value="5" min="1" max="10"/>
-              <div class="arrow-right" @click="addRate('sweet_rate')"></div>
-            </div>
-            <div class="score-btn--edit"><span>涼度</span>
-              <div class="arrow-left" @click="minusRate('hard_rate')"></div>
-              <input class="score_input" id="hard_rate" type="number" value="5" min="1" max="10"/>
-              <div class="arrow-right" @click="addRate('hard_rate')"></div>
-            </div>
-            <div class="score-btn--edit"><span>推薦</span>
-              <div class="arrow-left" @click="minusRate('recom_rate')"></div>
-              <input class="score_input" id="recom_rate" type="number" value="5" min="1" max="10"/>
-              <div class="arrow-right" @click="addRate('recom_rate')"></div>
-            </div>
-          </div>
-          <div class="score-btn--edit">
-            <button id="score_input" type="submit" @click="submit_score()">送出</button>
-          </div>
-        </div>
       </div>
       <div class="courseContentBody__right__comment">
         <h4>課程心得 ({{comment_data.length}})</h4>
@@ -177,8 +155,10 @@
 </div>
 <div class="course__whole">        
   <div class="courseList__sidenav" id="courseFilter">
-    <p>開課單位</p>
-    <div class="courseList__sidenav__option">
+    <div class="block_title">
+      <p class="text_18">開課單位</p>
+    </div>
+    <div class="quick_search_area">
       <input id="dpmtFilter" type="text" v-model="keyword"/>
       <div class="quick_search--course" v-for="(result, index) in search_result">
         <div @click="result_click(index)">
@@ -187,7 +167,9 @@
       </div>
     </div>
     <div class="courseList__sidenav__courseType" id="courseArrange">
-      <p>檢視選項</p>
+      <div class="block_title">
+        <p class="text_18">檢視選項</p>
+      </div>
       <div class="courseList__sidenav__option">
         <label>
           <input id="commentCheck" type="checkbox" @click="comment_filter()"/><span>僅顯示有心得之課程</span>
@@ -224,13 +206,14 @@
           </div>
           <div style="float:right;margin: auto 0">
             <div class="circle--img"><img src="./dist/images/course/edit.png"/></div>
-            <div class="circle--img" @click.self="addCourse(index)" style="z-index: 20"><img src="./dist/images/course/heart.png"/></div>
+            <div class="circle--img" style="z-index: 20" @click="addCourse(index)"><img src="./dist/images/course/heart.png"/></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
     	</div>
     	<div class="change_tab" name="table">
         <!-- <div class="change_tab" name="table" style="display: none;"> -->

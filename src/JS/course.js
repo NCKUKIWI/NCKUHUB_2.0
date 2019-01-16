@@ -31,7 +31,7 @@ $.ajax({
 
 //js functions -------------------------
 
-
+var submit_click_index = 0;
 // end -------------------------/
 
 // vue functions -----------------------
@@ -133,9 +133,23 @@ $.ajax({
             document.getElementById(rate_input).stepUp();
         }
       },
-      submit_score: function() {
-        document.getElementById("score-contents").innerHTML = "<p>你是第9487位評分者！要不要順便寫個心得</p>";
-        document.getElementById("score_input").innerHTML = "寫心得";
+      submit_score: function(index) {
+          $(".score_input").each(function() {
+            $(".score_input").css("display","inline-block");
+          });
+          $(".score_span").each(function() {
+            $(".score_span").css("display","none");
+          });
+          $(".arrow-left").each(function() {
+            $(".arrow-left").css("display","inline-block");
+          });
+          $(".arrow-right").each(function() {
+            $(".arrow-right").css("display","inline-block");
+          });
+          
+
+          // document.getElementById("score_input").innerHTML = "寫心得";
+
       },
     }
   });
