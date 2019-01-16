@@ -46,7 +46,7 @@
         methods: {
             getData: function( user_id ) {
                 var user_data = {} ;
-                axios.get ( 'http://localhost:3000/user/getList/'+ user_id )
+                axios.get ( 'https://nckuhub.com/api/user/getList/'+ user_id )
                     .then ( function ( response ) {
                         user_data = response.data ;
                         console.log ( '使用者資料: 抓取資料成功！' ) ;
@@ -114,7 +114,7 @@
                 vue_classtable.refresh();
             },
             // wishlistUpdate: function() {
-            //     axios.post('http://localhost:3000/post/setWish/5', {
+            //     axios.post('https://nckuhub.com/api/post/setWish/5', {
             //             "now_table": [43081, 4021, 43021, 42973, 42971, 42969, 42968, 99999]        // todo: 不知為啥傳不成功？？
             //         })
             //         .then ( function ( response ) {
