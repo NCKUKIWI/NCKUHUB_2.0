@@ -3,10 +3,10 @@
     // 輸入課程列表、查找代碼，輸出課程資訊物件(class_item)
 
     function getClassObject ( course_db, target_id ) {
-        course_item = course_db.find( function ( item ) {
+        var course_item = course_db.find( function ( item ) {
             return item.id == target_id 
         });
-        if ( course_item ) {
+        if ( course_item ) {   
             var class_id = course_item.選課序號 ;
             if ( ! class_id ) {
                 class_id = '000' ;
@@ -22,8 +22,9 @@
                 credit: course_item.學分
             }
         }
-        else
+        else {        
             return 0;
+        }
     }
 
 
