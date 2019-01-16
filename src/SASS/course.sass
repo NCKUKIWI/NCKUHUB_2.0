@@ -29,6 +29,11 @@ input[type=number]::-webkit-outer-spin-button
   cursor: default
   -webkit-appearance: none
 
+input[type=checkbox]
+  // -webkit-appearance: none
+  // appearance: none
+  background-color: #1a6cbd
+
 input
   border-width: 0px
   background-color: transparent
@@ -49,6 +54,7 @@ body
   font-family: "Roboto", sans-serif
   background-color: $colorBlack6
   overflow: hidden
+  color: #4A4A4A
 
 ::-webkit-scrollbar
   display: none
@@ -57,7 +63,6 @@ body
   display: flex
 /* font-color */
 h1, h4, p
-  color: #424242
   letter-spacing: 1.5
 
 /* font-size */
@@ -83,10 +88,6 @@ p
   padding: 2vh 1vw
   z-index: 3
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)
-
-
-.course__whole
-  margin-top: 5vh
 
 section
   background-color: #eeeeee
@@ -132,17 +133,16 @@ section
     // text-align: center
     // padding: 3vh 3vw 0vh 4vw
     // display: inline-block
-    input[type=text]
-      background-color: #fff
-      opacity: 0.5
-      border-bottom: none
-      border: none
-      width: 100%
-      height: 30px
-      font-size: 14px
-      -webkit-appearance: none
-    p, span
-      font-size: 12px
+    // input[type=text]
+    //   background-color: #fff
+    //   border-bottom: none
+    //   border: none
+    //   width: 100%
+    //   height: 30px
+    //   font-size: 14px
+    //   -webkit-appearance: none
+    // span
+    //   font-size: 12px
     h5 span
       background: $colorBlack5
       padding: 0 10px
@@ -178,7 +178,9 @@ section
     height: calc( 100vh - 60px )
     padding-right: 5vw
     padding-left: 30px
-    top: 15vh
+    align-items: center
+    justify-content: center
+    // top: 15vh
 
     // width: 70vw
     // display: inline-block
@@ -187,9 +189,16 @@ section
     p
       font-size: 12px
     &__itemBox
-      border-radius: 5px
+      position: relative
+      display: flex
+      flex-direction: column
+      overflow: hidden
+      height: 82vh
+      width: 100%
       z-index: 1
       cursor: pointer
+      box-shadow: 0 0 14px 0 rgba(0,0,0,0.10)
+      border: #eee 1px solid
       &__item
         width: 100%
         padding: 10px 20px
@@ -205,6 +214,14 @@ section
           font-size: 9px
         div
           display: inline-block
+
+.quick_search_checkbox
+  padding: 16px 50px 16px 15px
+  background-color: #fff
+  box-shadow: 0 0 14px 0 rgba(0,0,0,0.06)
+  border: #eee 1px solid
+  box-sizing: content-box
+
 
 .wishList__item
   background-color: #fff
@@ -274,7 +291,7 @@ section
     flex: 35%
     height: 100vh
     background-color: $colorgrey250
-    padding: 7vh 3.5vw
+    padding: 15vh 3.5vw 0vh 3.5vw
     overflow-y: scroll
     h6
       font-size: 7px
@@ -284,7 +301,7 @@ section
   &__right
     flex: 65%
     height: 100%
-    padding: 9vh 3.5vw
+    padding: 20vh 3.5vw 0vh 3.5vw
     overflow-y: scroll
     font-size: 16px
     h4
@@ -353,11 +370,11 @@ section
   margin: 0px 2px 0px 0px
 .courseUnit
   margin-top: 30px
-  h6
-    margin-bottom: 5px
+  .block_title
+    color: #9b9b9b
 
 .score-btn--all
-  margin: 2vh 0px
+  margin: 5vh 0px
   width: 100%
   justify-content: space-between
 .score-btn
@@ -369,10 +386,10 @@ section
   margin: 0 5px 0 0
   line-height: 0px
   font-size: 16px
-  padding: 10px 20px
+  padding: 20px 3.5vw
   text-align: center
   border: none
-  border-radius: 5px
+
   span
     height: 20px
   input
@@ -388,15 +405,18 @@ section
 
 #score_input:hover
   background-color: $colorBlack5
+
 .courseFeedback
-  background-color: $colorgrey250
-  border-radius: 5px
-  display: flex
-  padding: 20px 20px
-  margin: 1vh 0px
+  margin-top: 3vh
+  &__single
+    background-color: $colorgrey250
+    display: flex
+    padding: 20px 20px
+    margin: 1vh 0px
+    &--default
+      padding: 5vh 20px
+      line-height: 2
   &__msg
-    width: 90%
-    display: inline-block
     p
       line-height: 1.5
 
@@ -429,6 +449,4 @@ section
 #course_item
   overflow-x: hidden
   overflow-y: scroll
-  height: 80vh
   background-color: #fff
-  box-shadow: 0 0 14px 0 rgba(0,0,0,0.06)

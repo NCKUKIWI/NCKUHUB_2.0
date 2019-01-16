@@ -31,7 +31,6 @@ $.ajax({
 
 //js functions -------------------------
 
-var submit_click_index = 0;
 // end -------------------------/
 
 // vue functions -----------------------
@@ -134,19 +133,19 @@ var submit_click_index = 0;
         }
       },
       submit_score: function(index) {
-          $(".score_input").each(function() {
-            $(".score_input").css("display","inline-block");
-          });
-          $(".score_span").each(function() {
-            $(".score_span").css("display","none");
-          });
-          $(".arrow-left").each(function() {
-            $(".arrow-left").css("display","inline-block");
-          });
-          $(".arrow-right").each(function() {
-            $(".arrow-right").css("display","inline-block");
-          });
-          
+          // $(".score_input").each(function() {
+          //   $(".score_input").css("display","inline-block");
+          // });
+          // $(".score_span").each(function() {
+          //   $(".score_span").css("display","none");
+          // });
+          // $(".arrow-left").each(function() {
+          //   $(".arrow-left").css("display","inline-block");
+          // });
+          // $(".arrow-right").each(function() {
+          //   $(".arrow-right").css("display","inline-block");
+          // });
+
 
           // document.getElementById("score_input").innerHTML = "寫心得";
 
