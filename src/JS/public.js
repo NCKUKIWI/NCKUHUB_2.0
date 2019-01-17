@@ -5,6 +5,8 @@
         函數：
             1. 課程加入願望清單：  vue_user_data.wishlistAdd( id );
             2. 課程移出願望清單：  vue_user_data.wishlistRemove( id );
+            3. 課程加入課表：       vue_user_data.tableAdd( id );
+            4. 課程移出課表：       vue_user_data.tableRemove( id );
 
         注意：
             1. 任何需要用到 ajax 內容的 function 都必須寫在 ajax 完成後，否則會出錯。
@@ -23,6 +25,12 @@
         .then ( function ( response ) {
             course_db = response.data.courses;
             console.log ( '課程資料庫: 抓取資料成功！' ) ;
+            if(response.data.user_data !== undefined) {
+            	console.log(response.data.user_data[0]);
+            	console.log(response.data.user_data[0].name);
+            	vue_user_data.user_name = response.data.user_data[0].name;
+            	vue_nav_bar.logIn();
+            }
             vue_user_data.getData( user_id );                 // todo: 每次登入都要重新開始
             // vue_course_item.refresh();
         })
