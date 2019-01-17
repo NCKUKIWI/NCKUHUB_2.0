@@ -3,10 +3,12 @@ div#courseContent(v-show="isShow" @click.self="showContent()")
     div.courseContentBody__left
       span.courseSerial {{course_data.系號}}{{course_data.選課序號}}
       h2(style="margin-top:20px") {{course_data.課程名稱}}
-      div(style="margin-top:30px").icon-span
-        span 加入願望清單
-      div.icon-span
+      div(style="margin-top:30px").flex-container.icon-span
+        div.content-icon.see_clip
         span 檢視課程大綱
+      div.flex-container.icon-span
+        div.content-icon.add_wishlist
+        span 加入願望清單
       div.courseUnit
         div.block_title
           p.text_14 開課單位
@@ -19,11 +21,11 @@ div#courseContent(v-show="isShow" @click.self="showContent()")
         div.block_title
           p.text_14 開課時段
         p.text_16 {{course_data.時間}}
-      div.courseUnit
+      //div.courseUnit
         div.block_title
           p.text_14 教學方法
         p.text_16 course_data.lecture
-      div.courseUnit
+      //div.courseUnit
         div.block_title
           p.text_14 評量方法
         p.text_16 course_data.score
@@ -71,11 +73,12 @@ div.course__whole
   div.courseList__sidenav#courseFilter
     div.block_title
       p.text_18 開課單位
-    div.quick_search_area
+    div.quick_search_area(style="z-index:300")
       input#dpmtFilter(type="text" v-model="keyword" placeholder="選擇開課單位" class="quick_search_input") 
-      div(v-for="(result, index) in search_result").quick_search--course
-        div(@click="result_click(index)")
-          h4 {{result.prefix}} {{result.name}}
+      div.quick_search_dropdown--course
+        div(v-for="(result, index) in search_result").search_result--course
+          div(@click="result_click(index)")
+            p {{result.prefix}} {{result.name}}
     div#courseArrange.courseList__sidenav__courseType
       div.block_title
         p.text_18 檢視選項
@@ -100,15 +103,16 @@ div.course__whole
   div.flex-container.courseList__sideList
     div.card.courseList__sideList__itemBox#courseList
       div#course_item(v-on:scroll="handleScroll")
-        div(@click.self="courseLink(index)" v-for="(course, index) in course_data" style="").courseList__sideList__itemBox__item
-            div.circle 
+        div(@click.self="courseLink(index)" v-for="(course, index) in course_data").flex-container.courseList__sideList__itemBox__item
+          div.flex-container.course_info
+            div.circle(:class="course.系號")
               span.circle-content {{course.系號}}
-            div.courseText(style="margin-left: 20px")
-              p {{course.課程名稱}}
-              p(style="font-size: 12px;color:#9e9e9e;") {{course.系號}}{{course.選課序號}} - {{course.老師}}
-            div(style="float:right;margin: auto 0")
-              div.circle--img
-                img(src="./dist/images/course/edit.png")
-              div.circle--img(style="z-index: 20" @click="addCourse(index)")
-                img(src="./dist/images/course/heart.png")
-              
+            div.courseText
+              p.text_16 {{course.課程名稱}}
+              p.text_14 {{course.系號}}{{course.選課序號}} - {{course.老師}}
+          div.flex-container
+            div.circle--img
+              img(src="./dist/images/course/edit.png")
+            div.circle--img(style="z-index: 20" @click="addCourse(index)")
+              img(src="./dist/images/course/heart.png")
+            

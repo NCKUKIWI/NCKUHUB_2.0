@@ -6,7 +6,7 @@ $.ajax({
   success: function (response) {
         vue_course_item.course_data_db = response.courses;
 
-        for(var i=0;i<100;i++){
+        for(var i=0;i<200;i++){
           vue_course_item.course_data.push(vue_course_item.course_data_db[i]);
         }
 
@@ -92,7 +92,7 @@ $.ajax({
         var list_height = $("#course_item").height();
         var scroll_height = $("#course_item").scrollTop();
         if(scroll_height >= list_height * this.count_height){
-          for(var i = 100 + this.count_index*20; i< 100 + (this.count_index+1)*20;i++){
+          for(var i = 200 + this.count_index*20; i< 200 + (this.count_index+1)*20;i++){
             vue_course_item.course_data.push(vue_course_item.course_data_db[i]);
           }
           this.count_index++;
@@ -215,7 +215,7 @@ $.ajax({
           }
         }
 
-        $(".quick_search--course").css("display","none");
+        $(".search_result--course").css("display","none");
         vue_course_item.course_data = this.filter_by_dpmt;
         console.log(this.filter_by_dpmt);
       },
@@ -227,7 +227,6 @@ $.ajax({
         }
       },
       deleteItem: function ( id ) {
-        console.log ( 'wishlist killed: ' + id );
         vue_user_data.wishlistRemove( id );
       },
     },

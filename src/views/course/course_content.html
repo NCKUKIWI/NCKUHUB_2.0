@@ -3,8 +3,12 @@
   <div class="courseContentBody">
     <div class="courseContentBody__left"><span class="courseSerial">{{course_data.系號}}{{course_data.選課序號}}</span>
       <h2 style="margin-top:20px">{{course_data.課程名稱}}</h2>
-      <div class="icon-span" style="margin-top:30px"><span>加入願望清單</span></div>
-      <div class="icon-span"><span>檢視課程大綱</span></div>
+      <div class="flex-container icon-span" style="margin-top:30px">
+        <div class="content-icon see_clip"></div><span>檢視課程大綱</span>
+      </div>
+      <div class="flex-container icon-span">
+        <div class="content-icon add_wishlist"></div><span>加入願望清單</span>
+      </div>
       <div class="courseUnit">
         <div class="block_title">
           <p class="text_14">開課單位</p>
@@ -23,18 +27,16 @@
         </div>
         <p class="text_16">{{course_data.時間}}</p>
       </div>
-      <div class="courseUnit">
-        <div class="block_title">
-          <p class="text_14">教學方法</p>
-        </div>
-        <p class="text_16">course_data.lecture</p>
-      </div>
-      <div class="courseUnit">
-        <div class="block_title">
-          <p class="text_14">評量方法</p>
-        </div>
-        <p class="text_16">course_data.score</p>
-      </div><br/>
+      <!--div.courseUnit
+      div.block_title
+        p.text_14 教學方法
+      p.text_16 course_data.lecture
+      -->
+      <!--div.courseUnit
+      div.block_title
+        p.text_14 評量方法
+      p.text_16 course_data.score
+      --><br/>
     </div>
     <div class="courseContentBody__right">
       <div class="courseContentBody__right__score">
@@ -91,11 +93,13 @@
     <div class="block_title">
       <p class="text_18">開課單位</p>
     </div>
-    <div class="quick_search_area">
+    <div class="quick_search_area" style="z-index:300">
       <input class="quick_search_input" id="dpmtFilter" type="text" v-model="keyword" placeholder="選擇開課單位"/>
-      <div class="quick_search--course" v-for="(result, index) in search_result">
-        <div @click="result_click(index)">
-          <h4>{{result.prefix}} {{result.name}}</h4>
+      <div class="quick_search_dropdown--course">
+        <div class="search_result--course" v-for="(result, index) in search_result">
+          <div @click="result_click(index)">
+            <p>{{result.prefix}} {{result.name}}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -131,13 +135,15 @@
   <div class="flex-container courseList__sideList">
     <div class="card courseList__sideList__itemBox" id="courseList">
       <div id="course_item" v-on:scroll="handleScroll">
-        <div class="courseList__sideList__itemBox__item" @click.self="courseLink(index)" v-for="(course, index) in course_data">
-          <div class="circle"> <span class="circle-content">{{course.系號}}</span></div>
-          <div class="courseText" style="margin-left: 20px">
-            <p>{{course.課程名稱}}</p>
-            <p style="font-size: 12px;color:#9e9e9e;">{{course.系號}}{{course.選課序號}} - {{course.老師}}</p>
+        <div class="flex-container courseList__sideList__itemBox__item" @click.self="courseLink(index)" v-for="(course, index) in course_data">
+          <div class="flex-container course_info">
+            <div class="circle" :class="course.系號"><span class="circle-content">{{course.系號}}</span></div>
+            <div class="courseText">
+              <p class="text_16">{{course.課程名稱}}</p>
+              <p class="text_14">{{course.系號}}{{course.選課序號}} - {{course.老師}}</p>
+            </div>
           </div>
-          <div style="float:right;margin: auto 0">
+          <div class="flex-container">
             <div class="circle--img"><img src="./dist/images/course/edit.png"/></div>
             <div class="circle--img" style="z-index: 20" @click="addCourse(index)"><img src="./dist/images/course/heart.png"/></div>
           </div>
