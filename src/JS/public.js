@@ -5,6 +5,8 @@
         函數：
             1. 課程加入願望清單：  vue_user_data.wishlistAdd( id );
             2. 課程移出願望清單：  vue_user_data.wishlistRemove( id );
+            3. 課程加入課表：       vue_user_data.tableAdd( id );
+            4. 課程移出課表：       vue_user_data.tableRemove( id );
 
         注意：
             1. 任何需要用到 ajax 內容的 function 都必須寫在 ajax 完成後，否則會出錯。

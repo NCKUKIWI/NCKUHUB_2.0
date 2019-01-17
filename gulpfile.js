@@ -161,7 +161,6 @@ var browserSync = require('browser-sync').create();
 var notify = require('gulp-notify');
 
 
-
 gulp.task('sass', function () {
     return gulp.src('src/SASS/*.sass')
         .pipe(changed('dist/CSS', {extension:'.css'}))
@@ -245,9 +244,10 @@ gulp.task('watch', ['compile'], function() {
     gulp.watch('src/SASS/*.sass', ['sass']);
     gulp.watch('src/SCSS/*.scss', ['scss']);
     gulp.watch('src/JS/*.js', ['js']);
-    gulp.watch('src/views/course/*.pug', ['compresspug', 'combine_html']);
-    // gulp.watch('src/views/course/*.pug', ['compresspug']);
-    gulp.watch('src/views/*/*.html', ['combine_html']);
+    gulp.watch('src/views/**', ['compresspug', 'combine_html']);
+    // gulp.watch('src/views/*/*.pug', ['compresspug', 'combine_html']);
+    // gulp.watch('src/views/*/*.html', ['compresspug', 'combine_html']);
+    // gulp.watch('src/views/*.html', ['compresspug', 'combine_html']);
 	gulp.watch('src/{images,music}/**', ['assets']);
 });
 
