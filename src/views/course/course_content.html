@@ -2,11 +2,11 @@
 <div id="courseContent" v-show="isShow" @click.self="showContent()">
   <div class="courseContentBody">
     <div class="courseContentBody__left"><span class="courseSerial">{{course_data.系號}}{{course_data.選課序號}}</span>
-      <h2 style="margin-top:20px">{{course_data.課程名稱}}</h2>
-      <div class="flex-container icon-span" style="margin-top:30px">
+      <h2 style="margin-top:20px;">{{course_data.課程名稱}}</h2>
+      <div class="flex-container icon-span" style="margin-top:30px" @click="openOutline(course_data.系號,course_data.課程碼)">
         <div class="content-icon see_clip"></div><span>檢視課程大綱</span>
       </div>
-      <div class="flex-container icon-span">
+      <div class="flex-container icon-span" @click="content_addtowishlist(course_data.id)">
         <div class="content-icon add_wishlist"></div><span>加入願望清單</span>
       </div>
       <div class="courseUnit">
@@ -118,7 +118,7 @@
         <p class="text_18">願望清單（{{ wishlist_cont.length }})</p>
       </div>
       <div class="wishlist_cont">
-        <div class="list_course_item" v-for="item in wishlist_cont">
+        <div class="list_course_item" v-for="item in wishlist_cont" style="justify-content:none">
           <div class="list_course_item_left">
             <p class="list_course_item_category text_20 text_white clickable" :class="item.dept_id" @click="deleteItem(item.id)">{{ item.category }}</p>
           </div>
@@ -135,15 +135,15 @@
   <div class="flex-container courseList__sideList">
     <div class="card courseList__sideList__itemBox" id="courseList">
       <div id="course_item" v-on:scroll="handleScroll">
-        <div class="flex-container courseList__sideList__itemBox__item" @click.self="courseLink(index)" v-for="(course, index) in course_data">
-          <div class="flex-container course_info">
-            <div class="circle" :class="course.系號"><span class="circle-content">{{course.系號}}</span></div>
-            <div class="courseText">
-              <p class="text_16">{{course.課程名稱}}</p>
-              <p class="text_14">{{course.系號}}{{course.選課序號}} - {{course.老師}}</p>
-            </div>
+        <div class="list_course_item" @click.self="courseLink(index)" v-for="(course, index) in course_data">
+          <div class="list_course_item_left">
+            <p class="list_course_item_category text_white text_20" :class="course.dept_id">工</p>
           </div>
-          <div class="flex-container">
+          <div class="list_course_item_mid">
+            <p class="list_course_item_title text_16">{{course.課程名稱}}</p>
+            <p class="list_course_item_description text_14 text_dark">{{course.系所名稱}} {{course.系號}}{{course.選課序號}} - {{course.老師}}</p>
+          </div>
+          <div class="list_course_item_right" style="width:auto">
             <div class="circle--img"><img src="./dist/images/course/edit.png"/></div>
             <div class="circle--img" style="z-index: 20" @click="addCourse(index)"><img src="./dist/images/course/heart.png"/></div>
           </div>
