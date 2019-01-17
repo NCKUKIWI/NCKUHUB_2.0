@@ -18,7 +18,7 @@
     var course_db = [];
     var user_id = '5';                                       // todo: 從登錄狀態取得
 
-
+    
     axios.get ( 'https://nckuhub.com/api/course/' )
         .then ( function ( response ) {
             course_db = response.data.courses;
@@ -29,6 +29,9 @@
         .catch ( function ( error ) {
             console.log (  '課程資料庫:' + error ) ;
         });
+
+
+
 
 
 
@@ -57,7 +60,7 @@
                     });
             },
             fillData: function ( user_data ) {
-                // 初始化用戶資料
+                // 初始化用資料
                 this.user_name = user_data.name;
                 // this.user_photo = user_data.photo;          // todo: 取得圖片
                 // this.credit_count = 0;                      // todo 計算學分數
@@ -113,17 +116,17 @@
                 vue_user_data.now_table.splice( index, 1 );
                 vue_classtable.refresh();
             },
-            // wishlistUpdate: function() {
-            //     axios.post('https://nckuhub.com/api/post/setWish/5', {
-            //             "now_table": [43081, 4021, 43021, 42973, 42971, 42969, 42968, 99999]        // todo: 不知為啥傳不成功？？
-            //         })
-            //         .then ( function ( response ) {
-            //             console.log ( response ) ;
-            //             // console.log ( '更新願望清單: 更新成功！' ) ;
-            //         })
-            //         .catch ( function ( error ) {
-            //             console.log (  '更新願望清單:' + error ) ;
-            //         });
-            // }
+            wishlistUpdate: function() {
+                axios.post('https://nckuhub.com/api/post/setWish/5', {
+                    "now_wishlist": [ 43081, 4021, 43021, 42973, 42971, 42969, 42968 ]        // todo
+                })
+                .then ( function ( response ) {
+                    console.log ( response ) ;
+                    console.log ( '更新願望清單: 更新成功！' ) ;
+                })
+                .catch ( function ( error ) {
+                    console.log (  '更新願望清單:' + error ) ; 
+                });
+            }
         }
     })
