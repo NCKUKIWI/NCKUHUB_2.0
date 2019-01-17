@@ -25,6 +25,12 @@
         .then ( function ( response ) {
             course_db = response.data.courses;
             console.log ( '課程資料庫: 抓取資料成功！' ) ;
+            if(response.data.user_data !== undefined) {
+            	console.log(response.data.user_data[0]);
+            	console.log(response.data.user_data[0].name);
+            	vue_user_data.user_name = response.data.user_data[0].name;
+            	vue_nav_bar.logIn();
+            }
             vue_user_data.getData( user_id );                 // todo: 每次登入都要重新開始
             // vue_course_item.refresh();
         })
