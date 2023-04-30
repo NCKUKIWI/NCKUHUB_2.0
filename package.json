@@ -9,7 +9,7 @@
   "author": "Jeffrey Shen",
   "license": "MIT",
   "devDependencies": {
-    "browser-sync": "^2.26.3",
+    "browser-sync": "^2.29.1",
     "gulp": "^3.9.1",
     "gulp-changed": "^3.2.0",
     "gulp-imagemin": "^3.3.0",
